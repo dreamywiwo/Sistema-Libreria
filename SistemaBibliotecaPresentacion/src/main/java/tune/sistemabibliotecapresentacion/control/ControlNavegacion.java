@@ -7,7 +7,9 @@ package tune.sistemabibliotecapresentacion.control;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.implementaciones.InsercionMasivaBO;
 import tune.sistemabibliotecanegocio.implementaciones.UsuariosBO;
+import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
 import tune.sistemabibliotecapersistencia.implementaciones.UsuariosDAO;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
 import tune.sistemabibliotecapresentacion.VentanaRegistro;
@@ -16,9 +18,13 @@ public class ControlNavegacion {
 
     UsuariosDAO usuariosDAO = new UsuariosDAO();
     UsuariosBO usuariosBO = new UsuariosBO(usuariosDAO);
-
+    
+    InsercionMasivaDAO insercionMasivaDAO = new InsercionMasivaDAO();
+    InsercionMasivaBO insercionMasivaBO = new InsercionMasivaBO(insercionMasivaDAO);
+    
+    
     public void mostrarVentanaPrincipal() {
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal();
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO);
         ventanaPrincipal.mostrar();
     }
 

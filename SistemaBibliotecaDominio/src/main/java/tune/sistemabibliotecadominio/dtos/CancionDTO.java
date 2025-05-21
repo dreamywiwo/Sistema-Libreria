@@ -1,23 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package tune.sistemabibliotecadominio.entidades;
 
-import org.bson.types.ObjectId;
+package tune.sistemabibliotecadominio.dtos;
 
-public class Cancion {
-    private ObjectId id;
+public class CancionDTO {
+    private String id;
     private String nombre;
     private String duracion;
-    private ObjectId albumId; // Referencia al álbum
-    private ObjectId artistaId; // Referencia al artista
+    private String albumId; 
+    private String artistaId; 
     private String generoMusical;
 
-    public Cancion() {
+    public CancionDTO() {
     }
 
-    public Cancion(ObjectId id, String nombre, String duracion, ObjectId albumId, ObjectId artistaId, String generoMusical) {
+    public CancionDTO(String id, String nombre, String duracion, String albumId, String artistaId, String generoMusical) {
         this.id = id;
         this.nombre = nombre;
         this.duracion = duracion;
@@ -26,7 +21,7 @@ public class Cancion {
         this.generoMusical = generoMusical;
     }
 
-    public Cancion(String nombre, String duracion, ObjectId albumId, ObjectId artistaId, String generoMusical) {
+    public CancionDTO(String nombre, String duracion, String albumId, String artistaId, String generoMusical) {
         this.nombre = nombre;
         this.duracion = duracion;
         this.albumId = albumId;
@@ -34,11 +29,17 @@ public class Cancion {
         this.generoMusical = generoMusical;
     }
 
-    public ObjectId getId() {
+    public CancionDTO(String nombre, String duracion, String generoMusical) {
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.generoMusical = generoMusical;
+    }   
+   
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -58,19 +59,19 @@ public class Cancion {
         this.duracion = duracion;
     }
 
-    public ObjectId getAlbumId() {
+    public String getAlbumId() {
         return albumId;
     }
 
-    public void setAlbumId(ObjectId albumId) {
+    public void setAlbumId(String albumId) {
         this.albumId = albumId;
     }
 
-    public ObjectId getArtistaId() {
+    public String getArtistaId() {
         return artistaId;
     }
 
-    public void setArtistaId(ObjectId artistaId) {
+    public void setArtistaId(String artistaId) {
         this.artistaId = artistaId;
     }
 
@@ -82,3 +83,4 @@ public class Cancion {
         this.generoMusical = generoMusical;
     }
 }
+

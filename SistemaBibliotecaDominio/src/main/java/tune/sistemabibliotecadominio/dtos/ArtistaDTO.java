@@ -1,53 +1,64 @@
 package tune.sistemabibliotecadominio.dtos;
 
 import java.util.List;
-import java.time.LocalDate;  
 
 public class ArtistaDTO {
-    
-    private String idArtista;         
-    private String nombreArtista;         
-    private String imagen;                
-    private String generoMusical;         
-    private String tipo;                 
-    private LocalDate fechaCreacion;  
-    private List<IntegranteDTO> integrantes;  
+    private String id;
+    private String tipo; 
+    private String nombre;
+    private String imagen;
+    private String generoMusical;
+    private List<IntegranteDTO> integrantes;
 
-    // Constructor sin el idArtista
-    public ArtistaDTO(String nombreArtista, String imagen, String generoMusical, String tipo, LocalDate fechaCreacion, List<IntegranteDTO> integrantes) {
-        this.nombreArtista = nombreArtista;
+    public ArtistaDTO() {
+    }
+
+    public ArtistaDTO(String id, String tipo, String nombre, String imagen, String generoMusical, List<IntegranteDTO> integrantes) {
+        this.id = id;
+        this.tipo = tipo;
+        this.nombre = nombre;
         this.imagen = imagen;
         this.generoMusical = generoMusical;
-        this.tipo = tipo;
-        this.fechaCreacion = fechaCreacion;
         this.integrantes = integrantes;
     }
 
-    // Constructor con el idArtista
-    public ArtistaDTO(String idArtista, String nombreArtista, String imagen, String generoMusical, String tipo, LocalDate fechaCreacion, List<IntegranteDTO> integrantes) {
-        this.idArtista = idArtista;
-        this.nombreArtista = nombreArtista;
+    public ArtistaDTO(String tipo, String nombre, String imagen, String generoMusical, List<IntegranteDTO> integrantes) {
+        this.tipo = tipo;
+        this.nombre = nombre;
         this.imagen = imagen;
         this.generoMusical = generoMusical;
-        this.tipo = tipo;
-        this.fechaCreacion = fechaCreacion;
         this.integrantes = integrantes;
     }
 
-    public String getIdArtista() {
-        return idArtista;
+    public ArtistaDTO(String tipo, String nombre, String imagen, String generoMusical) {
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.generoMusical = generoMusical;
     }
 
-    public void setIdArtista(String idArtista) {
-        this.idArtista = idArtista;
+    public String getId() {
+        return id;
     }
 
-    public String getNombreArtista() {
-        return nombreArtista;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setNombreArtista(String nombreArtista) {
-        this.nombreArtista = nombreArtista;
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getImagen() {
@@ -66,22 +77,6 @@ public class ArtistaDTO {
         this.generoMusical = generoMusical;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public LocalDate getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDate fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
     public List<IntegranteDTO> getIntegrantes() {
         return integrantes;
     }
@@ -90,3 +85,4 @@ public class ArtistaDTO {
         this.integrantes = integrantes;
     }
 }
+

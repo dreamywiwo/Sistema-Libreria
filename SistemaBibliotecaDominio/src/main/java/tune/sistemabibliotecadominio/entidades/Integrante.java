@@ -4,20 +4,21 @@
  */
 package tune.sistemabibliotecadominio.entidades;
 
+import java.time.LocalDate;
 import org.bson.types.ObjectId;
 
 public class Integrante {
     private ObjectId id;
     private String nombreCompleto;
     private String rol;  
-    private String fechaIngreso;
-    private String fechaSalida;  
+    private LocalDate fechaIngreso;
+    private LocalDate fechaSalida;  
     private String estadoActividad;  // "activo" o "inactivo"
 
     public Integrante() {
     }
 
-    public Integrante(ObjectId id, String nombreCompleto, String rol, String fechaIngreso, String fechaSalida, String estadoActividad) {
+    public Integrante(ObjectId id, String nombreCompleto, String rol, LocalDate fechaIngreso, LocalDate fechaSalida, String estadoActividad) {
         this.id = id;
         this.nombreCompleto = nombreCompleto;
         this.rol = rol;
@@ -50,19 +51,19 @@ public class Integrante {
         this.rol = rol;
     }
 
-    public String getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getFechaSalida() {
+    public LocalDate getFechaSalida() {
         return fechaSalida;
     }
 
-    public void setFechaSalida(String fechaSalida) {
+    public void setFechaSalida(LocalDate fechaSalida) {
         this.fechaSalida = fechaSalida;
     }
 

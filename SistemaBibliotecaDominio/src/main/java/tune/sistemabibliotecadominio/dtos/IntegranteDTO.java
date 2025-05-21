@@ -1,20 +1,30 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package tune.sistemabibliotecadominio.dtos;
 
-/**
- *
- * @author Dana Chavez
- */
-public class IntegranteDTO {
-    
-    private String nombreCompleto;    
-    private String rol;               
-    private String fechaIngreso;     
-    private String estadoActividad;   
+import java.time.LocalDate;
 
+public class IntegranteDTO {
+    private String nombreCompleto;
+    private String rol;  
+    private LocalDate fechaIngreso;
+    private LocalDate fechaSalida;  
+    private String estadoActividad; 
+
+    public IntegranteDTO(String nombreCompleto, String rol, LocalDate fechaIngreso, LocalDate fechaSalida, String estadoActividad) {
+        this.nombreCompleto = nombreCompleto;
+        this.rol = rol;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
+        this.estadoActividad = estadoActividad;
+    }
+
+    public IntegranteDTO(String nombreCompleto, String rol, LocalDate fechaIngreso, String estadoActividad) {
+        this.nombreCompleto = nombreCompleto;
+        this.rol = rol;
+        this.fechaIngreso = fechaIngreso;
+        this.estadoActividad = estadoActividad;
+    }
+   
     public String getNombreCompleto() {
         return nombreCompleto;
     }
@@ -31,12 +41,20 @@ public class IntegranteDTO {
         this.rol = rol;
     }
 
-    public String getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public LocalDate getFechaSalida() {
+        return fechaSalida;
+    }
+
+    public void setFechaSalida(LocalDate fechaSalida) {
+        this.fechaSalida = fechaSalida;
     }
 
     public String getEstadoActividad() {
@@ -46,7 +64,4 @@ public class IntegranteDTO {
     public void setEstadoActividad(String estadoActividad) {
         this.estadoActividad = estadoActividad;
     }
-    
-    
-    
 }
