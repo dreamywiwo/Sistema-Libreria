@@ -10,9 +10,6 @@ package tune.sistemabibliotecapresentacion;
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
     public VentanaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
@@ -37,7 +34,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jButtonIcono = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButtonHome = new javax.swing.JButton();
+        jButtonAgregarArtistas = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,16 +44,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonIcono.setContentAreaFilled(false);
         getContentPane().add(jButtonIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 30, 40, 40));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonHome.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonHome.png"))); // NOI18N
+        jButtonHome.setBorder(null);
+        jButtonHome.setContentAreaFilled(false);
+        jButtonHome.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonHome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonHomeActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        getContentPane().add(jButtonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+
+        jButtonAgregarArtistas.setText("agregar");
+        jButtonAgregarArtistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAgregarArtistasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAgregarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 50, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoVentanaPrincipal.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -63,9 +69,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonHomeActionPerformed
+
+    private void jButtonAgregarArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarArtistasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAgregarArtistasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +113,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButtonAgregarArtistas;
+    private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonIcono;
     private javax.swing.JLabel jLabelFondo;
     // End of variables declaration//GEN-END:variables

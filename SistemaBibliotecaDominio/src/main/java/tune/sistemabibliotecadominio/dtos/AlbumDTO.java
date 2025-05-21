@@ -1,72 +1,60 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package tune.sistemabibliotecadominio.dtos;
 
 import java.time.LocalDate;
 import java.util.List;
 
-/**
- *
- * @author Dana Chavez
- */
 public class AlbumDTO {
-     
-    private String idAlbum;           
-    private String nombreAlbum;       
-    private LocalDate fechaLanzamiento;  
-    private String generoMusical;     
-    private String imagenPortada;     
-    private String artistaId;         
-    private List<String> canciones;   
+    private String id;
+    private String nombre;
+    private LocalDate fechaLanzamiento;
+    private String generoMusical; 
+    private String imagenPortada;
+    private List<CancionDTO> canciones; 
 
-    // Constructor sin ID
-    public AlbumDTO(String nombreAlbum, LocalDate  fechaLanzamiento, String generoMusical, 
-                    String imagenPortada, String artistaId, List<String> canciones) {
-        this.nombreAlbum = nombreAlbum;
+    public AlbumDTO() {
+    }
+
+    public AlbumDTO(String id, String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDTO> canciones) {
+        this.id = id;
+        this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.generoMusical = generoMusical;
         this.imagenPortada = imagenPortada;
-        this.artistaId = artistaId;
         this.canciones = canciones;
     }
 
-    // Constructor con ID
-    public AlbumDTO(String idAlbum, String nombreAlbum, LocalDate fechaLanzamiento, 
-                    String generoMusical, String imagenPortada, String artistaId, 
-                    List<String> canciones) {
-        this.idAlbum = idAlbum;
-        this.nombreAlbum = nombreAlbum;
+    public AlbumDTO(String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<CancionDTO> canciones) {
+        this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
         this.generoMusical = generoMusical;
         this.imagenPortada = imagenPortada;
-        this.artistaId = artistaId;
         this.canciones = canciones;
     }
+    
+    
 
-    // Getters y setters
-    public String getIdAlbum() {
-        return idAlbum;
+    public String getId() {
+        return id;
     }
 
-    public void setIdAlbum(String idAlbum) {
-        this.idAlbum = idAlbum;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getNombreAlbum() {
-        return nombreAlbum;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreAlbum(String nombreAlbum) {
-        this.nombreAlbum = nombreAlbum;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public LocalDate  getFechaLanzamiento() {
+    public LocalDate getFechaLanzamiento() {
         return fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(LocalDate  fechaLanzamiento) {
+    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
@@ -86,20 +74,11 @@ public class AlbumDTO {
         this.imagenPortada = imagenPortada;
     }
 
-    public String getArtistaId() {
-        return artistaId;
-    }
-
-    public void setArtistaId(String artistaId) {
-        this.artistaId = artistaId;
-    }
-
-    public List<String> getCanciones() {
+    public List<CancionDTO> getCanciones() {
         return canciones;
     }
 
-    public void setCanciones(List<String> canciones) {
+    public void setCanciones(List<CancionDTO> canciones) {
         this.canciones = canciones;
     }
-    
 }

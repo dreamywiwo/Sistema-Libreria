@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecadominio.entidades;
 
+import java.time.LocalDate;
 import org.bson.types.ObjectId;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 public class Album {
     private ObjectId id;
     private String nombre;
-    private String fechaLanzamiento;
+    private LocalDate fechaLanzamiento;
     private String generoMusical;
     private String imagenPortada;
     private List<ObjectId> canciones; // Referencias a canciones
@@ -20,7 +21,7 @@ public class Album {
     public Album() {
     }
 
-    public Album(ObjectId id, String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<ObjectId> canciones, ObjectId artistaId) {
+    public Album(ObjectId id, String nombre, LocalDate fechaLanzamiento, String generoMusical, String imagenPortada, List<ObjectId> canciones, ObjectId artistaId) {
         this.id = id;
         this.nombre = nombre;
         this.fechaLanzamiento = fechaLanzamiento;
@@ -46,11 +47,11 @@ public class Album {
         this.nombre = nombre;
     }
 
-    public String getFechaLanzamiento() {
+    public LocalDate getFechaLanzamiento() {
         return fechaLanzamiento;
     }
 
-    public void setFechaLanzamiento(String fechaLanzamiento) {
+    public void setFechaLanzamiento(LocalDate fechaLanzamiento) {
         this.fechaLanzamiento = fechaLanzamiento;
     }
 
