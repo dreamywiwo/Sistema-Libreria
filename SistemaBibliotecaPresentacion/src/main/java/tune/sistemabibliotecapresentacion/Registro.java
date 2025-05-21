@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
@@ -97,7 +98,11 @@ public class Registro extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonInicioActionPerformed
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
-        ventanaPrincipal.mostrarIdentificacion();
+        NuevoUsuarioDTO usuario = new NuevoUsuarioDTO();
+        usuario.setCorreo(jTextFieldCorreo.getText());
+        usuario.setContrasena(jPassword.getText());
+        
+        ventanaPrincipal.mostrarIdentificacion(usuario);
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
 

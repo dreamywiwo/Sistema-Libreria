@@ -4,6 +4,17 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.awt.Image;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
@@ -11,13 +22,17 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
  * @author Dana Chavez
  */
 public class Identificacion extends javax.swing.JPanel {
-    
+
     VentanaRegistro ventanaPrincipal;
     FontManager fontManager = new FontManager();
-    
-    public Identificacion(VentanaRegistro ventanaPrincipal) {
+    NuevoUsuarioDTO nuevoUsuario;
+    ControlNavegacion control;
+
+    public Identificacion(ControlNavegacion control, VentanaRegistro ventanaPrincipal, NuevoUsuarioDTO nuevoUsuario) {
         initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
+        this.nuevoUsuario = nuevoUsuario;
+        this.control = control;
         setOpaque(false);
     }
 
@@ -32,9 +47,9 @@ public class Identificacion extends javax.swing.JPanel {
 
         jTextFieldUsuario = new javax.swing.JTextField();
         jLabelTitulo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jButtonImagenPerfil = new javax.swing.JButton();
         jLabelRegistro = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        jButtonRegistrar = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -50,27 +65,69 @@ public class Identificacion extends javax.swing.JPanel {
         jLabelTitulo.setText("Identificate");
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 30, 210, 65));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonAgregarImagen.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+        jButtonImagenPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonAgregarImagen.png"))); // NOI18N
+        jButtonImagenPerfil.setBorder(null);
+        jButtonImagenPerfil.setContentAreaFilled(false);
+        jButtonImagenPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonImagenPerfilActionPerformed(evt);
+            }
+        });
+        add(jButtonImagenPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
         jLabelRegistro.setFont(fontManager.getAfacadMedium(16f));
         jLabelRegistro.setForeground(new java.awt.Color(255, 255, 255));
         jLabelRegistro.setText("Elige un nombre de usuario.");
         add(jLabelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 250, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonFinalizar.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
+        jButtonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonFinalizar.png"))); // NOI18N
+        jButtonRegistrar.setBorder(null);
+        jButtonRegistrar.setContentAreaFilled(false);
+        jButtonRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
+        add(jButtonRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 440, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonImagenPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImagenPerfilActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Imágenes", "jpg", "png", "jpeg", "gif"));
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = fileChooser.getSelectedFile();
+            nuevoUsuario.setImagenPerfil(selectedFile.getAbsolutePath());
+
+            ImageIcon originalIcon = new ImageIcon(selectedFile.getAbsolutePath());
+            Image scaledImage = originalIcon.getImage().getScaledInstance(
+                    jButtonImagenPerfil.getWidth(),
+                    jButtonImagenPerfil.getHeight(),
+                    Image.SCALE_SMOOTH
+            );
+            ImageIcon scaledIcon = new ImageIcon(scaledImage);
+
+            jButtonImagenPerfil.setIcon(scaledIcon);
+
+            JOptionPane.showMessageDialog(this, "Imagen de perfil cargada correctamente.");
+        }
+    }//GEN-LAST:event_jButtonImagenPerfilActionPerformed
+
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+        nuevoUsuario.setNombreusuario(jTextFieldUsuario.getText());
+        try {
+            control.registrarUsuario(nuevoUsuario);
+        } catch (NegocioException ex) {
+            Logger.getLogger(Identificacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonImagenPerfil;
+    private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabelRegistro;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JTextField jTextFieldUsuario;

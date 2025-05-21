@@ -4,10 +4,19 @@
  */
 package tune.sistemabibliotecapersistencia.interfaces;
 
+import tune.sistemabibliotecadominio.entidades.Usuario;
+import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
+
 /**
  *
  * @author leoca
  */
 public interface IUsuariosDAO {
-    
+
+    public Usuario iniciarSesion(String correo, String contrasena) throws PersistenciaException;
+
+    Usuario registrarUsuario(Usuario usuario)throws PersistenciaException;
+
+    Usuario buscarPorCorreo(String correo)throws PersistenciaException;
+
 }

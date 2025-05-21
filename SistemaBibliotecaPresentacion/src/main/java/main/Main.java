@@ -18,8 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         ControlNavegacion control = new ControlNavegacion();
-        VentanaRegistro ventanaRegistro = new VentanaRegistro(control);
-        ventanaRegistro.mostrar();
+        control.mostrarVentanaRegistro();
     }
     
 }
