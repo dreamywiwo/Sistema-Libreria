@@ -2,6 +2,7 @@ package tune.sistemabibliotecapersistencia.daos;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Filters.eq;
 import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.AlbumDTO;
 import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
@@ -38,9 +39,13 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
 
         // Procesar artistas, álbumes y canciones para insertar
         for (ArtistaDTO artistaDTO : artistasSolistas) {
-            // Crear y agregar artista
-            Artista artista = crearArtista(artistaDTO);
-            artistasToInsert.add(artista);
+            // Verificar si el artista ya existe en la base de datos
+            Artista artistaExistente = coleccionArtistas.find(eq("nombre", artistaDTO.getNombre())).first();
+            if (artistaExistente == null) {
+                // Crear y agregar el artista solo si no existe
+                Artista artista = crearArtista(artistaDTO);
+                artistasToInsert.add(artista);
+            }
         }
 
         // Realizar inserciones masivas de artistas primero
@@ -81,8 +86,13 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
 
         // Repetir el mismo proceso para las bandas
         for (ArtistaDTO bandaDTO : bandas) {
-            Artista banda = crearArtista(bandaDTO);
-            artistasToInsert.add(banda);
+            // Verificar si la banda ya existe en la base de datos
+            Artista bandaExistente = coleccionArtistas.find(eq("nombre", bandaDTO.getNombre())).first();
+            if (bandaExistente == null) {
+                // Crear y agregar la banda solo si no existe
+                Artista banda = crearArtista(bandaDTO);
+                artistasToInsert.add(banda);
+            }
         }
 
         // Realizar inserciones masivas de bandas
@@ -126,6 +136,7 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
         artista.setTipo(artistaDTO.getTipo());
         artista.setGeneroMusical(artistaDTO.getGeneroMusical());
         artista.setImagen(artistaDTO.getImagen());
+        // MongoDB generará automáticamente el _id si no lo asignamos
         return artista;
     }
 
@@ -134,9 +145,9 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
 
         // Convertir el Artista a ArtistaDTO
         ArtistaDTO artistaDTO = new ArtistaDTO(
-            artista.getNombre(), 
-            artista.getTipo(), 
-            artista.getGeneroMusical(), 
+            artista.getNombre(),
+            artista.getTipo(),
+            artista.getGeneroMusical(),
             artista.getImagen()
         );
 
@@ -149,7 +160,7 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             album.setFechaLanzamiento(albumDTO.getFechaLanzamiento());
             album.setGeneroMusical(albumDTO.getGeneroMusical());
             album.setImagenPortada(albumDTO.getImagenPortada());
-            album.setArtistaId(artistaId);  
+            album.setArtistaId(artistaId);
             albums.add(album);
         }
         return albums;
@@ -160,9 +171,9 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
 
         // Convertir el Artista (banda) a ArtistaDTO
         ArtistaDTO bandaDTO = new ArtistaDTO(
-            banda.getNombre(), 
-            banda.getTipo(), 
-            banda.getGeneroMusical(), 
+            banda.getNombre(),
+            banda.getTipo(),
+            banda.getGeneroMusical(),
             banda.getImagen()
         );
 

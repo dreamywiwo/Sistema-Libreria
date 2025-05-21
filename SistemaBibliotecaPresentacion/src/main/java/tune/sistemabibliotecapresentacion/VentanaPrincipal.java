@@ -4,15 +4,38 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.interfaces.IInsercionMasivaBO;
+
 /**
  *
  * @author Dana Chavez
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
+    
+    private IInsercionMasivaBO insercionMasivaBO;
+    private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
+    
 
-    public VentanaPrincipal() {
+    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO) {
         initComponents();
+        this.insercionMasivaBO = insercionMasivaBO;
         setLocationRelativeTo(null);
+    }
+    
+    private void agregarArtistasMasivamente(){
+        try {
+            insercionMasivaBO.insertarArtistasMasivamente();
+        } catch (NegocioException ex) {
+            LOG.severe("No se pudieron agregar los artistas: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, 
+                "Error al agregar artistas: " + ex.getMessage(),
+                "Error", 
+                JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     public void mostrar(){
@@ -74,43 +97,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void jButtonAgregarArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarArtistasActionPerformed
-        // TODO add your handling code here:
+        agregarArtistasMasivamente();
     }//GEN-LAST:event_jButtonAgregarArtistasActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPrincipal().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarArtistas;
