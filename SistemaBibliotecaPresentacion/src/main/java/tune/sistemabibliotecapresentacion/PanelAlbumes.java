@@ -4,11 +4,13 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.awt.GridLayout;
 import java.util.List;
-import tune.sistemabibliotecadominio.entidades.Album;
+import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorAlbumes;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaAlbumListener;
+import tune.sistemabibliotecapresentacion.formatos.PanelAlbumItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
@@ -44,59 +46,60 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         cargarAlbumes();
     }
     
-    private void mostrarAlbumes(List<Album> albumes) {
+    private void mostrarAlbumes(List<AlbumConArtistaDTO> albumesDTO) {
         jPanelAlbums.removeAll();
-        jPanelAlbums.setLayout(new javax.swing.BoxLayout(jPanelAlbums, javax.swing.BoxLayout.Y_AXIS));
 
-        for (Album album : albumes) {
-            javax.swing.JLabel labelAlbum = new javax.swing.JLabel(album.getNombre() + " - " + album.getGeneroMusical() + " - " + album.getFechaLanzamiento());
-            labelAlbum.setFont(fontManager.getAfacadBold(20f));
-            labelAlbum.setForeground(new java.awt.Color(255, 255, 255));
-            labelAlbum.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-            jPanelAlbums.add(labelAlbum);
+        jPanelAlbums.setLayout(new GridLayout(0, 4, 20, 20)); 
+
+        for (AlbumConArtistaDTO albumDTO : albumesDTO) {
+            PanelAlbumItem panel = new PanelAlbumItem(albumDTO);
+            jPanelAlbums.add(panel);
         }
 
         jPanelAlbums.revalidate();
         jPanelAlbums.repaint();
     }
 
+
     public void cargarAlbumes() {
         try {
-            List<Album> albumes = albumesBO.obtenerTodosLosAlbums();
-            mostrarAlbumes(albumes);
+            List<AlbumConArtistaDTO> albumesDTO = albumesBO.obtenerAlbumsConNombreArtista();
+            mostrarAlbumes(albumesDTO);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    
     @Override
     public void onBusquedaAlbumActualizada(String texto, String filtro) {
         try {
-            List<Album> albumesFiltrados;
+            List<AlbumConArtistaDTO> albumesFiltrados;
+
             if (texto == null || texto.isEmpty()) {
-                albumesFiltrados = albumesBO.obtenerTodosLosAlbums();
+                albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista();
             } else {
                 switch (filtro) {
                     case "Nombre":
-                        albumesFiltrados = albumesBO.obtenerAlbumPorNombre(texto);
+                        albumesFiltrados = albumesBO.obtenerAlbumPorNombreConArtista(texto);
                         break;
                     case "Genero":
-                        albumesFiltrados = albumesBO.obtenerAlbumPorGenero(texto);
+                        albumesFiltrados = albumesBO.obtenerAlbumPorGeneroConArtista(texto);
                         break;
-                    // TODO: arreglar filtro por fecha
                     case "Fecha Lanzamiento":
-                        albumesFiltrados = albumesBO.obtenerAlbumPorFechaLanzamiento(texto);
+                        albumesFiltrados = albumesBO.obtenerAlbumPorFechaLanzamientoConArtista(texto);
                         break;
                     default:
-                        albumesFiltrados = albumesBO.obtenerTodosLosAlbums();
+                        albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista();
                 }
             }
+
             System.out.println("Álbumes encontrados: " + albumesFiltrados.size());
             mostrarAlbumes(albumesFiltrados);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.

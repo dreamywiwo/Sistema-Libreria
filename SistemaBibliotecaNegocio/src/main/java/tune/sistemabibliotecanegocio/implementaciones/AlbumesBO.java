@@ -7,6 +7,7 @@ package tune.sistemabibliotecanegocio.implementaciones;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
@@ -35,29 +36,38 @@ public class AlbumesBO implements IAlbumesBO {
     }
 
     @Override
-    public List<Album> obtenerAlbumPorNombre(String nombre) throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumPorNombre(nombre);
+            return this.albumesDAO.obtenerAlbumPorNombreConArtista(nombre);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums por nombre");
         }
     }
 
     @Override
-    public List<Album> obtenerAlbumPorGenero(String generoMusical) throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumPorGenero(generoMusical);
+            return this.albumesDAO.obtenerAlbumPorGeneroConArtista(generoMusical);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums por genero");
         }
     }
 
     @Override
-    public List<Album> obtenerAlbumPorFechaLanzamiento(String fechaLanzamiento) throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumPorFechaLanzamiento(fechaLanzamiento);
+            return this.albumesDAO.obtenerAlbumPorFechaLanzamientoConArtista(fechaLanzamiento);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums por fecha de lanzamiento");
         }
     }   
+
+    @Override
+    public List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws NegocioException {
+        try {
+            return this.albumesDAO.obtenerAlbumsConNombreArtista();
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener los albums y sus artistas");
+        }
+    }
 }

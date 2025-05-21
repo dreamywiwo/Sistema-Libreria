@@ -73,7 +73,7 @@ public class PanelCancionItem extends JPanel {
         // Panel derecha: album + duracion 
         JPanel derecha = new JPanel();
         derecha.setOpaque(false);
-        derecha.setLayout(new FlowLayout(FlowLayout.RIGHT)); // FlowLayout para disposicion horizontal
+        derecha.setLayout(new FlowLayout(FlowLayout.RIGHT)); 
 
         JLabel lblAlbum = new JLabel(cancion.getNombreAlbum());
         lblAlbum.setForeground(Color.WHITE);
@@ -85,7 +85,6 @@ public class PanelCancionItem extends JPanel {
         lblDuracion.setFont(fontManager.getAfacadRegular(12f));
         lblDuracion.setAlignmentX(Component.RIGHT_ALIGNMENT);
 
-        // Anadir los dos elementos en linea horizontal
         derecha.add(lblAlbum);
         derecha.add(lblDuracion);
 
@@ -93,7 +92,7 @@ public class PanelCancionItem extends JPanel {
         add(centro, BorderLayout.CENTER);
         add(derecha, BorderLayout.EAST);
 
-        // Ajustar el tamano vertical del panel
+        // tamano vertical del panel
         setPreferredSize(new Dimension(900, PANEL_HEIGHT));
         setMaximumSize(new Dimension(900, PANEL_HEIGHT)); 
     }

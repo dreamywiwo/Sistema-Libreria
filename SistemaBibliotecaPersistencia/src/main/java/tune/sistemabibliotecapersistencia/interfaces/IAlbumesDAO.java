@@ -5,6 +5,7 @@
 package tune.sistemabibliotecapersistencia.interfaces;
 
 import java.util.List;
+import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 
@@ -16,10 +17,12 @@ public interface IAlbumesDAO {
     
     public abstract List<Album> obtenerTodosLosAlbums() throws PersistenciaException;
     
-    public abstract List<Album> obtenerAlbumPorNombre(String nombre) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre) throws PersistenciaException;
     
-    public abstract List<Album> obtenerAlbumPorGenero(String generoMusical) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical) throws PersistenciaException;
     
-    public abstract List<Album> obtenerAlbumPorFechaLanzamiento(String fechaLanzamiento) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws PersistenciaException;
+    
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws PersistenciaException;
     
 }

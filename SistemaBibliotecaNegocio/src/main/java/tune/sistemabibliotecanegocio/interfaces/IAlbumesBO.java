@@ -5,6 +5,7 @@
 package tune.sistemabibliotecanegocio.interfaces;
 
 import java.util.List;
+import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 
@@ -13,10 +14,12 @@ public interface IAlbumesBO {
     
     public abstract List<Album> obtenerTodosLosAlbums() throws NegocioException;
     
-    public abstract List<Album> obtenerAlbumPorNombre(String nombre) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre) throws NegocioException;
     
-    public abstract List<Album> obtenerAlbumPorGenero(String generoMusical) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical) throws NegocioException;
     
-    public abstract List<Album> obtenerAlbumPorFechaLanzamiento(String fechaLanzamiento) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws NegocioException;
+    
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws NegocioException;
     
 }
