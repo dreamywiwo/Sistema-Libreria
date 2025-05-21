@@ -14,6 +14,7 @@ import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorCanciones;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
+import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
@@ -57,22 +58,14 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
         }
     }
 
-    // TODO: Hacer paneles para formatear bien la impresion de resultados
     private void mostrarCanciones(List<CancionConArtistaDTO> canciones) {
         jPanelCanciones.removeAll();
-        jPanelCanciones.setLayout(new BoxLayout(jPanelCanciones, BoxLayout.Y_AXIS));
-
+        int index = 1;
         for (CancionConArtistaDTO cancion : canciones) {
-            JLabel label = new JLabel("- " + cancion.getNombreCancion() + " - " + cancion.getNombreArtista());
-            label.setFont(fontManager.getAfacadBold(24f));
-            label.setForeground(Color.WHITE);
-            label.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-            jPanelCanciones.add(label);
+            jPanelCanciones.add(new PanelCancionItem(cancion, index++));
         }
         jPanelCanciones.revalidate();
         jPanelCanciones.repaint();
-        jScrollPaneCanciones.revalidate();
-        jScrollPaneCanciones.repaint();
     }
 
     @Override
@@ -113,6 +106,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 780, 130));
         add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 410, 50));
 
+        jPanelCanciones.setLayout(new javax.swing.BoxLayout(jPanelCanciones, javax.swing.BoxLayout.Y_AXIS));
         jScrollPaneCanciones.setViewportView(jPanelCanciones);
 
         add(jScrollPaneCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 940, 470));

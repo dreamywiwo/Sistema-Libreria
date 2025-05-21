@@ -58,21 +58,28 @@ public class CancionesDAO implements ICancionesDAO {
             .obtenerBaseDatos()
             .getCollection(COLECCION_CANCIONES);
 
-        List<Bson> pipeline = Arrays.asList(
-            lookup("Artistas", "artistaId", "_id", "artista"),
-            unwind("$artista"),
-            project(fields(
-                include("nombre"),
-                computed("nombreArtista", "$artista.nombre")
-            ))
-        );
+            List<Bson> pipeline = Arrays.asList(
+                lookup("Artistas", "artistaId", "_id", "artista"),
+                unwind("$artista"),
+                lookup("Albumes", "albumId", "_id", "album"),
+                unwind("$album"),
+                project(fields(
+                    include("nombre", "duracion"),
+                    computed("nombreArtista", "$artista.nombre"),
+                    computed("nombreAlbum", "$album.nombre"),
+                    computed("urlImagenAlbum", "$album.imagenUrl") 
+                ))
+            );
 
         AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
 
         for (Document doc : docs) {
             CancionConArtistaDTO dto = new CancionConArtistaDTO(
                 doc.getString("nombre"),
-                doc.getString("nombreArtista")
+                doc.getString("nombreArtista"),
+                doc.getString("nombreAlbum"),
+                doc.getString("duracion"),
+                doc.getString("urlImagenAlbum")
             );
             resultado.add(dto);
         }
@@ -89,13 +96,18 @@ public class CancionesDAO implements ICancionesDAO {
             .getCollection(COLECCION_CANCIONES);
 
         List<Bson> pipeline = Arrays.asList(
-            match(regex("nombre", nombre, "i")),
+            match(regex("nombre", nombre, "i")), // filtro case-insensitive por nombre
             lookup("Artistas", "artistaId", "_id", "artista"),
             unwind("$artista"),
+            lookup("Albumes", "albumId", "_id", "album"),
+            unwind("$album"),
             project(fields(
-                include("nombre"),
-                computed("nombreArtista", "$artista.nombre")
-            ))
+                include("nombre", "duracion"),
+                computed("nombreArtista", "$artista.nombre"),
+                computed("nombreAlbum", "$album.nombre"),
+                computed("urlImagenAlbum", "$album.imagenUrl") 
+                )   
+            )
         );
 
         AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
@@ -103,7 +115,10 @@ public class CancionesDAO implements ICancionesDAO {
         for (Document doc : docs) {
             CancionConArtistaDTO dto = new CancionConArtistaDTO(
                 doc.getString("nombre"),
-                doc.getString("nombreArtista")
+                doc.getString("nombreArtista"),
+                doc.getString("nombreAlbum"),
+                doc.getString("duracion"),
+                doc.getString("urlImagenAlbum")
             );
             resultado.add(dto);
         }

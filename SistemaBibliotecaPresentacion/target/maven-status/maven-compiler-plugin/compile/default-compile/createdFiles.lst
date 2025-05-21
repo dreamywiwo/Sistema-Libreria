@@ -17,6 +17,7 @@ tune\sistemabibliotecapresentacion\buscadores\BuscadorAlbumes.class
 tune\sistemabibliotecapresentacion\Registro$1.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal.class
 tune\sistemabibliotecapresentacion\control\ControlNavegacion.class
+tune\sistemabibliotecapresentacion\formatos\PanelCancionItem.class
 tune\sistemabibliotecapresentacion\PanelCanciones.class
 tune\sistemabibliotecapresentacion\Registro$2.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$3.class
