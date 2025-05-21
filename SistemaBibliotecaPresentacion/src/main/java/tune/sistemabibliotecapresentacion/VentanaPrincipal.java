@@ -78,13 +78,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
 
-        jButtonAgregarArtistas.setText("agregar");
+        jButtonAgregarArtistas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonAgregar.png"))); // NOI18N
+        jButtonAgregarArtistas.setBorder(null);
+        jButtonAgregarArtistas.setContentAreaFilled(false);
+        jButtonAgregarArtistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonAgregarArtistas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonAgregarArtistasActionPerformed(evt);
             }
         });
-        getContentPane().add(jButtonAgregarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 50, -1));
+        getContentPane().add(jButtonAgregarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 60, -1));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoVentanaPrincipal.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
