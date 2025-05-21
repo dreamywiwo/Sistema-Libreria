@@ -14,6 +14,18 @@ public class Integrante {
     private String fechaSalida;  
     private String estadoActividad;  // "activo" o "inactivo"
 
+    public Integrante() {
+    }
+
+    public Integrante(ObjectId id, String nombreCompleto, String rol, String fechaIngreso, String fechaSalida, String estadoActividad) {
+        this.id = id;
+        this.nombreCompleto = nombreCompleto;
+        this.rol = rol;
+        this.fechaIngreso = fechaIngreso;
+        this.fechaSalida = fechaSalida;
+        this.estadoActividad = estadoActividad;
+    }
+
     public ObjectId getId() {
         return id;
     }

@@ -17,6 +17,19 @@ public class Album {
     private List<ObjectId> canciones; // Referencias a canciones
     private ObjectId artistaId; // Referencia al artista
 
+    public Album() {
+    }
+
+    public Album(ObjectId id, String nombre, String fechaLanzamiento, String generoMusical, String imagenPortada, List<ObjectId> canciones, ObjectId artistaId) {
+        this.id = id;
+        this.nombre = nombre;
+        this.fechaLanzamiento = fechaLanzamiento;
+        this.generoMusical = generoMusical;
+        this.imagenPortada = imagenPortada;
+        this.canciones = canciones;
+        this.artistaId = artistaId;
+    }
+
     public ObjectId getId() {
         return id;
     }

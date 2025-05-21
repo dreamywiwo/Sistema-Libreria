@@ -16,6 +16,21 @@ public class Usuario {
     private List<ObjectId> favoritosAlbumes;  // Referencias a álbumes
     private List<ObjectId> favoritosCanciones; // Referencias a canciones
 
+    public Usuario() {
+    }
+
+    public Usuario(ObjectId id, String nombreUsuario, String correo, String contrasena, String imagenPerfil, List<String> generosNoDeseados, List<ObjectId> favoritosArtistas, List<ObjectId> favoritosAlbumes, List<ObjectId> favoritosCanciones) {
+        this.id = id;
+        this.nombreUsuario = nombreUsuario;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.imagenPerfil = imagenPerfil;
+        this.generosNoDeseados = generosNoDeseados;
+        this.favoritosArtistas = favoritosArtistas;
+        this.favoritosAlbumes = favoritosAlbumes;
+        this.favoritosCanciones = favoritosCanciones;
+    }
+
     public ObjectId getId() {
         return id;
     }

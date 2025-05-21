@@ -14,6 +14,18 @@ public class Cancion {
     private ObjectId artistaId; // Referencia al artista
     private String generoMusical;
 
+    public Cancion() {
+    }
+
+    public Cancion(ObjectId id, String nombre, String duracion, ObjectId albumId, ObjectId artistaId, String generoMusical) {
+        this.id = id;
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.albumId = albumId;
+        this.artistaId = artistaId;
+        this.generoMusical = generoMusical;
+    }
+
     public ObjectId getId() {
         return id;
     }

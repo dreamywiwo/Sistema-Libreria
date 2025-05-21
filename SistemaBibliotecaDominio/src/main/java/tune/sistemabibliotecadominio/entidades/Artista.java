@@ -15,13 +15,23 @@ public class Artista {
     private String imagen;
     private String generoMusical;
 
-    // Si es una banda, esta lista contendrá los integrantes
     private List<Integrante> integrantes;
 
-    // Si el artista es un solista, esta lista será null o vacía
     private List<ObjectId> albums; // Referencias a los álbumes de la banda o solista
 
-    // Getters y setters
+    public Artista() {
+    }
+
+    public Artista(ObjectId id, String tipo, String nombre, String imagen, String generoMusical, List<Integrante> integrantes, List<ObjectId> albums) {
+        this.id = id;
+        this.tipo = tipo;
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.generoMusical = generoMusical;
+        this.integrantes = integrantes;
+        this.albums = albums;
+    }
+
     public ObjectId getId() {
         return id;
     }
