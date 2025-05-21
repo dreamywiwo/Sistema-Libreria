@@ -5,6 +5,7 @@
 package tune.sistemabibliotecapresentacion;
 
 import java.awt.CardLayout;
+import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 
 /**
@@ -14,6 +15,7 @@ import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 public class VentanaRegistro extends javax.swing.JFrame {
     
     ControlNavegacion control;
+    NuevoUsuarioDTO usuario = new NuevoUsuarioDTO();
     
     public VentanaRegistro(ControlNavegacion control) {
         initComponents();
@@ -38,8 +40,9 @@ public class VentanaRegistro extends javax.swing.JFrame {
         cl.show(jPanelForms, "registro");
     }
     
-    public void mostrarIdentificacion(){
-        Identificacion panelIdentificacion = new Identificacion(this);
+    public void mostrarIdentificacion(NuevoUsuarioDTO nuevoUsuarioDTO){
+        this.usuario = nuevoUsuarioDTO;
+        Identificacion panelIdentificacion = new Identificacion(control, this, usuario);
         jPanelForms.add(panelIdentificacion, "identificacion");
         CardLayout cl = (CardLayout) jPanelForms.getLayout();
         cl.show(jPanelForms, "identificacion");
@@ -54,6 +57,9 @@ public class VentanaRegistro extends javax.swing.JFrame {
         dispose();
     }
 
+    public NuevoUsuarioDTO getUsuario() {
+        return usuario;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
