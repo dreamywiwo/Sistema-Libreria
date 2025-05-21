@@ -68,6 +68,7 @@ public class Identificacion extends javax.swing.JPanel {
         jButtonImagenPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonAgregarImagen.png"))); // NOI18N
         jButtonImagenPerfil.setBorder(null);
         jButtonImagenPerfil.setContentAreaFilled(false);
+        jButtonImagenPerfil.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButtonImagenPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonImagenPerfilActionPerformed(evt);
