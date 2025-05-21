@@ -5,7 +5,7 @@
 package tune.sistemabibliotecapresentacion.control;
 
 import tune.sistemabibliotecadominio.entidades.Usuario;
-import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.implementaciones.InsercionMasivaBO;
 import tune.sistemabibliotecanegocio.implementaciones.UsuariosBO;

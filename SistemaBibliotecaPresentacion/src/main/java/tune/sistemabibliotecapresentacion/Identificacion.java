@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
