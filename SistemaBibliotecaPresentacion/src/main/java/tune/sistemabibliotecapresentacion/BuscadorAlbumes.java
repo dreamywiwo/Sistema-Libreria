@@ -4,16 +4,17 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import tune.sistemabibliotecapresentacion.utils.FontManager;
+
 /**
  *
  * @author Dana Chavez
  */
-public class PanelBuscador extends javax.swing.JPanel {
-
-    /**
-     * Creates new form PanelBuscador
-     */
-    public PanelBuscador() {
+    public class BuscadorAlbumes extends javax.swing.JPanel {
+        
+    FontManager fontManager = new FontManager();
+    
+    public BuscadorAlbumes() {
         initComponents();
     }
 
@@ -30,9 +31,21 @@ public class PanelBuscador extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setText("jTextField1");
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 50));
+        jTextField1.setBackground(new java.awt.Color(5, 54, 46));
+        jTextField1.setFont(fontManager.getAfacadRegular(16f));
+        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextField1.setText("Nombre, genero, fecha lanzamiento");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 50));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

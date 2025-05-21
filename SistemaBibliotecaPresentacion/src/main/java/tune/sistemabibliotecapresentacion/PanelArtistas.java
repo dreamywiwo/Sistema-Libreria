@@ -4,18 +4,72 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import tune.sistemabibliotecadominio.entidades.Artista;
+import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
  *
  * @author Dana Chavez
  */
-public class PanelArtistas extends javax.swing.JPanel {
+public class PanelArtistas extends javax.swing.JPanel implements BusquedaListener {
+    
     FontManager fontManager = new FontManager();
     
-    public PanelArtistas() {
+    private IArtistasBO artistasBO;
+    
+    public PanelArtistas(IArtistasBO artistasBO) {
         initComponents();
-        setOpaque(false);
+        this.artistasBO = artistasBO;
+        this.setOpaque(false);
+        
+        jScrollPaneArtistas.setOpaque(false);
+        jScrollPaneArtistas.getViewport().setOpaque(false);
+        jScrollPaneArtistas.setBorder(null);
+        jPanelArtistas.setOpaque(false);
+
+        BuscadorArtistas buscador = new BuscadorArtistas();
+        buscador.setBusquedaListener(this); 
+        
+        jPanelContenedor.setOpaque(false);
+        jPanelContenedor.removeAll();
+        jPanelContenedor.setLayout(new java.awt.BorderLayout());
+        jPanelContenedor.add(buscador, java.awt.BorderLayout.CENTER);
+        jPanelContenedor.revalidate();
+        jPanelContenedor.repaint();
+        
+        
+        cargarArtistas();
+        
+    }
+    
+    private void mostrarArtistas(List<Artista> artistas) {
+        jPanelArtistas.removeAll();
+        jPanelArtistas.setLayout(new javax.swing.BoxLayout(jPanelArtistas, javax.swing.BoxLayout.Y_AXIS));
+        
+        // TODO: hacer que se muestre bonito luego
+        for (Artista artista : artistas) {
+            javax.swing.JLabel labelArtista = new javax.swing.JLabel(artista.getNombre());
+            labelArtista.setFont(fontManager.getAfacadBold(24f));
+            labelArtista.setForeground(new java.awt.Color(255, 255, 255));
+            labelArtista.setBorder(javax.swing.BorderFactory.createEmptyBorder(5,5,5,5));
+            jPanelArtistas.add(labelArtista);
+        }
+
+        jPanelArtistas.revalidate();
+        jPanelArtistas.repaint();
+    }
+    
+    public void cargarArtistas() {
+        try {
+            List<Artista> artistas = artistasBO.obtenerTodosLosArtistas();
+            mostrarArtistas(artistas);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -28,6 +82,9 @@ public class PanelArtistas extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabelTitulo = new javax.swing.JLabel();
+        jPanelContenedor = new javax.swing.JPanel();
+        jScrollPaneArtistas = new javax.swing.JScrollPane();
+        jPanelArtistas = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 33, 27));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,10 +93,56 @@ public class PanelArtistas extends javax.swing.JPanel {
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Artistas");
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 470, 130));
+
+        javax.swing.GroupLayout jPanelContenedorLayout = new javax.swing.GroupLayout(jPanelContenedor);
+        jPanelContenedor.setLayout(jPanelContenedorLayout);
+        jPanelContenedorLayout.setHorizontalGroup(
+            jPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jPanelContenedorLayout.setVerticalGroup(
+            jPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 400, 50));
+
+        javax.swing.GroupLayout jPanelArtistasLayout = new javax.swing.GroupLayout(jPanelArtistas);
+        jPanelArtistas.setLayout(jPanelArtistasLayout);
+        jPanelArtistasLayout.setHorizontalGroup(
+            jPanelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 934, Short.MAX_VALUE)
+        );
+        jPanelArtistasLayout.setVerticalGroup(
+            jPanelArtistasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 484, Short.MAX_VALUE)
+        );
+
+        jScrollPaneArtistas.setViewportView(jPanelArtistas);
+
+        add(jScrollPaneArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 930, 490));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanelArtistas;
+    private javax.swing.JPanel jPanelContenedor;
+    private javax.swing.JScrollPane jScrollPaneArtistas;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void onBusquedaActualizada(String textoBusqueda) {
+        try {
+            List<Artista> artistasFiltrados;
+            if (textoBusqueda == null || textoBusqueda.isEmpty()) {
+                artistasFiltrados = artistasBO.obtenerTodosLosArtistas();
+            } else {
+                artistasFiltrados = artistasBO.obtenerPorNombre(textoBusqueda);
+            }
+            mostrarArtistas(artistasFiltrados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
