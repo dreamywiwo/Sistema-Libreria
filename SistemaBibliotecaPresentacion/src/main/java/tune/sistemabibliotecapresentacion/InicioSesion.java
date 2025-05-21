@@ -6,7 +6,7 @@ package tune.sistemabibliotecapresentacion;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.utils.FontManager;

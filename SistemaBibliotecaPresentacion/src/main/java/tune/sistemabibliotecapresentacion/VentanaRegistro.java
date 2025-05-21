@@ -5,7 +5,7 @@
 package tune.sistemabibliotecapresentacion;
 
 import java.awt.CardLayout;
-import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 
 /**

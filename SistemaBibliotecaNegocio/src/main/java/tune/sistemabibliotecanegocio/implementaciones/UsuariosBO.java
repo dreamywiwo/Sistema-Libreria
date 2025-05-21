@@ -7,7 +7,7 @@ package tune.sistemabibliotecanegocio.implementaciones;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tune.sistemabibliotecadominio.entidades.Usuario;
-import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecadominio.utils.SeguridadUtil;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;

@@ -4,7 +4,7 @@
  */
 package tune.sistemabibliotecapresentacion;
 
-import tune.sistemabibliotecadominio.entidades.dtos.NuevoUsuarioDTO;
+import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
