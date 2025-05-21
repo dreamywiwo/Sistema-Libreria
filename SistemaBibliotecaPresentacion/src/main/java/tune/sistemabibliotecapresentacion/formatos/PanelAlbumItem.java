@@ -28,7 +28,7 @@ public class PanelAlbumItem extends JPanel {
     private final AlbumConArtistaDTO album;
     private final Color hoverColor = new Color(50, 50, 50);
     private final Color normalColor = new Color(30, 30, 30);
-    private FontManager fotnManager = new FontManager();
+    private FontManager fontManager = new FontManager();
    
 
     public PanelAlbumItem(AlbumConArtistaDTO album) {
@@ -56,14 +56,14 @@ public class PanelAlbumItem extends JPanel {
         }
 
         JLabel lblNombre = new JLabel(album.getNombreAlbum());
-        lblNombre.setFont(fotnManager.getAfacadMedium(16f));
+        lblNombre.setFont(fontManager.getAfacadMedium(16f));
         lblNombre.setMaximumSize(new Dimension(156, 40)); 
         lblNombre.setToolTipText(album.getNombreAlbum());
         lblNombre.setForeground(Color.WHITE);
         lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         JLabel lblArtista = new JLabel(album.getNombreArtista());
-        lblArtista.setFont(fotnManager.getAfacadRegular(14f));
+        lblArtista.setFont(fontManager.getAfacadRegular(14f));
         
         lblArtista.setForeground(Color.LIGHT_GRAY);
         lblArtista.setAlignmentX(Component.CENTER_ALIGNMENT);

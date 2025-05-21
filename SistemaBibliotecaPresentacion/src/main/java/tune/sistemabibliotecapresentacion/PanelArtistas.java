@@ -4,13 +4,24 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.util.ArrayList;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorArtistas;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
+import tune.sistemabibliotecapresentacion.formatos.PanelArtistaItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
@@ -44,7 +55,8 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         jPanelContenedor.repaint();
         
         
-        cargarArtistas();
+        //cargarArtistas();
+        cargarArtistasPorGenero();
         
     }
     
@@ -60,7 +72,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
             labelArtista.setBorder(javax.swing.BorderFactory.createEmptyBorder(5,5,5,5));
             jPanelArtistas.add(labelArtista);
         }
-
+        
         jPanelArtistas.revalidate();
         jPanelArtistas.repaint();
     }
@@ -69,6 +81,57 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         try {
             List<Artista> artistas = artistasBO.obtenerTodosLosArtistas();
             mostrarArtistas(artistas);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    private void cargarArtistasPorGenero() {
+        try {
+            List<Artista> todosArtistas = artistasBO.obtenerTodosLosArtistas();
+
+            Map<String, List<Artista>> artistasPorGenero = new LinkedHashMap<>();
+            for (Artista artista : todosArtistas) {
+                String genero = artista.getGeneroMusical() != null ? artista.getGeneroMusical() : "Sin género";
+                artistasPorGenero.computeIfAbsent(genero, k -> new ArrayList<>()).add(artista);
+            }
+
+            jPanelArtistas.removeAll(); 
+            jPanelArtistas.setLayout(new javax.swing.BoxLayout(jPanelArtistas, javax.swing.BoxLayout.Y_AXIS));
+
+            for (Map.Entry<String, List<Artista>> entry : artistasPorGenero.entrySet()) {
+                String genero = entry.getKey();
+                List<Artista> artistas = entry.getValue();
+
+                JLabel lblGenero = new JLabel(genero);
+                lblGenero.setForeground(Color.WHITE);
+                lblGenero.setFont(new Font("SansSerif", Font.BOLD, 18));
+                lblGenero.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+                jPanelArtistas.add(lblGenero);
+
+                JPanel panelArtistasGenero = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+                panelArtistasGenero.setBackground(new Color(0, 33, 27));
+
+                for (Artista artista : artistas) {
+                    PanelArtistaItem item = new PanelArtistaItem(artista);
+                    panelArtistasGenero.add(item);
+                }
+
+                JScrollPane scrollPane = new JScrollPane(panelArtistasGenero,
+                        JScrollPane.VERTICAL_SCROLLBAR_NEVER,
+                        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+                scrollPane.setPreferredSize(new Dimension(800, 200));
+                scrollPane.setBorder(BorderFactory.createEmptyBorder());
+                scrollPane.getHorizontalScrollBar().setUnitIncrement(16);
+
+                jPanelArtistas.add(scrollPane);
+            }
+
+            jPanelArtistas.revalidate();
+            jPanelArtistas.repaint();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
