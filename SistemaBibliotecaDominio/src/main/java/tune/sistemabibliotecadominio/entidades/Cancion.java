@@ -6,34 +6,28 @@ package tune.sistemabibliotecadominio.entidades;
 
 import org.bson.types.ObjectId;
 
-/**
- *
- * @author Dana Chavez
- */
 public class Cancion {
-    private ObjectId idCancion;  // Identificador único
-    private String nombreCancion;
-    private String duracion;  // En formato "mm:ss"
-    private String fechaLanzamiento;
-    private ObjectId generoMusical;  // Referencia a un género (por ejemplo, "Pop", "Rock")
+    private ObjectId id;
+    private String nombre;
+    private String duracion;
+    private ObjectId albumId; // Referencia al álbum
+    private ObjectId artistaId; // Referencia al artista
+    private String generoMusical;
 
-    public Cancion() {
-    }
-   
-    public ObjectId getIdCancion() {
-        return idCancion;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void setIdCancion(ObjectId idCancion) {
-        this.idCancion = idCancion;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
-    public String getNombreCancion() {
-        return nombreCancion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCancion(String nombreCancion) {
-        this.nombreCancion = nombreCancion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getDuracion() {
@@ -44,20 +38,27 @@ public class Cancion {
         this.duracion = duracion;
     }
 
-    public String getFechaLanzamiento() {
-        return fechaLanzamiento;
+    public ObjectId getAlbumId() {
+        return albumId;
     }
 
-    public void setFechaLanzamiento(String fechaLanzamiento) {
-        this.fechaLanzamiento = fechaLanzamiento;
+    public void setAlbumId(ObjectId albumId) {
+        this.albumId = albumId;
     }
 
-    public ObjectId getGeneroMusical() {
+    public ObjectId getArtistaId() {
+        return artistaId;
+    }
+
+    public void setArtistaId(ObjectId artistaId) {
+        this.artistaId = artistaId;
+    }
+
+    public String getGeneroMusical() {
         return generoMusical;
     }
 
-    public void setGeneroMusical(ObjectId generoMusical) {
+    public void setGeneroMusical(String generoMusical) {
         this.generoMusical = generoMusical;
     }
-
 }

@@ -2,25 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package tune.sistemabibliotecadominio.entidades;
+package tune.sistemabibliotecadominio.dtos;
 
-import org.bson.types.ObjectId;
-
-public class Integrante {
-    private ObjectId id;
-    private String nombreCompleto;
-    private String rol;  
-    private String fechaIngreso;
-    private String fechaSalida;  
-    private String estadoActividad;  // "activo" o "inactivo"
-
-    public ObjectId getId() {
-        return id;
-    }
-
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
+/**
+ *
+ * @author Dana Chavez
+ */
+public class IntegranteDTO {
+    
+    private String nombreCompleto;    
+    private String rol;               
+    private String fechaIngreso;     
+    private String estadoActividad;   
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -46,14 +39,6 @@ public class Integrante {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public String getFechaSalida() {
-        return fechaSalida;
-    }
-
-    public void setFechaSalida(String fechaSalida) {
-        this.fechaSalida = fechaSalida;
-    }
-
     public String getEstadoActividad() {
         return estadoActividad;
     }
@@ -61,5 +46,7 @@ public class Integrante {
     public void setEstadoActividad(String estadoActividad) {
         this.estadoActividad = estadoActividad;
     }
+    
+    
+    
 }
-

@@ -4,26 +4,72 @@
  */
 package tune.sistemabibliotecadominio.entidades;
 
+import org.bson.types.ObjectId;
+
 import java.util.List;
 
-/**
- *
- * @author Dana Chavez
- */
 public class Album {
-    //private ObjectId id;
+    private ObjectId id;
     private String nombre;
     private String fechaLanzamiento;
-    private String genero;
-    private String imagen;
-    //private ObjectId artistaId;
-    private List<Cancion> canciones;
+    private String generoMusical;
+    private String imagenPortada;
+    private List<ObjectId> canciones; // Referencias a canciones
+    private ObjectId artistaId; // Referencia al artista
 
-    public static class Cancion {
-        private String nombre;
-        private String duracion;
-        private int numeroPista;
-
+    public ObjectId getId() {
+        return id;
     }
-    
+
+    public void setId(ObjectId id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getFechaLanzamiento() {
+        return fechaLanzamiento;
+    }
+
+    public void setFechaLanzamiento(String fechaLanzamiento) {
+        this.fechaLanzamiento = fechaLanzamiento;
+    }
+
+    public String getGeneroMusical() {
+        return generoMusical;
+    }
+
+    public void setGeneroMusical(String generoMusical) {
+        this.generoMusical = generoMusical;
+    }
+
+    public String getImagenPortada() {
+        return imagenPortada;
+    }
+
+    public void setImagenPortada(String imagenPortada) {
+        this.imagenPortada = imagenPortada;
+    }
+
+    public List<ObjectId> getCanciones() {
+        return canciones;
+    }
+
+    public void setCanciones(List<ObjectId> canciones) {
+        this.canciones = canciones;
+    }
+
+    public ObjectId getArtistaId() {
+        return artistaId;
+    }
+
+    public void setArtistaId(ObjectId artistaId) {
+        this.artistaId = artistaId;
+    }
 }
