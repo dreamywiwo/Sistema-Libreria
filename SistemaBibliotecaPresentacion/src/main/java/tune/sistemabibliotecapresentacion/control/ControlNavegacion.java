@@ -7,9 +7,11 @@ package tune.sistemabibliotecapresentacion.control;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.implementaciones.AlbumesBO;
 import tune.sistemabibliotecanegocio.implementaciones.ArtistasBO;
 import tune.sistemabibliotecanegocio.implementaciones.InsercionMasivaBO;
 import tune.sistemabibliotecanegocio.implementaciones.UsuariosBO;
+import tune.sistemabibliotecapersistencia.daos.AlbumesDAO;
 import tune.sistemabibliotecapersistencia.daos.ArtistasDAO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
 import tune.sistemabibliotecapersistencia.implementaciones.UsuariosDAO;
@@ -24,12 +26,15 @@ public class ControlNavegacion {
     InsercionMasivaDAO insercionMasivaDAO = new InsercionMasivaDAO();
     InsercionMasivaBO insercionMasivaBO = new InsercionMasivaBO(insercionMasivaDAO);
     
+    AlbumesDAO albumesDAO = new AlbumesDAO();
+    AlbumesBO albumesBO = new AlbumesBO(albumesDAO);
+    
     ArtistasDAO artistasDAO = new ArtistasDAO();
     ArtistasBO artistasBO = new ArtistasBO(artistasDAO);
     
     
     public void mostrarVentanaPrincipal() {
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO);
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO);
         ventanaPrincipal.mostrar();
     }
 

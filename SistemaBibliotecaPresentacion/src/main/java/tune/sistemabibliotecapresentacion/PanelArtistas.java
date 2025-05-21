@@ -4,6 +4,8 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import tune.sistemabibliotecapresentacion.buscadores.BuscadorArtistas;
+import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;

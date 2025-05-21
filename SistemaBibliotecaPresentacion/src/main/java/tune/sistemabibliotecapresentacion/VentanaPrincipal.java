@@ -8,6 +8,7 @@ import java.awt.CardLayout;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecanegocio.interfaces.IInsercionMasivaBO;
 
@@ -19,6 +20,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     private IInsercionMasivaBO insercionMasivaBO;
     private IArtistasBO artistasBO;
+    private IAlbumesBO albumesBO;
     private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
     
     private PanelArtistas panelArtistas;
@@ -27,15 +29,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private PanelPrincipal panelPrincipal;
     
 
-    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO,IArtistasBO artistasBO ) {
+    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO,IArtistasBO artistasBO, IAlbumesBO albumesBO) {
         initComponents();
         this.insercionMasivaBO = insercionMasivaBO;
         this.artistasBO = artistasBO;
+        this.albumesBO = albumesBO;
         setLocationRelativeTo(null);
         
         // Inicializar los paneles
         panelArtistas = new PanelArtistas(artistasBO);
-        panelAlbumes = new PanelAlbumes();
+        panelAlbumes = new PanelAlbumes(albumesBO);
         panelCanciones = new PanelCanciones();
         panelPrincipal = new PanelPrincipal();
 

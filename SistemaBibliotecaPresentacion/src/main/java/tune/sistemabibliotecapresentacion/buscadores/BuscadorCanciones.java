@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package tune.sistemabibliotecapresentacion;
+package tune.sistemabibliotecapresentacion.buscadores;
 
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
@@ -10,11 +10,11 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
  *
  * @author Dana Chavez
  */
-    public class BuscadorAlbumes extends javax.swing.JPanel {
+    public class BuscadorCanciones extends javax.swing.JPanel {
         
     FontManager fontManager = new FontManager();
     
-    public BuscadorAlbumes() {
+    public BuscadorCanciones() {
         initComponents();
     }
 
@@ -34,7 +34,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
         jTextField1.setBackground(new java.awt.Color(5, 54, 46));
         jTextField1.setFont(fontManager.getAfacadRegular(16f));
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Nombre, genero, fecha lanzamiento");
+        jTextField1.setText("Nombre");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);

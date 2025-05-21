@@ -4,18 +4,97 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.util.List;
+import tune.sistemabibliotecadominio.entidades.Album;
+import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecapresentacion.buscadores.BuscadorAlbumes;
+import tune.sistemabibliotecapresentacion.buscadores.BusquedaAlbumListener;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
  *
  * @author Dana Chavez
  */
-public class PanelAlbumes extends javax.swing.JPanel {
+public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumListener {
 
     FontManager fontManager = new FontManager();
+    private IAlbumesBO albumesBO;
 
-    public PanelAlbumes() {
+    public PanelAlbumes(IAlbumesBO albumesBO) {
         initComponents();
+        this.albumesBO = albumesBO;
+        
+        this.setOpaque(false);
+
+        jScrollPaneAlbums.setOpaque(false);
+        jScrollPaneAlbums.getViewport().setOpaque(false);
+        jScrollPaneAlbums.setBorder(null);
+        jPanelAlbums.setOpaque(false);
+
+        BuscadorAlbumes buscador = new BuscadorAlbumes();
+        buscador.setBusquedaAlbumListener(this);
+
+        jPanelContenedor.setOpaque(false);
+        jPanelContenedor.removeAll();
+        jPanelContenedor.setLayout(new java.awt.BorderLayout());
+        jPanelContenedor.add(buscador, java.awt.BorderLayout.CENTER);
+        jPanelContenedor.revalidate();
+        jPanelContenedor.repaint();
+
+        cargarAlbumes();
+    }
+    
+    private void mostrarAlbumes(List<Album> albumes) {
+        jPanelAlbums.removeAll();
+        jPanelAlbums.setLayout(new javax.swing.BoxLayout(jPanelAlbums, javax.swing.BoxLayout.Y_AXIS));
+
+        for (Album album : albumes) {
+            javax.swing.JLabel labelAlbum = new javax.swing.JLabel(album.getNombre() + " - " + album.getGeneroMusical() + " - " + album.getFechaLanzamiento());
+            labelAlbum.setFont(fontManager.getAfacadBold(20f));
+            labelAlbum.setForeground(new java.awt.Color(255, 255, 255));
+            labelAlbum.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            jPanelAlbums.add(labelAlbum);
+        }
+
+        jPanelAlbums.revalidate();
+        jPanelAlbums.repaint();
+    }
+
+    public void cargarAlbumes() {
+        try {
+            List<Album> albumes = albumesBO.obtenerTodosLosAlbums();
+            mostrarAlbumes(albumes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onBusquedaAlbumActualizada(String texto, String filtro) {
+        try {
+            List<Album> albumesFiltrados;
+            if (texto == null || texto.isEmpty()) {
+                albumesFiltrados = albumesBO.obtenerTodosLosAlbums();
+            } else {
+                switch (filtro) {
+                    case "Nombre":
+                        albumesFiltrados = albumesBO.obtenerAlbumPorNombre(texto);
+                        break;
+                    case "Genero":
+                        albumesFiltrados = albumesBO.obtenerAlbumPorGenero(texto);
+                        break;
+                    case "Fecha Lanzamiento":
+                        albumesFiltrados = albumesBO.obtenerAlbumPorFechaLanzamiento(texto);
+                        break;
+                    default:
+                        albumesFiltrados = albumesBO.obtenerTodosLosAlbums();
+                }
+            }
+            System.out.println("Álbumes encontrados: " + albumesFiltrados.size());
+            mostrarAlbumes(albumesFiltrados);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -28,6 +107,9 @@ public class PanelAlbumes extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabelTitulo = new javax.swing.JLabel();
+        jPanelContenedor = new javax.swing.JPanel();
+        jScrollPaneAlbums = new javax.swing.JScrollPane();
+        jPanelAlbums = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 33, 27));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,10 +118,41 @@ public class PanelAlbumes extends javax.swing.JPanel {
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Albumes");
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 470, 130));
+
+        javax.swing.GroupLayout jPanelContenedorLayout = new javax.swing.GroupLayout(jPanelContenedor);
+        jPanelContenedor.setLayout(jPanelContenedorLayout);
+        jPanelContenedorLayout.setHorizontalGroup(
+            jPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 450, Short.MAX_VALUE)
+        );
+        jPanelContenedorLayout.setVerticalGroup(
+            jPanelContenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 450, 50));
+
+        javax.swing.GroupLayout jPanelAlbumsLayout = new javax.swing.GroupLayout(jPanelAlbums);
+        jPanelAlbums.setLayout(jPanelAlbumsLayout);
+        jPanelAlbumsLayout.setHorizontalGroup(
+            jPanelAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 944, Short.MAX_VALUE)
+        );
+        jPanelAlbumsLayout.setVerticalGroup(
+            jPanelAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 464, Short.MAX_VALUE)
+        );
+
+        jScrollPaneAlbums.setViewportView(jPanelAlbums);
+
+        add(jScrollPaneAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 950, 470));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanelAlbums;
+    private javax.swing.JPanel jPanelContenedor;
+    private javax.swing.JScrollPane jScrollPaneAlbums;
     // End of variables declaration//GEN-END:variables
 }

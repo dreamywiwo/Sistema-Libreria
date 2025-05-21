@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package tune.sistemabibliotecapresentacion;
+package tune.sistemabibliotecapresentacion.buscadores;
 
 import javax.swing.event.DocumentListener;
 import org.w3c.dom.events.DocumentEvent;
