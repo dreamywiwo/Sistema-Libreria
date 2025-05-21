@@ -9,6 +9,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecanegocio.interfaces.IInsercionMasivaBO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 
@@ -19,15 +21,42 @@ import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 public class VentanaPrincipal extends javax.swing.JFrame {
     
     private IInsercionMasivaBO insercionMasivaBO;
+    private IArtistasBO artistasBO;
+    private IAlbumesBO albumesBO;
     private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
     ControlNavegacion control;
     
-
-    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO, ControlNavegacion control) {
+    private PanelArtistas panelArtistas;
+    private PanelAlbumes panelAlbumes;
+    private PanelCanciones panelCanciones;
+    private PanelPrincipal panelPrincipal;
+    
+    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO,IArtistasBO artistasBO, IAlbumesBO albumesBO, ControlNavegacion control) {
         initComponents();
         this.insercionMasivaBO = insercionMasivaBO;
+        this.artistasBO = artistasBO;
+        this.albumesBO = albumesBO;
         this.control = control;
         setLocationRelativeTo(null);
+        
+        // Inicializar los paneles
+        panelArtistas = new PanelArtistas(artistasBO);
+        panelAlbumes = new PanelAlbumes(albumesBO);
+        panelCanciones = new PanelCanciones();
+        panelPrincipal = new PanelPrincipal();
+
+        // Establecer CardLayout para jPanelPaneles
+        jPanelPaneles.setLayout(new CardLayout());
+        jPanelPaneles.setOpaque(false);
+
+        // Agregar los paneles al contenedor con un nombre clave
+        jPanelPaneles.add(panelArtistas, "Artistas");
+        jPanelPaneles.add(panelAlbumes, "Albumes");
+        jPanelPaneles.add(panelCanciones, "Canciones");
+        jPanelPaneles.add(panelPrincipal, "Principal");
+
+        mostrarPanel("Principal");
+
     }
     
     private void agregarArtistasMasivamente(){
@@ -47,6 +76,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelForms.add(panelUsuario, "perfil");
         CardLayout cl = (CardLayout) jPanelForms.getLayout();
         cl.show(jPanelForms, "perfil");
+    private void mostrarPanel(String nombrePanel) {
+        CardLayout cl = (CardLayout) jPanelPaneles.getLayout();
+        cl.show(jPanelPaneles, nombrePanel);
     }
     
     public void mostrar(){
@@ -70,7 +102,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonIcono = new javax.swing.JButton();
         jButtonHome = new javax.swing.JButton();
         jButtonAgregarArtistas = new javax.swing.JButton();
-        jPanelForms = new javax.swing.JPanel();
+        jButtonArtistas = new javax.swing.JButton();
+        jButtonAlbumes = new javax.swing.JButton();
+        jButtonCanciones = new javax.swing.JButton();
+        jButtonFavoritos = new javax.swing.JButton();
+        jPanelPaneles = new javax.swing.JPanel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,6 +146,45 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanelForms.setOpaque(false);
         jPanelForms.setLayout(new java.awt.CardLayout());
         getContentPane().add(jPanelForms, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 92, 1020, 763));
+        jButtonArtistas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonArtistas.png"))); // NOI18N
+        jButtonArtistas.setBorder(null);
+        jButtonArtistas.setContentAreaFilled(false);
+        jButtonArtistas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonArtistas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonArtistasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 60, 70));
+
+        jButtonAlbumes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonAlbumes.png"))); // NOI18N
+        jButtonAlbumes.setBorder(null);
+        jButtonAlbumes.setContentAreaFilled(false);
+        jButtonAlbumes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAlbumes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAlbumesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAlbumes, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 60, 70));
+
+        jButtonCanciones.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonCanciones.png"))); // NOI18N
+        jButtonCanciones.setBorder(null);
+        jButtonCanciones.setContentAreaFilled(false);
+        jButtonCanciones.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCanciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancionesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 530, 100, -1));
+
+        jButtonFavoritos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonFavoritos.png"))); // NOI18N
+        jButtonFavoritos.setBorder(null);
+        jButtonFavoritos.setContentAreaFilled(false);
+        jButtonFavoritos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        getContentPane().add(jButtonFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 60, -1));
+        getContentPane().add(jPanelPaneles, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 1010, 750));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoVentanaPrincipal.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -118,23 +193,35 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonHomeActionPerformed
-        // TODO add your handling code here:
+        mostrarPanel("Principal");
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
     private void jButtonAgregarArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarArtistasActionPerformed
         agregarArtistasMasivamente();
     }//GEN-LAST:event_jButtonAgregarArtistasActionPerformed
 
-    private void jButtonIconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIconoActionPerformed
-        mostrarPerfilUsuario();
-    }//GEN-LAST:event_jButtonIconoActionPerformed
+    private void jButtonAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlbumesActionPerformed
+        mostrarPanel("Albumes");
+    }//GEN-LAST:event_jButtonAlbumesActionPerformed
+
+    private void jButtonArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonArtistasActionPerformed
+        mostrarPanel("Artistas");
+    }//GEN-LAST:event_jButtonArtistasActionPerformed
+
+    private void jButtonCancionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancionesActionPerformed
+        mostrarPanel("Canciones");
+    }//GEN-LAST:event_jButtonCancionesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarArtistas;
+    private javax.swing.JButton jButtonAlbumes;
+    private javax.swing.JButton jButtonArtistas;
+    private javax.swing.JButton jButtonCanciones;
+    private javax.swing.JButton jButtonFavoritos;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonIcono;
     private javax.swing.JLabel jLabelFondo;
-    private javax.swing.JPanel jPanelForms;
+    private javax.swing.JPanel jPanelPaneles;
     // End of variables declaration//GEN-END:variables
 }

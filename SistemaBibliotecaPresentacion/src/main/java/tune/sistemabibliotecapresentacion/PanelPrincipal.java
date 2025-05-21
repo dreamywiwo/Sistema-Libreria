@@ -8,12 +8,12 @@ package tune.sistemabibliotecapresentacion;
  *
  * @author Dana Chavez
  */
-public class PanelBuscador extends javax.swing.JPanel {
+public class PanelPrincipal extends javax.swing.JPanel {
 
     /**
-     * Creates new form PanelBuscador
+     * Creates new form PanelPrincipal
      */
-    public PanelBuscador() {
+    public PanelPrincipal() {
         initComponents();
     }
 
@@ -26,16 +26,21 @@ public class PanelBuscador extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        setBackground(new java.awt.Color(0, 33, 27));
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField1.setText("jTextField1");
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 490, 50));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1010, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 750, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }

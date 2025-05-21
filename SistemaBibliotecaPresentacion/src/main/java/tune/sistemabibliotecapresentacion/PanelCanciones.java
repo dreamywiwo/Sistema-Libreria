@@ -4,16 +4,17 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import tune.sistemabibliotecapresentacion.utils.FontManager;
+
 /**
  *
  * @author Dana Chavez
  */
-public class PanelNavegacion extends javax.swing.JPanel {
+public class PanelCanciones extends javax.swing.JPanel {
+    
+    FontManager fontManager = new FontManager();
 
-    /**
-     * Creates new form PanelNavegacion
-     */
-    public PanelNavegacion() {
+    public PanelCanciones() {
         initComponents();
     }
 
@@ -26,19 +27,19 @@ public class PanelNavegacion extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        jLabelTitulo = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(0, 33, 27));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonAgregar.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 60, -1));
+        jLabelTitulo.setFont(fontManager.getAfacadBold(128f));
+        jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelTitulo.setText("Canciones");
+        add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 780, 130));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabelTitulo;
     // End of variables declaration//GEN-END:variables
 }
