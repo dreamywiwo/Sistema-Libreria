@@ -5,6 +5,9 @@
 package tune.sistemabibliotecanegocio.implementaciones;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Cancion;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
@@ -37,7 +40,25 @@ public class CancionesBO implements ICancionesBO {
         try {
             return this.cancionesDAO.obtenerCancionesPorNombre(nombre);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener los artistas");
+            throw new NegocioException("No se pudieron obtener las canciones por nombre");
+        }
+    }
+
+    @Override
+    public List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista() throws NegocioException {
+        try {
+            return this.cancionesDAO.obtenerTodasLasCancionesConNombreArtista();
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener las canciones con sus artistas");
+        }
+    }
+
+    @Override
+    public List<CancionConArtistaDTO> obtenerCancionesPorNombreConArtista(String nombre) throws NegocioException {
+        try {
+            return this.cancionesDAO.obtenerCancionesPorNombreConArtista(nombre);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener las canciones con sus artistas");
         }
     }
     

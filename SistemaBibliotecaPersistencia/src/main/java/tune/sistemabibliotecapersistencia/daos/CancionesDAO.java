@@ -1,11 +1,25 @@
 
 package tune.sistemabibliotecapersistencia.daos;
 
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import static com.mongodb.client.model.Aggregates.lookup;
+import static com.mongodb.client.model.Aggregates.match;
+import static com.mongodb.client.model.Aggregates.project;
+import static com.mongodb.client.model.Aggregates.unwind;
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.regex;
+import static com.mongodb.client.model.Projections.computed;
+import static com.mongodb.client.model.Projections.fields;
+import static com.mongodb.client.model.Projections.include;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Cancion;
 import tune.sistemabibliotecapersistencia.conexion.ManejadorConexiones;
 import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
@@ -36,6 +50,65 @@ public class CancionesDAO implements ICancionesDAO {
         return canciones;
     }
     
-    
-    
+    @Override
+    public List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista() throws PersistenciaException {
+        List<CancionConArtistaDTO> resultado = new ArrayList<>();
+
+        MongoCollection<Document> coleccionDocs = ManejadorConexiones
+            .obtenerBaseDatos()
+            .getCollection(COLECCION_CANCIONES);
+
+        List<Bson> pipeline = Arrays.asList(
+            lookup("Artistas", "artistaId", "_id", "artista"),
+            unwind("$artista"),
+            project(fields(
+                include("nombre"),
+                computed("nombreArtista", "$artista.nombre")
+            ))
+        );
+
+        AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
+
+        for (Document doc : docs) {
+            CancionConArtistaDTO dto = new CancionConArtistaDTO(
+                doc.getString("nombre"),
+                doc.getString("nombreArtista")
+            );
+            resultado.add(dto);
+        }
+
+        return resultado;
+    }
+
+    @Override
+    public List<CancionConArtistaDTO> obtenerCancionesPorNombreConArtista(String nombre) throws PersistenciaException {
+        List<CancionConArtistaDTO> resultado = new ArrayList<>();
+
+        MongoCollection<Document> coleccionDocs = ManejadorConexiones
+            .obtenerBaseDatos()
+            .getCollection(COLECCION_CANCIONES);
+
+        List<Bson> pipeline = Arrays.asList(
+            match(regex("nombre", nombre, "i")),
+            lookup("Artistas", "artistaId", "_id", "artista"),
+            unwind("$artista"),
+            project(fields(
+                include("nombre"),
+                computed("nombreArtista", "$artista.nombre")
+            ))
+        );
+
+        AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
+
+        for (Document doc : docs) {
+            CancionConArtistaDTO dto = new CancionConArtistaDTO(
+                doc.getString("nombre"),
+                doc.getString("nombreArtista")
+            );
+            resultado.add(dto);
+        }
+
+        return resultado;
+    }
+
 }

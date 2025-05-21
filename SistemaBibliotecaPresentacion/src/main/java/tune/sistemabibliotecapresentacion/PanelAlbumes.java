@@ -83,6 +83,7 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
                     case "Genero":
                         albumesFiltrados = albumesBO.obtenerAlbumPorGenero(texto);
                         break;
+                    // TODO: arreglar filtro por fecha
                     case "Fecha Lanzamiento":
                         albumesFiltrados = albumesBO.obtenerAlbumPorFechaLanzamiento(texto);
                         break;
