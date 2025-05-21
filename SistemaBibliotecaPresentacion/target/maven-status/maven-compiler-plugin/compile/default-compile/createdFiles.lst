@@ -4,8 +4,10 @@ tune\sistemabibliotecapresentacion\InicioSesion.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$4.class
 tune\sistemabibliotecapresentacion\buscadores\BusquedaListener.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$1.class
+tune\sistemabibliotecapresentacion\PanelPerfilUsuario.class
 tune\sistemabibliotecapresentacion\PanelArtistas.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$2.class
+tune\sistemabibliotecapresentacion\PanelEditarUsuario.class
 tune\sistemabibliotecapresentacion\PanelPrincipal.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$5.class
 tune\sistemabibliotecapresentacion\InicioSesion$2.class
@@ -21,6 +23,7 @@ tune\sistemabibliotecapresentacion\VentanaPrincipal$3.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorAlbumes$2.class
 tune\sistemabibliotecapresentacion\Identificacion$1.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorCanciones$2.class
+tune\sistemabibliotecapresentacion\VentanaPrincipal$6.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorArtistas$1.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorCanciones.class
 tune\sistemabibliotecapresentacion\Identificacion.class

@@ -21,6 +21,7 @@ import tune.sistemabibliotecapersistencia.interfaces.IUsuariosDAO;
 public class UsuariosBO implements IUsuariosBO {
 
     private final IUsuariosDAO usuariosDAO;
+    private Usuario usuarioActual;
 
     public UsuariosBO(IUsuariosDAO usuariosDAO) {
         this.usuariosDAO = usuariosDAO;
@@ -39,13 +40,13 @@ public class UsuariosBO implements IUsuariosBO {
             }
 
             String contrasenaHasheada = SeguridadUtil.generarHash(usuarioDTO.getContrasena());
-
             if (!usuario.getContrasena().equals(contrasenaHasheada)) {
                 throw new NegocioException("Credenciales incorrectas.");
             }
 
-            return usuario;
+            this.usuarioActual = usuario;
 
+            return usuario;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al iniciar sesión", ex);
         }
@@ -76,5 +77,13 @@ public class UsuariosBO implements IUsuariosBO {
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al registrar usuario", ex);
         }
+    }
+
+    public Usuario obtenerUsuarioActual() {
+        return usuarioActual;
+    }
+
+    public void cerrarSesion() {
+        usuarioActual = null;
     }
 }

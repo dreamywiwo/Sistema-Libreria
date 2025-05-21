@@ -16,7 +16,7 @@ import tune.sistemabibliotecapersistencia.daos.AlbumesDAO;
 import tune.sistemabibliotecapersistencia.daos.ArtistasDAO;
 import tune.sistemabibliotecapersistencia.daos.CancionesDAO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
-import tune.sistemabibliotecapersistencia.implementaciones.UsuariosDAO;
+import tune.sistemabibliotecapersistencia.daos.UsuariosDAO;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
 import tune.sistemabibliotecapresentacion.VentanaRegistro;
 
@@ -39,7 +39,7 @@ public class ControlNavegacion {
     
     
     public void mostrarVentanaPrincipal() {
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO);
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this);
         ventanaPrincipal.mostrar();
     }
 
