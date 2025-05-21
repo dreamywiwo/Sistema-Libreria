@@ -3,11 +3,14 @@ main\Main.class
 tune\sistemabibliotecapresentacion\control\ControlNavegacion.class
 tune\sistemabibliotecapresentacion\InicioSesion.class
 tune\sistemabibliotecapresentacion\Registro$2.class
+tune\sistemabibliotecapresentacion\VentanaPrincipal$3.class
 tune\sistemabibliotecapresentacion\Identificacion$1.class
 tune\sistemabibliotecapresentacion\Identificacion.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$1.class
+tune\sistemabibliotecapresentacion\PanelPerfilUsuario.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$2.class
 tune\sistemabibliotecapresentacion\InicioSesion$1.class
+tune\sistemabibliotecapresentacion\PanelEditarUsuario.class
 tune\sistemabibliotecapresentacion\InicioSesion$2.class
 tune\sistemabibliotecapresentacion\Registro.class
 tune\sistemabibliotecapresentacion\VentanaRegistro.class

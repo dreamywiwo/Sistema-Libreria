@@ -4,11 +4,13 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.awt.CardLayout;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IInsercionMasivaBO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 
 /**
  *
@@ -18,11 +20,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     private IInsercionMasivaBO insercionMasivaBO;
     private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
+    ControlNavegacion control;
     
 
-    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO) {
+    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO, ControlNavegacion control) {
         initComponents();
         this.insercionMasivaBO = insercionMasivaBO;
+        this.control = control;
         setLocationRelativeTo(null);
     }
     
@@ -36,6 +40,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 "Error", 
                 JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    public void mostrarPerfilUsuario() {
+        PanelPerfilUsuario panelUsuario = new PanelPerfilUsuario(control, this);
+        jPanelForms.add(panelUsuario, "perfil");
+        CardLayout cl = (CardLayout) jPanelForms.getLayout();
+        cl.show(jPanelForms, "perfil");
     }
     
     public void mostrar(){
@@ -59,12 +70,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonIcono = new javax.swing.JButton();
         jButtonHome = new javax.swing.JButton();
         jButtonAgregarArtistas = new javax.swing.JButton();
+        jPanelForms = new javax.swing.JPanel();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButtonIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonPerfil.png"))); // NOI18N
         jButtonIcono.setContentAreaFilled(false);
+        jButtonIcono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIconoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonIcono, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 30, 40, 40));
 
         jButtonHome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonHome.png"))); // NOI18N
@@ -89,6 +107,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonAgregarArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 60, -1));
 
+        jPanelForms.setOpaque(false);
+        jPanelForms.setLayout(new java.awt.CardLayout());
+        getContentPane().add(jPanelForms, new org.netbeans.lib.awtextra.AbsoluteConstraints(106, 92, 1020, 763));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoVentanaPrincipal.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -103,11 +125,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         agregarArtistasMasivamente();
     }//GEN-LAST:event_jButtonAgregarArtistasActionPerformed
 
+    private void jButtonIconoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIconoActionPerformed
+        mostrarPerfilUsuario();
+    }//GEN-LAST:event_jButtonIconoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarArtistas;
     private javax.swing.JButton jButtonHome;
     private javax.swing.JButton jButtonIcono;
     private javax.swing.JLabel jLabelFondo;
+    private javax.swing.JPanel jPanelForms;
     // End of variables declaration//GEN-END:variables
 }

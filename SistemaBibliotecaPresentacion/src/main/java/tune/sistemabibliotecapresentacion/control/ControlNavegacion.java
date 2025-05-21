@@ -10,7 +10,7 @@ import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.implementaciones.InsercionMasivaBO;
 import tune.sistemabibliotecanegocio.implementaciones.UsuariosBO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
-import tune.sistemabibliotecapersistencia.implementaciones.UsuariosDAO;
+import tune.sistemabibliotecapersistencia.daos.UsuariosDAO;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
 import tune.sistemabibliotecapresentacion.VentanaRegistro;
 
@@ -24,7 +24,7 @@ public class ControlNavegacion {
     
     
     public void mostrarVentanaPrincipal() {
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO);
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, this);
         ventanaPrincipal.mostrar();
     }
 
