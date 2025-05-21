@@ -15,7 +15,7 @@ import tune.sistemabibliotecapresentacion.VentanaPrincipal;
 import tune.sistemabibliotecapresentacion.VentanaRegistro;
 
 public class ControlNavegacion {
-    
+
     UsuariosDAO usuariosDAO = new UsuariosDAO();
     UsuariosBO usuariosBO = new UsuariosBO(usuariosDAO);
     
@@ -27,22 +27,22 @@ public class ControlNavegacion {
         VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO);
         ventanaPrincipal.mostrar();
     }
-    
-    public void mostrarVentanaRegistro(){
+
+    public void mostrarVentanaRegistro() {
         VentanaRegistro ventanaRegistro = new VentanaRegistro(this);
         ventanaRegistro.mostrar();
     }
-    
+
     public void iniciarSesion(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
         Usuario usuario = usuariosBO.iniciarSesion(usuarioDTO);
         if (usuario != null) {
             mostrarVentanaPrincipal();
         }
     }
-    
+
     public void registrarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
-    usuariosBO.registrarUsuario(usuarioDTO);
-    mostrarVentanaPrincipal(); // O mostrar mensaje de éxito
-}
-    
+        usuariosBO.registrarUsuario(usuarioDTO);
+        mostrarVentanaPrincipal();
+    }
+
 }
