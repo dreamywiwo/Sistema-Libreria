@@ -30,11 +30,11 @@ public class ArtistaDTO {
         this.integrantes = integrantes;
     }
 
-    public ArtistaDTO(String tipo, String nombre, String imagen, String generoMusical) {
-        this.tipo = tipo;
+    public ArtistaDTO(String nombre, String tipo, String generoMusical, String imagen) {
         this.nombre = nombre;
-        this.imagen = imagen;
+        this.tipo = tipo;
         this.generoMusical = generoMusical;
+        this.imagen = imagen;
     }
 
     public String getId() {
