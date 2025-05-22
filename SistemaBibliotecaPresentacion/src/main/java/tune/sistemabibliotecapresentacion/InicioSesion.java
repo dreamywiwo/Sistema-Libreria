@@ -70,6 +70,11 @@ public class InicioSesion extends javax.swing.JPanel {
         jTextFieldCorreo1.setForeground(new java.awt.Color(255, 255, 255));
         jTextFieldCorreo1.setText("   E-mail");
         jTextFieldCorreo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jTextFieldCorreo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldCorreo1ActionPerformed(evt);
+            }
+        });
         add(jTextFieldCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 248, 49));
 
         jPassword1.setBackground(new java.awt.Color(7, 76, 64));
@@ -123,6 +128,10 @@ public class InicioSesion extends javax.swing.JPanel {
     private void jButtonRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistroActionPerformed
         ventanaPrincipal.mostrarRegistro();
     }//GEN-LAST:event_jButtonRegistroActionPerformed
+
+    private void jTextFieldCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCorreo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldCorreo1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

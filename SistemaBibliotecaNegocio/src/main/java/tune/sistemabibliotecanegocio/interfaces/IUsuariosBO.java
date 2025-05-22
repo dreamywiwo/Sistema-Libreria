@@ -5,6 +5,7 @@
 package tune.sistemabibliotecanegocio.interfaces;
 
 import org.bson.types.ObjectId;
+import java.util.List;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
@@ -15,6 +16,7 @@ public interface IUsuariosBO {
     Usuario registrarUsuario(NuevoUsuarioDTO usuarioDTO)throws NegocioException;
     public boolean verificarContraseñaActual(String contraseñaIngresada) throws NegocioException;
     public Usuario editarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException;
+    public void actualizarGenerosRestringidos(List<String> generosRestringidos) throws NegocioException;
     public Usuario obtenerUsuarioActual();
     public void cerrarSesion();
     

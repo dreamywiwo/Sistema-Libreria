@@ -1,3 +1,5 @@
+tune\sistemabibliotecapresentacion\PanelPerfilUsuario$3.class
+tune\sistemabibliotecapresentacion\formatos\PanelGeneroItem$1.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorAlbumes$1.class
 main\Main.class
 tune\sistemabibliotecapresentacion\InicioSesion.class
@@ -5,6 +7,7 @@ tune\sistemabibliotecapresentacion\formatos\PanelIntegranteItem.class
 tune\sistemabibliotecapresentacion\PanelIngresarNuevaContraseña$1.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$4.class
 tune\sistemabibliotecapresentacion\PanelIngresarNuevaContraseña.class
+tune\sistemabibliotecapresentacion\InicioSesion$3.class
 tune\sistemabibliotecapresentacion\buscadores\BusquedaListener.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$1.class
 tune\sistemabibliotecapresentacion\PanelPerfilUsuario.class
@@ -14,9 +17,12 @@ tune\sistemabibliotecapresentacion\formatos\PanelAlbumItem.class
 tune\sistemabibliotecapresentacion\PanelIngresarNuevaContraseña$2.class
 tune\sistemabibliotecapresentacion\PanelEditarUsuario$1.class
 tune\sistemabibliotecapresentacion\PanelEditarUsuario.class
+tune\sistemabibliotecapresentacion\PanelPerfilUsuario$4.class
 tune\sistemabibliotecapresentacion\PanelPrincipal.class
+tune\sistemabibliotecapresentacion\formatos\PanelGeneroItem.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$5.class
 tune\sistemabibliotecapresentacion\InicioSesion$2.class
+tune\sistemabibliotecapresentacion\PanelGeneros.class
 tune\sistemabibliotecapresentacion\Registro.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorArtistas.class
 tune\sistemabibliotecapresentacion\PanelPerfilUsuario$1.class
@@ -46,6 +52,7 @@ tune\sistemabibliotecapresentacion\formatos\PanelAlbumItem$1.class
 tune\sistemabibliotecapresentacion\utils\WrapLayout.class
 tune\sistemabibliotecapresentacion\VentanaRegistro.class
 tune\sistemabibliotecapresentacion\PanelEditarUsuario$2.class
+tune\sistemabibliotecapresentacion\PanelGeneros$1.class
 tune\sistemabibliotecapresentacion\utils\FontManager.class
 tune\sistemabibliotecapresentacion\buscadores\BusquedaAlbumListener.class
 tune\sistemabibliotecapresentacion\formatos\PanelArtistaItem$1.class

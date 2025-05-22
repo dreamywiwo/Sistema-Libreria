@@ -22,53 +22,53 @@ import tune.sistemabibliotecapersistencia.interfaces.IAlbumesDAO;
  * @author Dana Chavez
  */
 public class AlbumesBO implements IAlbumesBO {
-    
+
     private IAlbumesDAO albumesDAO;
 
     public AlbumesBO(IAlbumesDAO albumesDAO) {
         this.albumesDAO = albumesDAO;
-    }   
+    }
 
     @Override
-    public List<Album> obtenerTodosLosAlbums() throws NegocioException {
+    public List<Album> obtenerTodosLosAlbums(List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerTodosLosAlbums();
+            return this.albumesDAO.obtenerTodosLosAlbums(generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums");
         }
     }
 
     @Override
-    public List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre) throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumPorNombreConArtista(nombre);
+            return this.albumesDAO.obtenerAlbumPorNombreConArtista(nombre, generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums por nombre");
         }
     }
 
     @Override
-    public List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical) throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumPorGeneroConArtista(generoMusical);
+            return this.albumesDAO.obtenerAlbumPorGeneroConArtista(generoMusical, generosRestringidos);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener los albums por genero");
+            throw new NegocioException("No se pudieron obtener los albums por género");
         }
     }
 
     @Override
-    public List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumPorFechaLanzamientoConArtista(fechaLanzamiento);
+            return this.albumesDAO.obtenerAlbumPorFechaLanzamientoConArtista(fechaLanzamiento, generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums por fecha de lanzamiento");
         }
-    }   
+    }
 
     @Override
-    public List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws NegocioException {
+    public List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista(List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.albumesDAO.obtenerAlbumsConNombreArtista();
+            return this.albumesDAO.obtenerAlbumsConNombreArtista(generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums y sus artistas");
         }
@@ -106,16 +106,16 @@ public class AlbumesBO implements IAlbumesBO {
         try {
             return this.albumesDAO.obtenerCancionesPorAlbum(albumId);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener las canciones del album");
+            throw new NegocioException("No se pudieron obtener las canciones del álbum");
         }
     }
 
     @Override
-    public List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto) throws NegocioException {
+    public List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.albumesDAO.buscarAlbumesPorTexto(texto);
+            return this.albumesDAO.buscarAlbumesPorTexto(texto, generosRestringidos);
         } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener los albums");
+            throw new NegocioException("No se pudieron obtener los álbumes por texto");
         }
     }
 

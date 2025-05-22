@@ -56,6 +56,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelPrincipal = new PanelPrincipal();
         panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
 
+        control.setPanelArtistas(panelArtistas);
+        control.setPanelAlbumes(panelAlbumes);
+        control.setPanelCanciones(panelCanciones);
+
         // Establecer CardLayout para jPanelPaneles
         jPanelPaneles.setLayout(new CardLayout());
         jPanelPaneles.setOpaque(false);
@@ -96,16 +100,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setVisible(false);
         dispose();
     }
-    
-    public void setGeneros() throws NegocioException{
-        this.generos=insercionMasivaBO.obtenerGenerosUnicos();
-        if(panelPerfilUsuario != null){
+
+    public void setGeneros() throws NegocioException {
+        this.generos = insercionMasivaBO.obtenerGenerosUnicos();
+        if (panelPerfilUsuario != null) {
             panelPerfilUsuario = null;
             panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         }else{
             panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         }
-        
+
     }
 
     /**

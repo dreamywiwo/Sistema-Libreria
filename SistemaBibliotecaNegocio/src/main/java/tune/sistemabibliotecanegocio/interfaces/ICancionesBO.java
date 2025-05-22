@@ -12,11 +12,11 @@ import tune.sistemabibliotecanegocio.exception.NegocioException;
 
 public interface ICancionesBO {
     
-    public abstract List<Cancion> obtenerTodasLasCanciones() throws NegocioException;
+    public abstract List<Cancion> obtenerTodasLasCanciones(List<String> generosRestringidos) throws NegocioException;
     
-    public abstract List<Cancion> obtenerCancionesPorNombre(String nombre) throws NegocioException;
+    public abstract List<Cancion> obtenerCancionesPorNombre(String nombre, List<String> generosRestringidos) throws NegocioException;
     
-    public abstract List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista() throws NegocioException;
+    public abstract List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista(List<String> generosRestringidos) throws NegocioException;
     
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorNombreConArtista(String nombre) throws NegocioException;
     

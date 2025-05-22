@@ -13,7 +13,7 @@ public class DatosPredefinidos {
     public static List<ArtistaDTO> obtenerArtistasSolistas() {
         List<ArtistaDTO> artistasSolistas = new ArrayList<>();
 
-        artistasSolistas.add(new ArtistaDTO("Shakira", "Solista", "Pop", "imagen_solista1.jpg"));
+        artistasSolistas.add(new ArtistaDTO("Shakira", "Solista", "Pop", "https://imgs.search.brave.com/EMlmYV6S5eouI1bqzv12c6C1APC5jlRMPJbQZiQAFSs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly82NC5t/ZWRpYS50dW1ibHIu/Y29tLzQ0NTgzYjA3/ZGI1NmM3ZjRkMDgz/N2FmZGUzNGNiYjRl/LzY4ZTFkY2UwMWY2/N2FmNDItYzkvczEy/ODB4MTkyMC8zMjUw/MGM0NjFiZjU1OWFm/MzZiZjlkMDk4Zjhi/ZGY5N2UxMjc0OGU5/LmpwZw"));
         artistasSolistas.add(new ArtistaDTO("James Arthur", "Solista", "Pop", "imagen_solista2.jpg"));
         artistasSolistas.add(new ArtistaDTO("Christian Nodal", "Solista", "Nortena", "imagen_solista3.jpg"));
         artistasSolistas.add(new ArtistaDTO("Yuridia", "Solista", "Pop", "imagen_solista4.jpg"));

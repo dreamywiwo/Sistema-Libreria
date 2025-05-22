@@ -18,11 +18,11 @@ import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
  */
 public interface IArtistasDAO {
     
-    public abstract List<Artista> obtenerTodosLosArtistas() throws PersistenciaException;
-    
-    public abstract List<Artista> obtenerPorNombre(String nombre) throws PersistenciaException;
-    
-    public abstract List<Artista> obtenerPorGenero(String generoMusical) throws PersistenciaException;
+    public abstract List<Artista> obtenerTodosLosArtistas(List<String> generosRestringidos) throws PersistenciaException;
+
+    public abstract List<Artista> obtenerPorNombre(String nombre, List<String> generosRestringidos) throws PersistenciaException;
+
+    public abstract List<Artista> obtenerPorGenero(String generoMusical, List<String> generosRestringidos) throws PersistenciaException;
     
     public abstract ArtistaDTO obtenerArtistaPorId(String artistaId) throws PersistenciaException;
     

@@ -14,11 +14,11 @@ import tune.sistemabibliotecanegocio.exception.NegocioException;
 
 public interface IArtistasBO {   
         
-    public abstract List<Artista> obtenerTodosLosArtistas() throws NegocioException;
-    
-    public abstract List<Artista> obtenerPorNombre(String nombre) throws NegocioException;
-    
-    public abstract List<Artista> obtenerPorGenero(String generoMusical) throws NegocioException;
+    public abstract List<Artista> obtenerTodosLosArtistas(List<String> generosRestringidos) throws NegocioException;
+
+    public abstract List<Artista> obtenerPorNombre(String nombre, List<String> generosRestringidos) throws NegocioException;
+
+    public abstract List<Artista> obtenerPorGenero(String generoMusical, List<String> generosRestringidos) throws NegocioException;
     
     public abstract ArtistaDTO obtenerArtistaPorId(String artistaId) throws NegocioException;
     

@@ -10,6 +10,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
+import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.entidades.Usuario;
@@ -192,5 +193,19 @@ public class UsuariosDAO implements IUsuariosDAO {
     }
 
 
+    public void actualizarGenerosRestringidosPorId(Object id, List<String> generosRestringidos) throws PersistenciaException {
+    try {
+        MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+        MongoCollection<Usuario> coleccion = db.getCollection("usuarios", Usuario.class);
+
+        Document filtro = new Document("_id", id);
+        Document actualizacion = new Document("$set", new Document("generosRestringidos", generosRestringidos));
+
+        coleccion.updateOne(filtro, actualizacion);
+
+    } catch (Exception e) {
+        throw new PersistenciaException("Error al actualizar géneros restringidos en la base de datos", e);
+    }
+}
 
 }

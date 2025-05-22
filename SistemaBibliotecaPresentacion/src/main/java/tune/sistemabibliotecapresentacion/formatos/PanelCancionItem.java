@@ -85,6 +85,7 @@ public class PanelCancionItem extends JPanel {
 
         JPanel derecha = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         derecha.setOpaque(false);
+        derecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         JLabel lblAlbum = new JLabel(cancion.getNombreAlbum());
         lblAlbum.setForeground(Color.WHITE);

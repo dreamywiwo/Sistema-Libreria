@@ -18,15 +18,15 @@ import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
  */
 public interface IAlbumesDAO {
     
-    public abstract List<Album> obtenerTodosLosAlbums() throws PersistenciaException;
+    public abstract List<Album> obtenerTodosLosAlbums(List<String> generosRestringidos) throws PersistenciaException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre, List<String> generosRestringidos) throws PersistenciaException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical, List<String> generosRestringidos) throws PersistenciaException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento, List<String> generosRestringidos) throws PersistenciaException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista(List<String> generosRestringidos) throws PersistenciaException;
     
     public abstract AlbumConArtistaDTO obtenerAlbumPorId(String albumId) throws PersistenciaException;
     
@@ -36,7 +36,7 @@ public interface IAlbumesDAO {
     
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorAlbum(String albumId) throws PersistenciaException;
     
-    public abstract List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto) throws PersistenciaException;
+    public abstract List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto, List<String> generosRestringidos) throws PersistenciaException;
     
     public abstract List<AlbumConArtistaDTO> obtenerAlbumsPorIds(List<ObjectId> albumIds) throws PersistenciaException;
     

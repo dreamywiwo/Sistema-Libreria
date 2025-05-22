@@ -72,7 +72,7 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
 
     public void cargarAlbumes() {
         try {
-            List<AlbumConArtistaDTO> albumesDTO = albumesBO.obtenerAlbumsConNombreArtista();
+            List<AlbumConArtistaDTO> albumesDTO = albumesBO.obtenerAlbumsConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
             mostrarAlbumes(albumesDTO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +82,7 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
     public List<AlbumConArtistaDTO> cargarAlbumesExterior() {
         List<AlbumConArtistaDTO> albumesDTO = null;
         try {
-            albumesDTO = albumesBO.obtenerAlbumsConNombreArtista();
+            albumesDTO = albumesBO.obtenerAlbumsConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
             mostrarAlbumes(albumesDTO);
         } catch (Exception e) {
             e.printStackTrace();
@@ -96,23 +96,23 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
             List<AlbumConArtistaDTO> albumesFiltrados;
 
             if (texto == null || texto.isEmpty()) {
-                albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista();
+                albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
             } else {
                 switch (filtro) {
                     case "Filtro":
-                        albumesFiltrados = albumesBO.buscarAlbumesPorTexto(texto);
+                        albumesFiltrados = albumesBO.buscarAlbumesPorTexto(texto,control.obtenerUsuarioActual().getGenerosRestringidos());
                         break;
                     case "Nombre":
-                        albumesFiltrados = albumesBO.obtenerAlbumPorNombreConArtista(texto);
+                        albumesFiltrados = albumesBO.obtenerAlbumPorNombreConArtista(texto,control.obtenerUsuarioActual().getGenerosRestringidos());
                         break;
                     case "Genero":
-                        albumesFiltrados = albumesBO.obtenerAlbumPorGeneroConArtista(texto);
+                        albumesFiltrados = albumesBO.obtenerAlbumPorGeneroConArtista(texto,control.obtenerUsuarioActual().getGenerosRestringidos());
                         break;
                     case "Fecha Lanzamiento":
-                        albumesFiltrados = albumesBO.obtenerAlbumPorFechaLanzamientoConArtista(texto);
+                        albumesFiltrados = albumesBO.obtenerAlbumPorFechaLanzamientoConArtista(texto,control.obtenerUsuarioActual().getGenerosRestringidos());
                         break;
                     default:
-                        albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista();
+                        albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
                 }
             }
 

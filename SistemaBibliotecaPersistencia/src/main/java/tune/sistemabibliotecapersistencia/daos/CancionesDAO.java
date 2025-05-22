@@ -1,4 +1,3 @@
-
 package tune.sistemabibliotecapersistencia.daos;
 
 import com.mongodb.client.AggregateIterable;
@@ -27,7 +26,7 @@ import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 import tune.sistemabibliotecapersistencia.interfaces.ICancionesDAO;
 
 public class CancionesDAO implements ICancionesDAO {
-    
+
     private final String COLECCION_CANCIONES = "Canciones";
     private MongoCollection<Cancion> coleccionCanciones;
 
@@ -37,40 +36,56 @@ public class CancionesDAO implements ICancionesDAO {
     }
 
     @Override
-    public List<Cancion> obtenerTodasLasCanciones() throws PersistenciaException {
+    public List<Cancion> obtenerTodasLasCanciones(List<String> generosRestringidos) throws PersistenciaException {
         List<Cancion> canciones = new ArrayList<>();
-        coleccionCanciones.find().into(canciones);
+
+        Bson filtro = (generosRestringidos != null && !generosRestringidos.isEmpty())
+                ? Filters.nin("generoMusical", generosRestringidos)
+                : new Document(); // Sin filtro si la lista está vacía
+
+        coleccionCanciones.find(filtro).into(canciones);
         return canciones;
     }
 
     @Override
-    public List<Cancion> obtenerCancionesPorNombre(String nombre) throws PersistenciaException {
+    public List<Cancion> obtenerCancionesPorNombre(String nombre, List<String> generosRestringidos) throws PersistenciaException {
         List<Cancion> canciones = new ArrayList<>();
-        coleccionCanciones.find(Filters.regex("nombre", ".*" + nombre + ".*", "i"))
-                        .into(canciones);
+
+        List<Bson> filtros = new ArrayList<>();
+        filtros.add(Filters.regex("nombre", ".*" + nombre + ".*", "i"));
+
+        if (generosRestringidos != null && !generosRestringidos.isEmpty()) {
+            filtros.add(Filters.nin("generoMusical", generosRestringidos));
+        }
+
+        coleccionCanciones.find(Filters.and(filtros)).into(canciones);
         return canciones;
     }
-    
+
     @Override
-    public List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista() throws PersistenciaException {
+    public List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista(List<String> generosRestringidos) throws PersistenciaException {
         List<CancionConArtistaDTO> resultado = new ArrayList<>();
 
         MongoCollection<Document> coleccionDocs = ManejadorConexiones
-            .obtenerBaseDatos()
-            .getCollection(COLECCION_CANCIONES);
+                .obtenerBaseDatos()
+                .getCollection(COLECCION_CANCIONES);
 
-            List<Bson> pipeline = Arrays.asList(
-                lookup("Artistas", "artistaId", "_id", "artista"),
-                unwind("$artista"),
-                lookup("Albumes", "albumId", "_id", "album"),
-                unwind("$album"),
-                project(fields(
-                    include("_id", "nombre", "duracion"),
-                    computed("nombreArtista", "$artista.nombre"),
-                    computed("nombreAlbum", "$album.nombre"),
-                    computed("urlImagenAlbum", "$album.imagenUrl") 
-                ))
-            );
+        List<Bson> pipeline = new ArrayList<>();
+        pipeline.add(lookup("Artistas", "artistaId", "_id", "artista"));
+        pipeline.add(unwind("$artista"));
+        pipeline.add(lookup("Albumes", "albumId", "_id", "album"));
+        pipeline.add(unwind("$album"));
+
+        if (generosRestringidos != null && !generosRestringidos.isEmpty()) {
+            pipeline.add(match(Filters.nin("album.generoMusical", generosRestringidos)));
+        }
+
+        pipeline.add(project(fields(
+                include("_id", "nombre", "duracion"),
+                computed("nombreArtista", "$artista.nombre"),
+                computed("nombreAlbum", "$album.nombre"),
+                computed("urlImagenAlbum", "$album.imagenUrl")
+        )));
 
         AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
 
@@ -94,33 +109,33 @@ public class CancionesDAO implements ICancionesDAO {
         List<CancionConArtistaDTO> resultado = new ArrayList<>();
 
         MongoCollection<Document> coleccionDocs = ManejadorConexiones
-            .obtenerBaseDatos()
-            .getCollection(COLECCION_CANCIONES);
+                .obtenerBaseDatos()
+                .getCollection(COLECCION_CANCIONES);
 
         List<Bson> pipeline = Arrays.asList(
-            match(regex("nombre", nombre, "i")), // filtro case-insensitive por nombre
-            lookup("Artistas", "artistaId", "_id", "artista"),
-            unwind("$artista"),
-            lookup("Albumes", "albumId", "_id", "album"),
-            unwind("$album"),
-            project(fields(
-                include("nombre", "duracion"),
-                computed("nombreArtista", "$artista.nombre"),
-                computed("nombreAlbum", "$album.nombre"),
-                computed("urlImagenAlbum", "$album.imagenUrl") 
-                )   
-            )
+                match(regex("nombre", nombre, "i")), // filtro case-insensitive por nombre
+                lookup("Artistas", "artistaId", "_id", "artista"),
+                unwind("$artista"),
+                lookup("Albumes", "albumId", "_id", "album"),
+                unwind("$album"),
+                project(fields(
+                        include("nombre", "duracion"),
+                        computed("nombreArtista", "$artista.nombre"),
+                        computed("nombreAlbum", "$album.nombre"),
+                        computed("urlImagenAlbum", "$album.imagenUrl")
+                )
+                )
         );
 
         AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
 
         for (Document doc : docs) {
             CancionConArtistaDTO dto = new CancionConArtistaDTO(
-                doc.getString("nombre"),
-                doc.getString("nombreArtista"),
-                doc.getString("nombreAlbum"),
-                doc.getString("duracion"),
-                doc.getString("urlImagenAlbum")
+                    doc.getString("nombre"),
+                    doc.getString("nombreArtista"),
+                    doc.getString("nombreAlbum"),
+                    doc.getString("duracion"),
+                    doc.getString("urlImagenAlbum")
             );
             resultado.add(dto);
         }

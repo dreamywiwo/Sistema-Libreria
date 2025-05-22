@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecanegocio.implementaciones;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -139,6 +140,34 @@ public class UsuariosBO implements IUsuariosBO {
             throw new NegocioException("Error al editar usuario", ex);
         }
     }
+    
+    public void actualizarGenerosRestringidos(List<String> generosRestringidos) throws NegocioException {
+    if (generosRestringidos == null) {
+        throw new NegocioException("La lista de géneros restringidos no puede ser nula.");
+    }
+    
+    Usuario usuarioActual = obtenerUsuarioActual();
+    if (usuarioActual == null) {
+        throw new NegocioException("No hay un usuario autenticado.");
+    }
+    
+    for (String genero : generosRestringidos) {
+        if (genero == null || genero.trim().isEmpty()) {
+            throw new NegocioException("Los géneros restringidos no pueden contener valores vacíos.");
+        }
+    }
+    
+    Usuario usuarioParaActualizar = new Usuario();
+    usuarioParaActualizar.setId(usuarioActual.getId());
+    usuarioParaActualizar.setGenerosRestringidos(generosRestringidos);
+
+    try {
+        usuariosDAO.actualizarGenerosRestringidosPorId(usuarioActual.getId(), generosRestringidos);
+        usuarioActual.setGenerosRestringidos(generosRestringidos);
+    } catch (tune.sistemabibliotecapersistencia.exception.PersistenciaException e) {
+        throw new NegocioException("Error al actualizar géneros restringidos", e);
+    }
+}
 
     @Override
     public Usuario obtenerUsuarioActual() {

@@ -5,6 +5,7 @@
 package tune.sistemabibliotecapersistencia.interfaces;
 
 import org.bson.types.ObjectId;
+import java.util.List;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 
@@ -33,5 +34,7 @@ public interface IUsuariosDAO {
     public void agregarCancionFavorito(ObjectId usuarioId, ObjectId cancionId) throws PersistenciaException;
     
     public void eliminarCancionFavorito(ObjectId usuarioId, ObjectId cancionId) throws PersistenciaException;
+    
+    public void actualizarGenerosRestringidosPorId(Object id, List<String> generosRestringidos) throws PersistenciaException;
 
 }
