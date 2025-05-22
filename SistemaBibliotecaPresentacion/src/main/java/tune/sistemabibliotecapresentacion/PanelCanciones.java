@@ -31,6 +31,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
     public PanelCanciones(ICancionesBO cancionesBO, ControlNavegacion control) {
         initComponents();
         this.cancionesBO = cancionesBO;
+        this.control = control;
         this.setOpaque(false);
 
         jScrollPaneCanciones.setOpaque(false);
