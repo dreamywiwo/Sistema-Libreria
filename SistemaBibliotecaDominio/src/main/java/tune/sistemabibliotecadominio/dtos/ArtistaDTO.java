@@ -22,7 +22,7 @@ public class ArtistaDTO {
         this.integrantes = integrantes;
     }
 
-    public ArtistaDTO(String tipo, String nombre, String imagen, String generoMusical, List<IntegranteDTO> integrantes) {
+    public ArtistaDTO(String nombre, String tipo, String generoMusical, String imagen, List<IntegranteDTO> integrantes) {
         this.tipo = tipo;
         this.nombre = nombre;
         this.imagen = imagen;
