@@ -107,9 +107,45 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
-    public void actualizarDatos(){
-        usuarioActual=usuariosBO.obtenerUsuarioActual();
+
+    public void mostrarPanelGenerosFlotante() {
+        try {
+            JPanel fondoOscuro = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    g.setColor(new Color(0, 0, 0, 150));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                    super.paintComponent(g);
+                }
+            };
+            fondoOscuro.setOpaque(false);
+            fondoOscuro.setLayout(new GridBagLayout());
+
+            PanelGeneros panelGeneros = new PanelGeneros(usuariosBO, generos, this, control);
+            panelGeneros.setOpaque(true);
+            panelGeneros.setPreferredSize(new Dimension(830, 561));
+            panelGeneros.cargarGeneros();
+            fondoOscuro.add(panelGeneros);
+
+            JDialog dialogo = new JDialog((Frame) null, Dialog.ModalityType.APPLICATION_MODAL);
+            dialogo.setUndecorated(true);
+            dialogo.setBackground(new Color(0, 0, 0, 0));
+            dialogo.setContentPane(fondoOscuro);
+            dialogo.pack();
+
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int x = (screenSize.width - dialogo.getWidth()) / 2;
+            int y = (screenSize.height - dialogo.getHeight()) / 2;
+            dialogo.setLocation(x, y);
+
+            dialogo.setVisible(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void actualizarDatos() {
+        usuarioActual = usuariosBO.obtenerUsuarioActual();
         establecerDatos();
     }
 
@@ -158,6 +194,11 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
         jButtonGeneros.setBorderPainted(false);
         jButtonGeneros.setContentAreaFilled(false);
         jButtonGeneros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonGeneros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGenerosActionPerformed(evt);
+            }
+        });
         add(jButtonGeneros, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 20, -1, -1));
 
         jLabelPerfilTexto.setForeground(new java.awt.Color(153, 173, 170));
@@ -171,6 +212,10 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
     private void jButtonEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPerfilActionPerformed
         mostrarPanelEditarUsuarioFlotante();
     }//GEN-LAST:event_jButtonEditarPerfilActionPerformed
+
+    private void jButtonGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGenerosActionPerformed
+        mostrarPanelGenerosFlotante();
+    }//GEN-LAST:event_jButtonGenerosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

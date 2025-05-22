@@ -38,7 +38,7 @@ public class PanelCancionItem extends JPanel {
 
         JLabel lblIndice = new JLabel(String.valueOf(indice));
         lblIndice.setForeground(Color.GRAY);
-        lblIndice.setPreferredSize(new Dimension(20, 50)); 
+        lblIndice.setPreferredSize(new Dimension(20, 50));
 
         JLabel lblImagen = new JLabel();
         if (cancion.getUrlImagenAlbum() != null) {
@@ -73,7 +73,7 @@ public class PanelCancionItem extends JPanel {
         // Panel derecha: album + duracion 
         JPanel derecha = new JPanel();
         derecha.setOpaque(false);
-        derecha.setLayout(new FlowLayout(FlowLayout.RIGHT)); 
+        derecha.setLayout(new FlowLayout(FlowLayout.RIGHT));
 
         JLabel lblAlbum = new JLabel(cancion.getNombreAlbum());
         lblAlbum.setForeground(Color.WHITE);
@@ -94,7 +94,6 @@ public class PanelCancionItem extends JPanel {
 
         // tamano vertical del panel
         setPreferredSize(new Dimension(900, PANEL_HEIGHT));
-        setMaximumSize(new Dimension(900, PANEL_HEIGHT)); 
+        setMaximumSize(new Dimension(900, PANEL_HEIGHT));
     }
 }
-
