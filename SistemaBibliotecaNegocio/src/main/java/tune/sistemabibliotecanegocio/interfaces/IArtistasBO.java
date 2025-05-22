@@ -24,6 +24,8 @@ public interface IArtistasBO {
     public abstract List<AlbumConArtistaDTO> obtenerAlbumesPorArtista(String artistaId) throws NegocioException;
     
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorArtista(String artistaId) throws NegocioException;
+    
+    public void guardarArtista(ArtistaDTO artista) throws NegocioException;
 
     
 }

@@ -185,6 +185,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         jPanelIntegrantes = new javax.swing.JPanel();
         jPanelNombre = new javax.swing.JPanel();
         jButtonCerrar = new javax.swing.JButton();
+        jButtonAñadirAlbum = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -276,6 +277,17 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         });
         getContentPane().add(jButtonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 30, 40, 40));
 
+        jButtonAñadirAlbum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AñadirArtistaBoton.png"))); // NOI18N
+        jButtonAñadirAlbum.setBorderPainted(false);
+        jButtonAñadirAlbum.setContentAreaFilled(false);
+        jButtonAñadirAlbum.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonAñadirAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAñadirAlbumActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonAñadirAlbum, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 100, -1, -1));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoSimple.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -286,8 +298,13 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         cerrar();
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
+    private void jButtonAñadirAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirAlbumActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonAñadirAlbumActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAñadirAlbum;
     private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPanel jPanelAlbumes;

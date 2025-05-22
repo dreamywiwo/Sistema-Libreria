@@ -1,4 +1,3 @@
-
 package tune.sistemabibliotecapersistencia.daos;
 
 import com.mongodb.client.AggregateIterable;
@@ -29,7 +28,7 @@ import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 import tune.sistemabibliotecapersistencia.interfaces.IArtistasDAO;
 
 public class ArtistasDAO implements IArtistasDAO {
-    
+
     private final String COLECCION_ARTISTAS = "Artistas";
     private MongoCollection<Artista> coleccionArtistas;
 
@@ -42,8 +41,8 @@ public class ArtistasDAO implements IArtistasDAO {
     public List<Artista> obtenerTodosLosArtistas(List<String> generosRestringidos) throws PersistenciaException {
         try {
             Bson filtro = (generosRestringidos == null || generosRestringidos.isEmpty())
-                          ? new org.bson.Document()
-                          : Filters.nin("generoMusical", generosRestringidos);
+                    ? new org.bson.Document()
+                    : Filters.nin("generoMusical", generosRestringidos);
 
             List<Artista> artistas = new ArrayList<>();
             coleccionArtistas.find(filtro).into(artistas);
@@ -58,8 +57,8 @@ public class ArtistasDAO implements IArtistasDAO {
         try {
             Bson filtroNombre = Filters.regex("nombre", ".*" + nombre + ".*", "i");
             Bson filtroGeneros = (generosRestringidos == null || generosRestringidos.isEmpty())
-                                ? new org.bson.Document()
-                                : Filters.nin("generoMusical", generosRestringidos);
+                    ? new org.bson.Document()
+                    : Filters.nin("generoMusical", generosRestringidos);
             Bson filtroFinal = Filters.and(filtroNombre, filtroGeneros);
 
             List<Artista> artistas = new ArrayList<>();
@@ -75,8 +74,8 @@ public class ArtistasDAO implements IArtistasDAO {
         try {
             Bson filtroGenero = Filters.eq("generoMusical", generoMusical);
             Bson filtroGenerosRestringidos = (generosRestringidos == null || generosRestringidos.isEmpty())
-                                            ? new org.bson.Document()
-                                            : Filters.nin("generoMusical", generosRestringidos);
+                    ? new org.bson.Document()
+                    : Filters.nin("generoMusical", generosRestringidos);
 
             Bson filtroFinal = Filters.and(filtroGenero, filtroGenerosRestringidos);
 
@@ -87,13 +86,13 @@ public class ArtistasDAO implements IArtistasDAO {
             throw new PersistenciaException("Error al obtener artistas por género", e);
         }
     }
-    
+
     @Override
     public ArtistaDTO obtenerArtistaPorId(String artistaId) throws PersistenciaException {
         try {
             MongoCollection<Document> coleccion = ManejadorConexiones
-                .obtenerBaseDatos()
-                .getCollection(COLECCION_ARTISTAS);
+                    .obtenerBaseDatos()
+                    .getCollection(COLECCION_ARTISTAS);
 
             Document doc = coleccion.find(Filters.eq("_id", new ObjectId(artistaId))).first();
 
@@ -121,7 +120,7 @@ public class ArtistasDAO implements IArtistasDAO {
                     Object fechaIngresoObj = integranteDoc.get("fechaIngreso");
                     if (fechaIngresoObj instanceof java.util.Date) {
                         fechaIngreso = ((java.util.Date) fechaIngresoObj).toInstant()
-                            .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+                                .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
                     } else if (fechaIngresoObj instanceof String) {
                         fechaIngreso = LocalDate.parse((String) fechaIngresoObj);
                     }
@@ -129,7 +128,7 @@ public class ArtistasDAO implements IArtistasDAO {
                     Object fechaSalidaObj = integranteDoc.get("fechaSalida");
                     if (fechaSalidaObj instanceof java.util.Date) {
                         fechaSalida = ((java.util.Date) fechaSalidaObj).toInstant()
-                            .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
+                                .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
                     } else if (fechaSalidaObj instanceof String) {
                         fechaSalida = LocalDate.parse((String) fechaSalidaObj);
                     }
@@ -147,34 +146,34 @@ public class ArtistasDAO implements IArtistasDAO {
             throw new PersistenciaException("Error al obtener artista por ID", e);
         }
     }
-    
+
     @Override
     public List<AlbumConArtistaDTO> obtenerAlbumesPorArtista(String artistaId) throws PersistenciaException {
         List<AlbumConArtistaDTO> resultado = new ArrayList<>();
 
         try {
             MongoCollection<Document> coleccion = ManejadorConexiones
-                .obtenerBaseDatos()
-                .getCollection("Albumes");
+                    .obtenerBaseDatos()
+                    .getCollection("Albumes");
 
             List<Bson> pipeline = Arrays.asList(
-                match(Filters.eq("artistaId", new ObjectId(artistaId))),
-                lookup("Artistas", "artistaId", "_id", "artista"),
-                unwind("$artista"),
-                project(fields(
-                    include("_id", "nombre", "imagenUrl"),
-                    computed("nombreArtista", "$artista.nombre")
-                ))
+                    match(Filters.eq("artistaId", new ObjectId(artistaId))),
+                    lookup("Artistas", "artistaId", "_id", "artista"),
+                    unwind("$artista"),
+                    project(fields(
+                            include("_id", "nombre", "imagenUrl"),
+                            computed("nombreArtista", "$artista.nombre")
+                    ))
             );
 
             AggregateIterable<Document> docs = coleccion.aggregate(pipeline);
 
             for (Document doc : docs) {
                 AlbumConArtistaDTO dto = new AlbumConArtistaDTO(
-                    doc.getObjectId("_id"),
-                    doc.getString("nombre"),
-                    doc.getString("imagenUrl"),
-                    doc.getString("nombreArtista")
+                        doc.getObjectId("_id"),
+                        doc.getString("nombre"),
+                        doc.getString("imagenUrl"),
+                        doc.getString("nombreArtista")
                 );
                 resultado.add(dto);
             }
@@ -185,39 +184,39 @@ public class ArtistasDAO implements IArtistasDAO {
             throw new PersistenciaException("Error al obtener álbumes por artista", e);
         }
     }
-    
+
     @Override
     public List<CancionConArtistaDTO> obtenerCancionesPorArtista(String artistaId) throws PersistenciaException {
         List<CancionConArtistaDTO> resultado = new ArrayList<>();
 
         try {
             MongoCollection<Document> coleccion = ManejadorConexiones
-                .obtenerBaseDatos()
-                .getCollection("Canciones");
+                    .obtenerBaseDatos()
+                    .getCollection("Canciones");
 
             List<Bson> pipeline = Arrays.asList(
-                match(Filters.eq("artistaId", new ObjectId(artistaId))),
-                lookup("Artistas", "artistaId", "_id", "artista"),
-                unwind("$artista"),
-                lookup("Albumes", "albumId", "_id", "album"),
-                unwind("$album"),
-                project(fields(
-                    include("nombre", "duracion"),
-                    computed("nombreArtista", "$artista.nombre"),
-                    computed("nombreAlbum", "$album.nombre"),
-                    computed("urlImagenAlbum", "$album.imagenUrl")
-                ))
+                    match(Filters.eq("artistaId", new ObjectId(artistaId))),
+                    lookup("Artistas", "artistaId", "_id", "artista"),
+                    unwind("$artista"),
+                    lookup("Albumes", "albumId", "_id", "album"),
+                    unwind("$album"),
+                    project(fields(
+                            include("nombre", "duracion"),
+                            computed("nombreArtista", "$artista.nombre"),
+                            computed("nombreAlbum", "$album.nombre"),
+                            computed("urlImagenAlbum", "$album.imagenUrl")
+                    ))
             );
 
             AggregateIterable<Document> docs = coleccion.aggregate(pipeline);
 
             for (Document doc : docs) {
                 CancionConArtistaDTO dto = new CancionConArtistaDTO(
-                    doc.getString("nombre"),
-                    doc.getString("nombreArtista"),
-                    doc.getString("nombreAlbum"),
-                    doc.getString("duracion"),
-                    doc.getString("urlImagenAlbum")
+                        doc.getString("nombre"),
+                        doc.getString("nombreArtista"),
+                        doc.getString("nombreAlbum"),
+                        doc.getString("duracion"),
+                        doc.getString("urlImagenAlbum")
                 );
                 resultado.add(dto);
             }
@@ -228,7 +227,24 @@ public class ArtistasDAO implements IArtistasDAO {
             throw new PersistenciaException("Error al obtener canciones por artista", e);
         }
     }
-    
-    
-    
+
+    @Override
+    public void guardarArtista(Artista artista) throws PersistenciaException {
+        try {
+            MongoCollection<Document> coleccion = ManejadorConexiones
+                    .obtenerBaseDatos()
+                    .getCollection(COLECCION_ARTISTAS);
+
+            Document doc = new Document()
+                    .append("nombre", artista.getNombre())
+                    .append("tipo", artista.getTipo())
+                    .append("generoMusical", artista.getGeneroMusical())
+                    .append("imagen", artista.getImagen());
+
+            coleccion.insertOne(doc);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al guardar el artista", e);
+        }
+    }
+
 }

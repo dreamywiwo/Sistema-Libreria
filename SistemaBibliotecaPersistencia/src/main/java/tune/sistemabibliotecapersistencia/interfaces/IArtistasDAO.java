@@ -29,6 +29,7 @@ public interface IArtistasDAO {
     
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorArtista(String artistaId) throws PersistenciaException;
 
+    public abstract void guardarArtista(Artista artista) throws PersistenciaException;
     
     
 }

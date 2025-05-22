@@ -5,9 +5,14 @@
 package tune.sistemabibliotecapresentacion;
 
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.util.ArrayList;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorArtistas;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
@@ -15,6 +20,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -146,6 +152,43 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         }
     }
 
+    public void mostrarPanelAñadirArtistaFlotante() {
+        try {
+            JPanel fondoOscuro = new JPanel() {
+                @Override
+                protected void paintComponent(Graphics g) {
+                    g.setColor(new Color(0, 0, 0, 150));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                    super.paintComponent(g);
+                }
+            };
+            fondoOscuro.setOpaque(false);
+            fondoOscuro.setLayout(new GridBagLayout());
+
+            PanelAñadirArtista panelAñadirArtista = new PanelAñadirArtista(artistasBO, control);
+            panelAñadirArtista.setOpaque(true);
+            panelAñadirArtista.setPreferredSize(new Dimension(860, 500));
+
+            fondoOscuro.add(panelAñadirArtista);
+
+            JDialog dialogo = new JDialog((Frame) null, Dialog.ModalityType.APPLICATION_MODAL);
+            dialogo.setUndecorated(true);
+            dialogo.setBackground(new Color(0, 0, 0, 0));
+            dialogo.setContentPane(fondoOscuro);
+            dialogo.pack();
+
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            int x = (screenSize.width - dialogo.getWidth()) / 2;
+            int y = (screenSize.height - dialogo.getHeight()) / 2;
+            dialogo.setLocation(x, y);
+
+            dialogo.setVisible(true);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -159,6 +202,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         jPanelContenedor = new javax.swing.JPanel();
         jScrollPaneArtistas = new javax.swing.JScrollPane();
         jPanelArtistas = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(0, 33, 27));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -195,10 +239,26 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         jScrollPaneArtistas.setViewportView(jPanelArtistas);
 
         add(jScrollPaneArtistas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 930, 490));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/AñadirArtistaBoton.png"))); // NOI18N
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        mostrarPanelAñadirArtistaFlotante();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JPanel jPanelArtistas;
     private javax.swing.JPanel jPanelContenedor;

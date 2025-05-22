@@ -21,7 +21,7 @@ import tune.sistemabibliotecapersistencia.interfaces.IArtistasDAO;
  * @author Dana Chavez
  */
 public class ArtistasBO implements IArtistasBO {
-    
+
     private final IArtistasDAO artistasDAO;
 
     public ArtistasBO(IArtistasDAO artistasDAO) {
@@ -81,7 +81,32 @@ public class ArtistasBO implements IArtistasBO {
             throw new NegocioException("No se pudieron obtener las canciones del artista");
         }
     }
-    
-    
-    
+
+    @Override
+    public void guardarArtista(ArtistaDTO artistaDTO) throws NegocioException {
+        if (artistaDTO.getNombre() == null || artistaDTO.getNombre().isBlank()) {
+            throw new NegocioException("El nombre del artista no puede estar vacío.");
+        }
+
+        if (artistaDTO.getTipo() == null || artistaDTO.getTipo().isBlank()) {
+            throw new NegocioException("Debes seleccionar un tipo de artista.");
+        }
+
+        if (artistaDTO.getGeneroMusical() == null || artistaDTO.getGeneroMusical().isBlank()) {
+            throw new NegocioException("El género musical no puede estar vacío.");
+        }
+
+        try {
+            Artista artista = new Artista();
+            artista.setNombre(artistaDTO.getNombre());
+            artista.setTipo(artistaDTO.getTipo());
+            artista.setGeneroMusical(artistaDTO.getGeneroMusical());
+            artista.setImagen(artistaDTO.getImagen());
+
+            artistasDAO.guardarArtista(artista);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error al guardar el artista", ex);
+        }
+    }
+
 }
