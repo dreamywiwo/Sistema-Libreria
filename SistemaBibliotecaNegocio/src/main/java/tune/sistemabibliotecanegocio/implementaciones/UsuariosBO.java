@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecadominio.utils.SeguridadUtil;
@@ -147,5 +148,59 @@ public class UsuariosBO implements IUsuariosBO {
     @Override
     public void cerrarSesion() {
         usuarioActual = null;
+    }
+
+    @Override
+    public void agregarArtistaFavorito(ObjectId usuarioId, ObjectId artistaId) throws NegocioException {
+        try {
+            this.usuariosDAO.agregarArtistaFavorito(usuarioId, artistaId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo agregar al artista como favorito", ex);
+        }
+    }
+
+    @Override
+    public void eliminarArtistaFavorito(ObjectId usuarioId, ObjectId artistaId) throws NegocioException {
+        try {
+            this.usuariosDAO.eliminarArtistaFavorito(usuarioId, artistaId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo eliminar al artista como favorito", ex);
+        }
+    }
+
+    @Override
+    public void agregarAlbumFavorito(ObjectId usuarioId, ObjectId albumId) throws NegocioException {
+        try {
+            this.usuariosDAO.agregarAlbumFavorito(usuarioId, albumId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo agregar el album como favorito", ex);
+        }
+    }
+
+    @Override
+    public void eliminarAlbumFavorito(ObjectId usuarioId, ObjectId albumId) throws NegocioException {
+        try {
+            this.usuariosDAO.eliminarAlbumFavorito(usuarioId, albumId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo eliminar el album como favorito", ex);
+        }
+    }
+
+    @Override
+    public void agregarCancionFavorito(ObjectId usuarioId, ObjectId cancionId) throws NegocioException {
+        try {
+            this.usuariosDAO.agregarCancionFavorito(usuarioId, cancionId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo agregar la cancion como favorito", ex);
+        }
+    }
+
+    @Override
+    public void eliminarCancionFavorito(ObjectId usuarioId, ObjectId cancionId) throws NegocioException {
+        try {
+            this.usuariosDAO.eliminarCancionFavorito(usuarioId, cancionId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo eliminar la cancion como favorito", ex);
+        }
     }
 }

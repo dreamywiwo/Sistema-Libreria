@@ -4,6 +4,9 @@
  */
 package tune.sistemabibliotecapresentacion.control;
 
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
@@ -17,6 +20,7 @@ import tune.sistemabibliotecapersistencia.daos.ArtistasDAO;
 import tune.sistemabibliotecapersistencia.daos.CancionesDAO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
 import tune.sistemabibliotecapersistencia.daos.UsuariosDAO;
+import tune.sistemabibliotecapresentacion.PanelPerfilUsuario;
 import tune.sistemabibliotecapresentacion.VentanaAlbumDetalle;
 import tune.sistemabibliotecapresentacion.VentanaArtistaDetalle;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
@@ -40,6 +44,7 @@ public class ControlNavegacion {
     CancionesBO cancionesBO = new CancionesBO(cancionesDAO);
     
     
+    
     public void mostrarVentanaPrincipal() throws NegocioException {
         VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
         ventanaPrincipal.mostrar();
@@ -61,13 +66,20 @@ public class ControlNavegacion {
         usuariosBO.registrarUsuario(usuarioDTO);
     }
     
-    public void mostrarVentanaArtistaDetalle(String idArtista){
-        VentanaArtistaDetalle ventanaArtista = new VentanaArtistaDetalle(artistasBO, idArtista);
+    public void mostrarVentanaArtistaDetalle(String idArtista) throws NegocioException{
+        List<String> generos = insercionMasivaBO.obtenerGenerosUnicos();
+
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
+        PanelPerfilUsuario panelPerfilUsuario = new PanelPerfilUsuario(this, ventanaPrincipal, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
+        VentanaArtistaDetalle ventanaArtista = new VentanaArtistaDetalle(artistasBO, idArtista, usuariosBO, this, panelPerfilUsuario);
         ventanaArtista.mostrar();
     }
     
-    public void mostrarVentanaAlbumDetalle(String idArtista){
-        VentanaAlbumDetalle ventanaAlbum = new VentanaAlbumDetalle(albumesBO, idArtista);
+    public void mostrarVentanaAlbumDetalle(String idArtista) throws NegocioException{
+        List<String> generos = insercionMasivaBO.obtenerGenerosUnicos();
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
+        PanelPerfilUsuario panelPerfilUsuario = new PanelPerfilUsuario(this, ventanaPrincipal, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
+        VentanaAlbumDetalle ventanaAlbum = new VentanaAlbumDetalle(albumesBO, idArtista, usuariosBO, this, panelPerfilUsuario);
         ventanaAlbum.mostrar();
     }
 

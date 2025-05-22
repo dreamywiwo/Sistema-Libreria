@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
@@ -115,6 +116,15 @@ public class AlbumesBO implements IAlbumesBO {
             return this.albumesDAO.buscarAlbumesPorTexto(texto);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums");
+        }
+    }
+
+    @Override
+    public List<AlbumConArtistaDTO> obtenerAlbumsPorIds(List<ObjectId> albumIds) throws NegocioException {
+        try {
+            return this.albumesDAO.obtenerAlbumsPorIds(albumIds);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener los albumes por sus ids");
         }
     }
 }

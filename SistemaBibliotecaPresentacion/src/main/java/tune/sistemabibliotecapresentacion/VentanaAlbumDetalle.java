@@ -21,6 +21,8 @@ import javax.swing.SwingConstants;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 
 /**
@@ -31,11 +33,17 @@ public class VentanaAlbumDetalle extends javax.swing.JFrame {
 
     private String albumId;
     private IAlbumesBO albumesBO;
+    private IUsuariosBO usuariosBO;
+    private ControlNavegacion control;
+    private PanelPerfilUsuario panelPerfilUsuario;
     
-    public VentanaAlbumDetalle(IAlbumesBO albumesBO, String albumId) {
+    public VentanaAlbumDetalle(IAlbumesBO albumesBO, String albumId, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
         initComponents();
         this.albumesBO = albumesBO;
         this.albumId = albumId;
+        this.usuariosBO = usuariosBO;
+        this.control = control;
+        this.panelPerfilUsuario = panelPerfilUsuario;
         setLocationRelativeTo(null);
         
         jPanelCanciones.setOpaque(false);
@@ -119,7 +127,7 @@ public class VentanaAlbumDetalle extends javax.swing.JFrame {
             List<CancionConArtistaDTO> canciones = albumesBO.obtenerCancionesPorAlbum(albumId);
             int indice = 1;
             for (CancionConArtistaDTO cancion : canciones) {
-                PanelCancionItem panelCancion = new PanelCancionItem(cancion, indice);
+                PanelCancionItem panelCancion = new PanelCancionItem(cancion, indice, usuariosBO, control, panelPerfilUsuario);
                 indice++;
                 jPanelCanciones.add(panelCancion);
             }

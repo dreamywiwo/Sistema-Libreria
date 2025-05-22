@@ -18,6 +18,15 @@ public class CancionConArtistaDTO {
     public CancionConArtistaDTO() {
     }
 
+    public CancionConArtistaDTO(ObjectId id, String nombreCancion, String nombreArtista, String nombreAlbum, String duracion, String urlImagenAlbum) {
+        this.id = id;
+        this.nombreCancion = nombreCancion;
+        this.nombreArtista = nombreArtista;
+        this.nombreAlbum = nombreAlbum;
+        this.duracion = duracion;
+        this.urlImagenAlbum = urlImagenAlbum;
+    }
+
     public CancionConArtistaDTO(String nombreCancion, String nombreArtista, String nombreAlbum, String duracion, String urlImagenAlbum) {
         this.nombreCancion = nombreCancion;
         this.nombreArtista = nombreArtista;

@@ -8,8 +8,10 @@ import java.awt.FlowLayout;
 import java.util.List;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorAlbumes;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaAlbumListener;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelAlbumItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 import tune.sistemabibliotecapresentacion.utils.WrapLayout;
@@ -22,10 +24,16 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
 
     FontManager fontManager = new FontManager();
     private IAlbumesBO albumesBO;
+    private IUsuariosBO usuariosBO;
+    private ControlNavegacion control;
+    private PanelPerfilUsuario panelPerfilUsuario;
 
-    public PanelAlbumes(IAlbumesBO albumesBO) {
+    public PanelAlbumes(IAlbumesBO albumesBO, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
         initComponents();
         this.albumesBO = albumesBO;
+        this.usuariosBO = usuariosBO;
+        this.control = control;
+        this.panelPerfilUsuario = panelPerfilUsuario;
         
         this.setOpaque(false);
 
@@ -53,7 +61,8 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         jPanelAlbums.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20)); 
 
         for (AlbumConArtistaDTO albumDTO : albumesDTO) {
-            PanelAlbumItem panel = new PanelAlbumItem(albumDTO);
+            
+            PanelAlbumItem panel = new PanelAlbumItem(albumDTO, usuariosBO, control, panelPerfilUsuario);
             jPanelAlbums.add(panel);
         }
 

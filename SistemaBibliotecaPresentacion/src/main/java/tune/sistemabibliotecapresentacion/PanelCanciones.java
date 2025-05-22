@@ -4,16 +4,14 @@
  */
 package tune.sistemabibliotecapresentacion;
 
-import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
+import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorCanciones;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
@@ -25,10 +23,16 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
     
     FontManager fontManager = new FontManager();
     private ICancionesBO cancionesBO;
+    private IUsuariosBO usuariosBO;
+    private ControlNavegacion control;
+    private PanelPerfilUsuario panelPerfilUsuario;
 
-    public PanelCanciones(ICancionesBO cancionesBO) {
+    public PanelCanciones(ICancionesBO cancionesBO, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
         initComponents();
         this.cancionesBO = cancionesBO;
+        this.usuariosBO = usuariosBO;
+        this.control = control;
+        this.panelPerfilUsuario = panelPerfilUsuario;
         this.setOpaque(false);
 
         jScrollPaneCanciones.setOpaque(false);
@@ -74,7 +78,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
         jPanelCanciones.removeAll();
         int index = 1;
         for (CancionConArtistaDTO cancion : canciones) {
-            jPanelCanciones.add(new PanelCancionItem(cancion, index++));
+            jPanelCanciones.add(new PanelCancionItem(cancion, index++, usuariosBO, control, panelPerfilUsuario));
         }
         jPanelCanciones.revalidate();
         jPanelCanciones.repaint();

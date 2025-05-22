@@ -9,6 +9,7 @@ import static com.mongodb.client.model.Aggregates.match;
 import static com.mongodb.client.model.Aggregates.project;
 import static com.mongodb.client.model.Aggregates.unwind;
 import com.mongodb.client.model.Filters;
+import static com.mongodb.client.model.Filters.in;
 import static com.mongodb.client.model.Filters.regex;
 import static com.mongodb.client.model.Projections.computed;
 import static com.mongodb.client.model.Projections.fields;
@@ -64,7 +65,7 @@ public class CancionesDAO implements ICancionesDAO {
                 lookup("Albumes", "albumId", "_id", "album"),
                 unwind("$album"),
                 project(fields(
-                    include("nombre", "duracion"),
+                    include("_id", "nombre", "duracion"),
                     computed("nombreArtista", "$artista.nombre"),
                     computed("nombreAlbum", "$album.nombre"),
                     computed("urlImagenAlbum", "$album.imagenUrl") 
@@ -75,6 +76,7 @@ public class CancionesDAO implements ICancionesDAO {
 
         for (Document doc : docs) {
             CancionConArtistaDTO dto = new CancionConArtistaDTO(
+                doc.getObjectId("_id"),   
                 doc.getString("nombre"),
                 doc.getString("nombreArtista"),
                 doc.getString("nombreAlbum"),
@@ -108,6 +110,48 @@ public class CancionesDAO implements ICancionesDAO {
                 computed("urlImagenAlbum", "$album.imagenUrl") 
                 )   
             )
+        );
+
+        AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
+
+        for (Document doc : docs) {
+            CancionConArtistaDTO dto = new CancionConArtistaDTO(
+                doc.getString("nombre"),
+                doc.getString("nombreArtista"),
+                doc.getString("nombreAlbum"),
+                doc.getString("duracion"),
+                doc.getString("urlImagenAlbum")
+            );
+            resultado.add(dto);
+        }
+
+        return resultado;
+    }
+    
+    @Override
+    public List<CancionConArtistaDTO> obtenerCancionesPorIds(List<ObjectId> cancionIds) throws PersistenciaException {
+        List<CancionConArtistaDTO> resultado = new ArrayList<>();
+
+        if (cancionIds == null || cancionIds.isEmpty()) {
+            return resultado; 
+        }
+
+        MongoCollection<Document> coleccionDocs = ManejadorConexiones
+            .obtenerBaseDatos()
+            .getCollection(COLECCION_CANCIONES);
+
+        List<Bson> pipeline = Arrays.asList(
+            match(Filters.in("_id", cancionIds)),          
+            lookup("Artistas", "artistaId", "_id", "artista"),
+            unwind("$artista"),
+            lookup("Albumes", "albumId", "_id", "album"),
+            unwind("$album"),
+            project(fields(
+                include("nombre", "duracion"),
+                computed("nombreArtista", "$artista.nombre"),
+                computed("nombreAlbum", "$album.nombre"),
+                computed("urlImagenAlbum", "$album.imagenUrl")
+            ))
         );
 
         AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
