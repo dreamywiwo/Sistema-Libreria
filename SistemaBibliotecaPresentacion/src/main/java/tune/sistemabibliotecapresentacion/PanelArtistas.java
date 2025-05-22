@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
+import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelArtistaItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
@@ -38,14 +39,18 @@ import tune.sistemabibliotecapresentacion.utils.WrapLayout;
 public class PanelArtistas extends javax.swing.JPanel implements BusquedaListener {
 
     FontManager fontManager = new FontManager();
-
+    
+    private IUsuariosBO usuariosBO;
     private IArtistasBO artistasBO;
     private ControlNavegacion control;
+    private PanelPerfilUsuario panelPerfilUsuario;
 
-    public PanelArtistas(IArtistasBO artistasBO, ControlNavegacion control) {
+    public PanelArtistas(IArtistasBO artistasBO, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
         initComponents();
         this.artistasBO = artistasBO;
+        this.usuariosBO = usuariosBO;
         this.control = control;
+        this.panelPerfilUsuario = panelPerfilUsuario;
         this.setOpaque(false);
 
         jScrollPaneArtistas.setOpaque(false);
@@ -72,7 +77,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         jPanelArtistas.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
         for (Artista artista : artistas) {
-            PanelArtistaItem panel = new PanelArtistaItem(artista);
+            PanelArtistaItem panel = new PanelArtistaItem(artista, usuariosBO, control, panelPerfilUsuario);
             jPanelArtistas.add(panel);
         }
 
@@ -129,7 +134,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
                 panelArtistasGenero.setBackground(new Color(0, 33, 27));
 
                 for (Artista artista : artistas) {
-                    PanelArtistaItem item = new PanelArtistaItem(artista);
+                    PanelArtistaItem item = new PanelArtistaItem(artista, usuariosBO, control, panelPerfilUsuario);
                     panelArtistasGenero.add(item);
                 }
 
@@ -279,7 +284,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
             jPanelArtistas.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));
 
             for (Artista artista : artistasFiltrados) {
-                PanelArtistaItem panel = new PanelArtistaItem(artista);
+                PanelArtistaItem panel = new PanelArtistaItem(artista, usuariosBO, control, panelPerfilUsuario);
                 jPanelArtistas.add(panel);
             }
 

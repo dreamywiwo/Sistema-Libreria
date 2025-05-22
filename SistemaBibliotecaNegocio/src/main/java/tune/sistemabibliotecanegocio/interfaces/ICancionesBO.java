@@ -5,6 +5,7 @@
 package tune.sistemabibliotecanegocio.interfaces;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Cancion;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
@@ -18,5 +19,7 @@ public interface ICancionesBO {
     public abstract List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista(List<String> generosRestringidos) throws NegocioException;
     
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorNombreConArtista(String nombre) throws NegocioException;
+    
+    public abstract List<CancionConArtistaDTO> obtenerCancionesPorIds(List<ObjectId> cancionIds) throws NegocioException;
     
 }

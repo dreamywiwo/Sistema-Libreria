@@ -10,6 +10,7 @@ import static com.mongodb.client.model.Aggregates.project;
 import static com.mongodb.client.model.Aggregates.unwind;
 import com.mongodb.client.model.Filters;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.in;
 import static com.mongodb.client.model.Projections.computed;
 import static com.mongodb.client.model.Projections.fields;
 import static com.mongodb.client.model.Projections.include;
@@ -298,15 +299,15 @@ public class AlbumesDAO implements IAlbumesDAO {
                 .getCollection("Canciones");
 
         List<Bson> pipeline = Arrays.asList(
-                match(eq("albumId", new ObjectId(albumId))),
-                lookup("Artistas", "artistaId", "_id", "artista"),
-                unwind("$artista"),
-                project(fields(
-                        include("nombre", "duracion"),
-                        computed("nombreArtista", "$artista.nombre"),
-                        computed("nombreAlbum", "$albumId"), // Opcional, si quieres nombre album también
-                        computed("urlImagenAlbum", "") // Vacío o lo que tengas si es necesario
-                ))
+            match(eq("albumId", new ObjectId(albumId))),
+            lookup("Artistas", "artistaId", "_id", "artista"),
+            unwind("$artista"),
+            project(fields(
+                include("nombre", "duracion"),
+                computed("nombreArtista", "$artista.nombre"),
+                computed("nombreAlbum", "$albumId"), 
+                computed("urlImagenAlbum", "") 
+            ))
         );
 
         AggregateIterable<Document> docs = coleccionCanciones.aggregate(pipeline);
@@ -323,5 +324,41 @@ public class AlbumesDAO implements IAlbumesDAO {
         }
         return resultado;
     }
+    
+    @Override
+    public List<AlbumConArtistaDTO> obtenerAlbumsPorIds(List<ObjectId> albumIds) throws PersistenciaException {
+        List<AlbumConArtistaDTO> resultado = new ArrayList<>();
 
+        if (albumIds == null || albumIds.isEmpty()) {
+            return resultado;
+        }
+
+        MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+        MongoCollection<Document> coleccionDocs = db.getCollection("Albumes");
+
+        List<Bson> pipeline = Arrays.asList(
+            match(in("_id", albumIds)),
+            lookup("Artistas", "artistaId", "_id", "artista"),
+            unwind("$artista"),
+            project(fields(
+                include("_id", "nombre", "imagenUrl"),
+                computed("nombreArtista", "$artista.nombre")
+            ))
+        );
+
+        AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
+
+        for (Document doc : docs) {
+            AlbumConArtistaDTO dto = new AlbumConArtistaDTO(
+                doc.getObjectId("_id"),
+                doc.getString("nombre"),
+                doc.getString("imagenUrl"),
+                doc.getString("nombreArtista")
+            );
+            resultado.add(dto);
+        }
+
+        return resultado;
+    }
+ 
 }

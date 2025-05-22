@@ -23,6 +23,8 @@ import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.IntegranteDTO;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
+import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelAlbumItem;
 import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 import tune.sistemabibliotecapresentacion.formatos.PanelIntegranteItem;
@@ -36,12 +38,18 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
 
     private String artistaId;
     private IArtistasBO artistasBO;
+    private IUsuariosBO usuariosBO;
+    private ControlNavegacion control;
     FontManager fontManager = new FontManager();
+    private PanelPerfilUsuario panelPerfilUsuario;
     
-    public VentanaArtistaDetalle(IArtistasBO artistasBO, String artistaId) {
+    public VentanaArtistaDetalle(IArtistasBO artistasBO, String artistaId, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
         initComponents();
         this.artistasBO = artistasBO;
         this.artistaId = artistaId;
+        this.usuariosBO = usuariosBO;
+        this.control = control;
+        this.panelPerfilUsuario = panelPerfilUsuario;
         setLocationRelativeTo(null);
         
         jPanelInformacion.setOpaque(false);
@@ -117,7 +125,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
 
             List<AlbumConArtistaDTO> albumes = artistasBO.obtenerAlbumesPorArtista(artistaId);
             for (AlbumConArtistaDTO album : albumes) {
-                PanelAlbumItem panelAlbum = new PanelAlbumItem(album);
+                PanelAlbumItem panelAlbum = new PanelAlbumItem(album, usuariosBO, control, panelPerfilUsuario);
                 jPanelAlbumes.add(panelAlbum);
             }
             jPanelAlbumes.revalidate();
@@ -130,7 +138,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
             List<CancionConArtistaDTO> canciones = artistasBO.obtenerCancionesPorArtista(artistaId);
             int indice = 1;
             for (CancionConArtistaDTO cancion : canciones) {
-                PanelCancionItem panelCancion = new PanelCancionItem(cancion, indice);
+                PanelCancionItem panelCancion = new PanelCancionItem(cancion, indice, usuariosBO, control, panelPerfilUsuario);
                 jPanelCanciones.add(panelCancion);
                 indice++;
             }

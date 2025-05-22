@@ -1,56 +1,74 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package tune.sistemabibliotecapresentacion;
 
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+import org.bson.types.ObjectId;
+import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
+import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
+import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
 import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
+import tune.sistemabibliotecapresentacion.formatos.PanelAlbumItem;
+import tune.sistemabibliotecapresentacion.formatos.PanelArtistaItem;
+import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
-/**
- *
- * @author leoca
- */
 public class PanelPerfilUsuario extends javax.swing.JPanel {
 
-    /**
-     * Creates new form PanelPerfilUsuario
-     */
     FontManager fontManager = new FontManager();
     ControlNavegacion control;
     VentanaPrincipal ventanaPrincipal;
     Usuario usuarioActual;
     IUsuariosBO usuariosBO;
+    IArtistasBO artistasBO;
+    IAlbumesBO albumesBO;
+    ICancionesBO cancionesBO;
     List<String> generos;
 
-    public PanelPerfilUsuario(ControlNavegacion control, VentanaPrincipal ventanaPrincipal, IUsuariosBO usuariosBO, List<String> generos) throws NegocioException {
+    public PanelPerfilUsuario(ControlNavegacion control, VentanaPrincipal ventanaPrincipal, IUsuariosBO usuariosBO, List<String> generos, 
+                                IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO) throws NegocioException {
         initComponents();
         this.control = control;
         this.ventanaPrincipal = ventanaPrincipal;
         this.usuariosBO = usuariosBO;
+        this.albumesBO = albumesBO;
+        this.artistasBO = artistasBO;
+        this.cancionesBO = cancionesBO;
         this.usuarioActual = control.obtenerUsuarioActual();
         this.generos = generos;
         jLabelNombreUsuario.setFont(fontManager.getAfacadBold(96));
         jButtonEditarPerfil.setFont(fontManager.getAfacadMedium(20));
         jLabelPerfilTexto.setFont(fontManager.getAfacadMedium(20));
+        
+        jPanelFavoritos.setOpaque(false);
+        jScrollPaneFavoritos.setOpaque(false);
+        jScrollPaneFavoritos.getViewport().setOpaque(false);
+        jScrollPaneFavoritos.setBorder(null);
+        
+               
         establecerDatos();
+        mostrarFavoritos();
     }
 
     public void establecerDatos() {
@@ -149,6 +167,72 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
         establecerDatos();
     }
 
+    public void mostrarFavoritos() throws NegocioException {
+
+        Usuario usuario = control.obtenerUsuarioActual();
+        if (usuario == null) return;
+        
+        List<CancionConArtistaDTO> cancionesFavoritas = cancionesBO.obtenerCancionesPorIds(usuario.getCanciones());
+        List<Artista> artistasFavoritos = artistasBO.obtenerArtistasPorIds(usuario.getArtistas());
+        List<AlbumConArtistaDTO> albumesFavoritos = albumesBO.obtenerAlbumsPorIds(usuario.getAlbumes());
+
+        JPanel panelCanciones = new JPanel();
+        panelCanciones.setLayout(new BoxLayout(panelCanciones, BoxLayout.Y_AXIS));
+        panelCanciones.setOpaque(false);
+
+        int indice = 1;
+        for (CancionConArtistaDTO cancion : cancionesFavoritas) {
+            PanelCancionItem panelCancion = new PanelCancionItem(cancion, indice++, usuariosBO, control, this);
+            panelCanciones.add(panelCancion);
+        }
+
+        JPanel panelArtistas = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelArtistas.setPreferredSize(new Dimension(980, 200));
+        panelArtistas.setOpaque(false);
+
+        for (Artista artista : artistasFavoritos) {
+            PanelArtistaItem panelArtista = new PanelArtistaItem(artista, usuariosBO, control, this);
+            panelArtistas.add(panelArtista);
+        }
+
+        JPanel panelAlbums = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        panelAlbums.setPreferredSize(new Dimension(980, 200));
+        panelAlbums.setOpaque(false);
+
+        for (AlbumConArtistaDTO album : albumesFavoritos) {
+            PanelAlbumItem panelAlbum = new PanelAlbumItem(album, usuariosBO, control, this);
+            panelAlbums.add(panelAlbum);
+        }
+
+        JLabel lblCanciones = new JLabel("Canciones Favoritas");
+        lblCanciones.setFont(fontManager.getAfacadBold(24f));
+        lblCanciones.setForeground(Color.WHITE);
+
+        JLabel lblArtistas = new JLabel("Artistas Favoritos");
+        lblArtistas.setFont(fontManager.getAfacadBold(24f));
+        lblArtistas.setForeground(Color.WHITE);
+
+        JLabel lblAlbums = new JLabel("Álbumes Favoritos");
+        lblAlbums.setFont(fontManager.getAfacadBold(24f));
+        lblAlbums.setForeground(Color.WHITE);
+
+        jPanelFavoritos.removeAll();
+        jPanelFavoritos.setLayout(new BoxLayout(jPanelFavoritos, BoxLayout.Y_AXIS));
+        jPanelFavoritos.setOpaque(false);
+
+        jPanelFavoritos.add(lblCanciones);
+        jPanelFavoritos.add(panelCanciones);
+
+        jPanelFavoritos.add(lblArtistas);
+        jPanelFavoritos.add(panelArtistas);
+
+        jPanelFavoritos.add(lblAlbums);
+        jPanelFavoritos.add(panelAlbums);
+
+        jPanelFavoritos.revalidate();
+        jPanelFavoritos.repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,6 +248,8 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
         jButtonGeneros = new javax.swing.JButton();
         jLabelPerfilTexto = new javax.swing.JLabel();
         jLabelFondo = new javax.swing.JLabel();
+        jScrollPaneFavoritos = new javax.swing.JScrollPane();
+        jPanelFavoritos = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 33, 27));
         setMinimumSize(new java.awt.Dimension(1020, 763));
@@ -207,6 +293,10 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Degradado.png"))); // NOI18N
         add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 260));
+
+        jScrollPaneFavoritos.setViewportView(jPanelFavoritos);
+
+        add(jScrollPaneFavoritos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 1000, 500));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEditarPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarPerfilActionPerformed
@@ -225,5 +315,7 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelImagenPerfil;
     private javax.swing.JLabel jLabelNombreUsuario;
     private javax.swing.JLabel jLabelPerfilTexto;
+    private javax.swing.JPanel jPanelFavoritos;
+    private javax.swing.JScrollPane jScrollPaneFavoritos;
     // End of variables declaration//GEN-END:variables
 }

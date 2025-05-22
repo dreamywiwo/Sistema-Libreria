@@ -50,11 +50,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
         // Inicializar los paneles
-        panelArtistas = new PanelArtistas(artistasBO, control);
-        panelAlbumes = new PanelAlbumes(albumesBO, control);
-        panelCanciones = new PanelCanciones(cancionesBO, control);
+        panelArtistas = new PanelArtistas(artistasBO, usuariosBO, control, panelPerfilUsuario);
+        panelAlbumes = new PanelAlbumes(albumesBO, usuariosBO, control, panelPerfilUsuario);
+        panelCanciones = new PanelCanciones(cancionesBO, usuariosBO, control, panelPerfilUsuario);
         panelPrincipal = new PanelPrincipal();
-        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos);
+        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
 
         control.setPanelArtistas(panelArtistas);
         control.setPanelAlbumes(panelAlbumes);
@@ -105,9 +105,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.generos = insercionMasivaBO.obtenerGenerosUnicos();
         if (panelPerfilUsuario != null) {
             panelPerfilUsuario = null;
-            panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos);
-        } else {
-            panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos);
+            panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
+        }else{
+            panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         }
 
     }

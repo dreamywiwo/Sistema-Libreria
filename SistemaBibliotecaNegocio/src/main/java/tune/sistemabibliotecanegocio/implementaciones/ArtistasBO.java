@@ -7,6 +7,7 @@ package tune.sistemabibliotecanegocio.implementaciones;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
@@ -109,4 +110,14 @@ public class ArtistasBO implements IArtistasBO {
         }
     }
 
+    public List<Artista> obtenerArtistasPorIds(List<ObjectId> artistaIds) throws NegocioException {
+        try {
+            return this.artistasDAO.obtenerArtistasPorIds(artistaIds);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener los artistas por sus ids");
+        }
+    }
+    
+    
+    
 }

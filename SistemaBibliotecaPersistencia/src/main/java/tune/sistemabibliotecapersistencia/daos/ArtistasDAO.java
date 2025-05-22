@@ -247,4 +247,23 @@ public class ArtistasDAO implements IArtistasDAO {
         }
     }
 
+    
+    @Override
+    public List<Artista> obtenerArtistasPorIds(List<ObjectId> artistaIds) throws PersistenciaException {
+        if (artistaIds == null || artistaIds.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        try {
+            MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+            MongoCollection<Artista> coleccion = db.getCollection("Artistas", Artista.class);
+
+            return coleccion.find(Filters.in("_id", artistaIds)).into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener artistas por IDs", e);
+        }
+    }
+    
+    
+    
 }

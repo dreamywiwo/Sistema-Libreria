@@ -7,6 +7,7 @@ package tune.sistemabibliotecanegocio.implementaciones;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Cancion;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
@@ -62,4 +63,13 @@ public class CancionesBO implements ICancionesBO {
         }
     }
 
+    @Override
+    public List<CancionConArtistaDTO> obtenerCancionesPorIds(List<ObjectId> cancionIds) throws NegocioException {
+        try {
+            return this.cancionesDAO.obtenerCancionesPorIds(cancionIds);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener las canciones por ids");
+        }
+    }
+    
 }
