@@ -40,8 +40,8 @@ public class ControlNavegacion {
     CancionesBO cancionesBO = new CancionesBO(cancionesDAO);
     
     
-    public void mostrarVentanaPrincipal() {
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this);
+    public void mostrarVentanaPrincipal() throws NegocioException {
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
         ventanaPrincipal.mostrar();
     }
 
@@ -59,7 +59,6 @@ public class ControlNavegacion {
 
     public void registrarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
         usuariosBO.registrarUsuario(usuarioDTO);
-        mostrarVentanaPrincipal();
     }
     
     public void mostrarVentanaArtistaDetalle(String idArtista){
@@ -72,4 +71,9 @@ public class ControlNavegacion {
         ventanaAlbum.mostrar();
     }
 
+   
+    public Usuario obtenerUsuarioActual() throws NegocioException {
+        Usuario usuarioActual = usuariosBO.obtenerUsuarioActual();
+        return usuarioActual;
+    }
 }

@@ -6,6 +6,7 @@ package tune.sistemabibliotecapresentacion;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
@@ -20,7 +21,7 @@ public class InicioSesion extends javax.swing.JPanel {
     FontManager fontManager = new FontManager();
     VentanaRegistro ventanaPrincipal;
     ControlNavegacion control;
-    
+
     public InicioSesion(ControlNavegacion control, VentanaRegistro ventanaPrincipal) {
         initComponents();
         this.ventanaPrincipal = ventanaPrincipal;
@@ -104,10 +105,17 @@ public class InicioSesion extends javax.swing.JPanel {
         NuevoUsuarioDTO usuario = new NuevoUsuarioDTO();
         usuario.setCorreo(jTextFieldCorreo1.getText());
         usuario.setContrasena(jPassword1.getText());
-        
+
         try {
             control.iniciarSesion(usuario);
+            ventanaPrincipal.cerrar();
         } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Error al iniciar sesión",
+                    JOptionPane.ERROR_MESSAGE
+            );
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonContinuar1ActionPerformed

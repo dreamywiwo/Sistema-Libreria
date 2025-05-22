@@ -51,4 +51,26 @@ public class UsuariosDAO implements IUsuariosDAO {
         return coleccion.find(filtro).first();
     }
 
+    @Override
+    public Usuario editarUsuario(Usuario usuario) throws PersistenciaException {
+        try {
+            MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+            MongoCollection<Usuario> coleccion = db.getCollection("usuarios", Usuario.class);
+
+            Document filtro = new Document("_id", usuario.getId());
+            Document actualizacion = new Document("$set", new Document()
+                    .append("nombreusuario", usuario.getNombreusuario())
+                    .append("correo", usuario.getCorreo())
+                    .append("imagenPerfil", usuario.getImagenPerfil())
+                    .append("contrasena", usuario.getContrasena())
+            );
+
+            coleccion.updateOne(filtro, actualizacion);
+            return usuario;
+
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al editar el usuario", e);
+        }
+    }
+
 }

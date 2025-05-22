@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import javax.swing.JOptionPane;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
@@ -98,11 +99,35 @@ public class Registro extends javax.swing.JPanel {
     }//GEN-LAST:event_jButtonInicioActionPerformed
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
-        NuevoUsuarioDTO usuario = new NuevoUsuarioDTO();
-        usuario.setCorreo(jTextFieldCorreo.getText());
-        usuario.setContrasena(jPassword.getText());
-        
-        ventanaPrincipal.mostrarIdentificacion(usuario);
+        String correo = jTextFieldCorreo.getText();
+    String contrasena = jPassword.getText();
+
+    if (correo == null || correo.trim().isEmpty() || contrasena == null || contrasena.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Por favor ingresa tu correo y contraseña.",
+            "Campos obligatorios",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return;
+    }
+
+    String regexCorreo = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+    if (!correo.matches(regexCorreo)) {
+        JOptionPane.showMessageDialog(
+            this,
+            "El formato del correo es inválido.",
+            "Correo inválido",
+            JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }
+
+    NuevoUsuarioDTO usuario = new NuevoUsuarioDTO();
+    usuario.setCorreo(correo);
+    usuario.setContrasena(contrasena);
+
+    ventanaPrincipal.mostrarIdentificacion(usuario);
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
 

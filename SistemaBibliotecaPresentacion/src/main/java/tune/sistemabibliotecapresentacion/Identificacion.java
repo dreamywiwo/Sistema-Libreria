@@ -120,6 +120,7 @@ public class Identificacion extends javax.swing.JPanel {
         nuevoUsuario.setNombreusuario(jTextFieldUsuario.getText());
         try {
             control.registrarUsuario(nuevoUsuario);
+            ventanaPrincipal.mostrarInicioSesion();
         } catch (NegocioException ex) {
             Logger.getLogger(Identificacion.class.getName()).log(Level.SEVERE, null, ex);
         }

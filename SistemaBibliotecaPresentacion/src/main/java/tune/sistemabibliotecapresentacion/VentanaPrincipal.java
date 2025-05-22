@@ -13,6 +13,7 @@ import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
 import tune.sistemabibliotecanegocio.interfaces.IInsercionMasivaBO;
+import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 
 /**
@@ -24,6 +25,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private IInsercionMasivaBO insercionMasivaBO;
     private IArtistasBO artistasBO;
     private IAlbumesBO albumesBO;
+    private IUsuariosBO usuariosBO;
     private ICancionesBO cancionesBO;
     private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
     ControlNavegacion control;
@@ -34,13 +36,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private PanelPrincipal panelPrincipal;
     private PanelPerfilUsuario panelPerfilUsuario;
 
-    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO,IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO, ControlNavegacion control) {
+    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO, IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO, ControlNavegacion control, IUsuariosBO usuariosBO) throws NegocioException {
         initComponents();
         this.insercionMasivaBO = insercionMasivaBO;
         this.artistasBO = artistasBO;
         this.albumesBO = albumesBO;
         this.cancionesBO = cancionesBO;
         this.control = control;
+        this.usuariosBO = usuariosBO;
         setLocationRelativeTo(null);
 
         // Inicializar los paneles
@@ -48,7 +51,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelAlbumes = new PanelAlbumes(albumesBO);
         panelCanciones = new PanelCanciones(cancionesBO);
         panelPrincipal = new PanelPrincipal();
-        panelPerfilUsuario = new PanelPerfilUsuario(control, this);
+        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO);
 
         // Establecer CardLayout para jPanelPaneles
         jPanelPaneles.setLayout(new CardLayout());
