@@ -47,7 +47,7 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         cargarAlbumes();
     }
     
-    private void mostrarAlbumes(List<AlbumConArtistaDTO> albumesDTO) {
+    public void mostrarAlbumes(List<AlbumConArtistaDTO> albumesDTO) {
         jPanelAlbums.removeAll();
 
         jPanelAlbums.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20)); 
@@ -68,6 +68,17 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<AlbumConArtistaDTO> cargarAlbumesExterior() {
+        List<AlbumConArtistaDTO> albumesDTO = null;
+        try {
+            albumesDTO = albumesBO.obtenerAlbumsConNombreArtista();
+            mostrarAlbumes(albumesDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return albumesDTO;
     }
     
     @Override

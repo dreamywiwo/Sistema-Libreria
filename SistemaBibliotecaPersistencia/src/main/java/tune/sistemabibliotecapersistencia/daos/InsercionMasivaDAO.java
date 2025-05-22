@@ -33,44 +33,39 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
         List<ArtistaDTO> artistasSolistas = DatosPredefinidos.obtenerArtistasSolistas();
         List<ArtistaDTO> bandas = DatosPredefinidos.obtenerBandas();
 
-        List<Artista> artistasToInsert = new ArrayList<>();
+        // Listas separadas para evitar problemas de IDs duplicados
+        List<Artista> solistasToInsert = new ArrayList<>();
         List<Album> albumsToInsert = new ArrayList<>();
         List<Cancion> cancionesToInsert = new ArrayList<>();
 
-        // Procesar artistas, álbumes y canciones para insertar
+        // Procesar solistas
         for (ArtistaDTO artistaDTO : artistasSolistas) {
-            // Verificar si el artista ya existe en la base de datos
             Artista artistaExistente = coleccionArtistas.find(eq("nombre", artistaDTO.getNombre())).first();
             if (artistaExistente == null) {
-                // Crear y agregar el artista solo si no existe
                 Artista artista = crearArtista(artistaDTO);
-                artistasToInsert.add(artista);
+                solistasToInsert.add(artista);
             }
         }
 
-        // Realizar inserciones masivas de artistas primero
-        if (!artistasToInsert.isEmpty()) {
-            coleccionArtistas.insertMany(artistasToInsert);
+        if (!solistasToInsert.isEmpty()) {
+            coleccionArtistas.insertMany(solistasToInsert);
         }
 
-        // Asignar los IDs generados a los artistas y continuar con los álbumes y canciones
-        for (Artista artista : artistasToInsert) {
-            // Crear y agregar álbumes
+        // Crear álbumes y canciones para solistas
+        for (Artista artista : solistasToInsert) {
             List<Album> albums = crearAlbumesDeArtista(artista, artista.getId());
             albumsToInsert.addAll(albums);
 
-            // Crear y agregar canciones
             for (Album album : albums) {
                 cancionesToInsert.addAll(crearCancionesDeAlbum(album, artista.getId()));
             }
         }
 
-        // Insertar los álbumes
         if (!albumsToInsert.isEmpty()) {
             coleccionAlbumes.insertMany(albumsToInsert);
         }
 
-        // Asignar los IDs generados para los álbumes y continuar con las canciones
+        // Asignar albumId en canciones donde esté null (seguramente no necesario si se asignó bien)
         for (Album album : albumsToInsert) {
             for (Cancion cancion : cancionesToInsert) {
                 if (cancion.getAlbumId() == null) {
@@ -79,29 +74,29 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             }
         }
 
-        // Insertar las canciones
         if (!cancionesToInsert.isEmpty()) {
             coleccionCanciones.insertMany(cancionesToInsert);
         }
 
-        // Repetir el mismo proceso para las bandas
+        // Ahora procesar las bandas por separado
+        List<Artista> bandasToInsert = new ArrayList<>();
+        albumsToInsert.clear();
+        cancionesToInsert.clear();
+
         for (ArtistaDTO bandaDTO : bandas) {
-            // Verificar si la banda ya existe en la base de datos
             Artista bandaExistente = coleccionArtistas.find(eq("nombre", bandaDTO.getNombre())).first();
             if (bandaExistente == null) {
-                // Crear y agregar la banda solo si no existe
                 Artista banda = crearArtista(bandaDTO);
-                artistasToInsert.add(banda);
+                bandasToInsert.add(banda);
             }
         }
 
-        // Realizar inserciones masivas de bandas
-        if (!artistasToInsert.isEmpty()) {
-            coleccionArtistas.insertMany(artistasToInsert);
+        if (!bandasToInsert.isEmpty()) {
+            coleccionArtistas.insertMany(bandasToInsert);
         }
 
-        // Asignar los IDs generados a las bandas y continuar con los álbumes y canciones
-        for (Artista banda : artistasToInsert) {
+        // Crear álbumes y canciones para bandas
+        for (Artista banda : bandasToInsert) {
             List<Album> albums = crearAlbumesDeBanda(banda, banda.getId());
             albumsToInsert.addAll(albums);
 
@@ -110,12 +105,10 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             }
         }
 
-        // Insertar los álbumes de las bandas
         if (!albumsToInsert.isEmpty()) {
             coleccionAlbumes.insertMany(albumsToInsert);
         }
 
-        // Asignar los IDs generados para los álbumes y continuar con las canciones
         for (Album album : albumsToInsert) {
             for (Cancion cancion : cancionesToInsert) {
                 if (cancion.getAlbumId() == null) {
@@ -124,7 +117,6 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             }
         }
 
-        // Insertar las canciones de las bandas
         if (!cancionesToInsert.isEmpty()) {
             coleccionCanciones.insertMany(cancionesToInsert);
         }
@@ -142,7 +134,6 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
     private List<Album> crearAlbumesDeArtista(Artista artista, ObjectId artistaId) {
         List<Album> albums = new ArrayList<>();
 
-        // Convertir el Artista a ArtistaDTO
         ArtistaDTO artistaDTO = new ArtistaDTO(
             artista.getNombre(),
             artista.getTipo(),
@@ -150,7 +141,6 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             artista.getImagen()
         );
 
-        // Obtener los álbumes de este ArtistaDTO
         List<AlbumDTO> albumDTOs = DatosPredefinidos.obtenerAlbumesDeArtista(artistaDTO);
 
         for (AlbumDTO albumDTO : albumDTOs) {
@@ -168,7 +158,6 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
     private List<Album> crearAlbumesDeBanda(Artista banda, ObjectId bandaId) {
         List<Album> albums = new ArrayList<>();
 
-        // Convertir el Artista (banda) a ArtistaDTO
         ArtistaDTO bandaDTO = new ArtistaDTO(
             banda.getNombre(),
             banda.getTipo(),
@@ -176,7 +165,6 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             banda.getImagen()
         );
 
-        // Obtener los álbumes de esta Banda (ArtistaDTO)
         List<AlbumDTO> albumDTOs = DatosPredefinidos.obtenerAlbumesDeBanda(bandaDTO);
 
         for (AlbumDTO albumDTO : albumDTOs) {
@@ -185,7 +173,7 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             album.setFechaLanzamiento(albumDTO.getFechaLanzamiento());
             album.setGeneroMusical(albumDTO.getGeneroMusical());
             album.setImagenPortada(albumDTO.getImagenPortada());
-            album.setArtistaId(bandaId);  // Asociar al Artista (banda) por su ID
+            album.setArtistaId(bandaId);
             albums.add(album);
         }
         return albums;

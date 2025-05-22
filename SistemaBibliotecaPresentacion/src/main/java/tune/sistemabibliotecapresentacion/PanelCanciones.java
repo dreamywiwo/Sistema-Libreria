@@ -48,7 +48,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
         cargarCanciones();
     }
     
-    private void cargarCanciones() {
+    public void cargarCanciones() {
         try {
             List<CancionConArtistaDTO> canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
             System.out.println("Canciones cargadas: " + canciones.size());
@@ -57,8 +57,20 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
             e.printStackTrace();
         }
     }
+    
+    public List<CancionConArtistaDTO> cargarCancionesExterior() {
+        List<CancionConArtistaDTO> canciones = null;
+        try {
+            canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
+            System.out.println("Canciones cargadas: " + canciones.size());
+            mostrarCanciones(canciones);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return canciones;
+    }
 
-    private void mostrarCanciones(List<CancionConArtistaDTO> canciones) {
+    public void mostrarCanciones(List<CancionConArtistaDTO> canciones) {
         jPanelCanciones.removeAll();
         int index = 1;
         for (CancionConArtistaDTO cancion : canciones) {

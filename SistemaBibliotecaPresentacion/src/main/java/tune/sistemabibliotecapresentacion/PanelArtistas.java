@@ -28,38 +28,37 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
  * @author Dana Chavez
  */
 public class PanelArtistas extends javax.swing.JPanel implements BusquedaListener {
-    
+
     FontManager fontManager = new FontManager();
-    
+
     private IArtistasBO artistasBO;
-    
+
     public PanelArtistas(IArtistasBO artistasBO) {
         initComponents();
         this.artistasBO = artistasBO;
         this.setOpaque(false);
-        
+
         jScrollPaneArtistas.setOpaque(false);
         jScrollPaneArtistas.getViewport().setOpaque(false);
         jScrollPaneArtistas.setBorder(null);
         jPanelArtistas.setOpaque(false);
 
         BuscadorArtistas buscador = new BuscadorArtistas();
-        buscador.setBusquedaListener(this); 
-        
+        buscador.setBusquedaListener(this);
+
         jPanelContenedor.setOpaque(false);
         jPanelContenedor.removeAll();
         jPanelContenedor.setLayout(new java.awt.BorderLayout());
         jPanelContenedor.add(buscador, java.awt.BorderLayout.CENTER);
         jPanelContenedor.revalidate();
         jPanelContenedor.repaint();
-        
-        
+
         //cargarArtistas();
         cargarArtistasPorGenero();
-        
+
     }
-    
-    private void mostrarArtistas(List<Artista> artistas) {
+
+    public void mostrarArtistas(List<Artista> artistas) {
         jPanelArtistas.removeAll();
         jPanelArtistas.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 
@@ -71,7 +70,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         jPanelArtistas.revalidate();
         jPanelArtistas.repaint();
     }
- 
+
     public void cargarArtistas() {
         try {
             List<Artista> artistas = artistasBO.obtenerTodosLosArtistas();
@@ -80,7 +79,19 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
             e.printStackTrace();
         }
     }
-    
+
+    public List<Artista> cargarArtistasExterior() {
+        List<Artista> artistas = null;
+        try {
+            artistas = artistasBO.obtenerTodosLosArtistas();
+            mostrarArtistas(artistas);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return artistas;
+    }
+
     private void cargarArtistasPorGenero() {
         try {
             List<Artista> todosArtistas = artistasBO.obtenerTodosLosArtistas();
@@ -91,7 +102,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
                 artistasPorGenero.computeIfAbsent(genero, k -> new ArrayList<>()).add(artista);
             }
 
-            jPanelArtistas.removeAll(); 
+            jPanelArtistas.removeAll();
             jPanelArtistas.setLayout(new javax.swing.BoxLayout(jPanelArtistas, javax.swing.BoxLayout.Y_AXIS));
 
             for (Map.Entry<String, List<Artista>> entry : artistasPorGenero.entrySet()) {
