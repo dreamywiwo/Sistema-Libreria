@@ -5,6 +5,7 @@
 package tune.sistemabibliotecapresentacion;
 
 import java.awt.CardLayout;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private PanelCanciones panelCanciones;
     private PanelPrincipal panelPrincipal;
     private PanelPerfilUsuario panelPerfilUsuario;
+    private List<String> generos;
 
     public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO, IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO, ControlNavegacion control, IUsuariosBO usuariosBO) throws NegocioException {
         initComponents();
@@ -44,6 +46,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.cancionesBO = cancionesBO;
         this.control = control;
         this.usuariosBO = usuariosBO;
+        this.generos = insercionMasivaBO.obtenerGenerosUnicos();
         setLocationRelativeTo(null);
 
         // Inicializar los paneles
@@ -51,7 +54,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelAlbumes = new PanelAlbumes(albumesBO);
         panelCanciones = new PanelCanciones(cancionesBO);
         panelPrincipal = new PanelPrincipal();
-        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO);
+        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos);
 
         // Establecer CardLayout para jPanelPaneles
         jPanelPaneles.setLayout(new CardLayout());
@@ -92,6 +95,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void cerrar() {
         setVisible(false);
         dispose();
+    }
+    
+    public void setGeneros() throws NegocioException{
+        this.generos=insercionMasivaBO.obtenerGenerosUnicos();
+        if(panelPerfilUsuario != null){
+            panelPerfilUsuario = null;
+            panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos);
+        }else{
+            panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos);
+        }
+        
     }
 
     /**
@@ -205,6 +219,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelArtistas.cargarArtistas();
         panelAlbumes.cargarAlbumes();
         panelCanciones.cargarCanciones();
+        try {
+            setGeneros();
+        } catch (NegocioException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonAgregarArtistasActionPerformed
 
     private void jButtonAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlbumesActionPerformed

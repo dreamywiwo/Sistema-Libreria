@@ -13,6 +13,7 @@ import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -37,13 +38,15 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
     VentanaPrincipal ventanaPrincipal;
     Usuario usuarioActual;
     IUsuariosBO usuariosBO;
+    List<String> generos;
 
-    public PanelPerfilUsuario(ControlNavegacion control, VentanaPrincipal ventanaPrincipal, IUsuariosBO usuariosBO) throws NegocioException {
+    public PanelPerfilUsuario(ControlNavegacion control, VentanaPrincipal ventanaPrincipal, IUsuariosBO usuariosBO, List<String> generos) throws NegocioException {
         initComponents();
         this.control = control;
         this.ventanaPrincipal = ventanaPrincipal;
         this.usuariosBO = usuariosBO;
         this.usuarioActual = control.obtenerUsuarioActual();
+        this.generos = generos;
         jLabelNombreUsuario.setFont(fontManager.getAfacadBold(96));
         jButtonEditarPerfil.setFont(fontManager.getAfacadMedium(20));
         jLabelPerfilTexto.setFont(fontManager.getAfacadMedium(20));

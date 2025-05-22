@@ -14,7 +14,10 @@ import tune.sistemabibliotecapersistencia.conexion.ManejadorConexiones;
 import tune.sistemabibliotecapersistencia.interfaces.IInsercionMasiva;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class InsercionMasivaDAO implements IInsercionMasiva {
 
@@ -118,10 +121,10 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
         List<Album> albums = new ArrayList<>();
 
         ArtistaDTO artistaDTO = new ArtistaDTO(
-            artista.getNombre(),
-            artista.getTipo(),
-            artista.getGeneroMusical(),
-            artista.getImagen()
+                artista.getNombre(),
+                artista.getTipo(),
+                artista.getGeneroMusical(),
+                artista.getImagen()
         );
 
         List<AlbumDTO> albumDTOs = DatosPredefinidos.obtenerAlbumesDeArtista(artistaDTO);
@@ -142,10 +145,10 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
         List<Album> albums = new ArrayList<>();
 
         ArtistaDTO bandaDTO = new ArtistaDTO(
-            banda.getNombre(),
-            banda.getTipo(),
-            banda.getGeneroMusical(),
-            banda.getImagen()
+                banda.getNombre(),
+                banda.getTipo(),
+                banda.getGeneroMusical(),
+                banda.getImagen()
         );
 
         List<AlbumDTO> albumDTOs = DatosPredefinidos.obtenerAlbumesDeBanda(bandaDTO);
@@ -175,5 +178,53 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             canciones.add(cancion);
         }
         return canciones;
+    }
+
+    @Override
+    public List<String> obtenerTodosLosGenerosUnicos() {
+        Set<String> generosUnicos = new HashSet<>();
+        generosUnicos.addAll(obtenerGenerosDeArtistas());
+        generosUnicos.addAll(obtenerGenerosDeAlbumes());
+        generosUnicos.addAll(obtenerGenerosDeCanciones());
+
+        List<String> listaGeneros = new ArrayList<>(generosUnicos);
+        Collections.sort(listaGeneros);
+        return listaGeneros;
+    }
+
+    private Set<String> obtenerGenerosDeArtistas() {
+        MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+        MongoCollection<Artista> coleccion = db.getCollection(COLECCION_ARTISTAS, Artista.class);
+        Set<String> generos = new HashSet<>();
+        for (Artista artista : coleccion.find()) {
+            if (artista.getGeneroMusical() != null) {
+                generos.add(artista.getGeneroMusical().trim());
+            }
+        }
+        return generos;
+    }
+
+    private Set<String> obtenerGenerosDeAlbumes() {
+        MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+        MongoCollection<Album> coleccion = db.getCollection(COLECCION_ALBUMES, Album.class);
+        Set<String> generos = new HashSet<>();
+        for (Album album : coleccion.find()) {
+            if (album.getGeneroMusical() != null) {
+                generos.add(album.getGeneroMusical().trim());
+            }
+        }
+        return generos;
+    }
+
+    private Set<String> obtenerGenerosDeCanciones() {
+        MongoDatabase db = ManejadorConexiones.obtenerBaseDatos();
+        MongoCollection<Cancion> coleccion = db.getCollection(COLECCION_CANCIONES, Cancion.class);
+        Set<String> generos = new HashSet<>();
+        for (Cancion cancion : coleccion.find()) {
+            if (cancion.getGeneroMusical() != null) {
+                generos.add(cancion.getGeneroMusical().trim());
+            }
+        }
+        return generos;
     }
 }
