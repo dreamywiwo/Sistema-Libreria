@@ -169,7 +169,7 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             Cancion cancion = new Cancion();
             cancion.setNombre(cancionDTO.getNombre());
             cancion.setDuracion(cancionDTO.getDuracion());
-            cancion.setAlbumId(album.getId());  // Aquí album ya tiene _id generado
+            cancion.setAlbumId(album.getId());  
             cancion.setArtistaId(artistaId);
             cancion.setGeneroMusical(cancionDTO.getGeneroMusical());
             canciones.add(cancion);

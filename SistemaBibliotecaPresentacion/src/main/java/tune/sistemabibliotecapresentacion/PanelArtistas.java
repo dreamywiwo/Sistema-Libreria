@@ -22,6 +22,7 @@ import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecapresentacion.formatos.PanelArtistaItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
+import tune.sistemabibliotecapresentacion.utils.WrapLayout;
 
 /**
  *
@@ -213,7 +214,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
             List<Artista> artistasFiltrados = artistasBO.obtenerPorNombre(textoBusqueda);
 
             jPanelArtistas.removeAll();
-            jPanelArtistas.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+            jPanelArtistas.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));
 
             for (Artista artista : artistasFiltrados) {
                 PanelArtistaItem panel = new PanelArtistaItem(artista);
