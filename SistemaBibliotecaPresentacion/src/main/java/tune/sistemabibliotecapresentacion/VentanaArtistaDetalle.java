@@ -72,7 +72,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
             // Mostrar nombre
             jPanelNombre.removeAll();
             JLabel lblNombre = new JLabel(artista.getNombre());
-            lblNombre.setFont(fontManager.getAfacadBold(30f));
+            lblNombre.setFont(fontManager.getAfacadBold(60f));
             lblNombre.setForeground(Color.WHITE);
             lblNombre.setHorizontalAlignment(SwingConstants.CENTER);
             lblNombre.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -125,7 +125,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
 
             // Mostrar canciones 
             jPanelCanciones.removeAll();
-            jPanelCanciones.setLayout(new FlowLayout(FlowLayout.LEFT, 15, 15));
+            jPanelCanciones.setLayout(new BoxLayout(jPanelCanciones, BoxLayout.Y_AXIS));
 
             List<CancionConArtistaDTO> canciones = artistasBO.obtenerCancionesPorArtista(artistaId);
             int indice = 1;
@@ -198,10 +198,10 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         );
         jPanelInformacionLayout.setVerticalGroup(
             jPanelInformacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 150, 300, 390));
+        getContentPane().add(jPanelInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 190, 300, 300));
 
         jScrollPaneCanciones.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -218,7 +218,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
 
         jScrollPaneCanciones.setViewportView(jPanelCanciones);
 
-        getContentPane().add(jScrollPaneCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 690, 490));
+        getContentPane().add(jScrollPaneCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 690, 430));
 
         jScrollPaneAlbumes.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
@@ -230,12 +230,12 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         );
         jPanelAlbumesLayout.setVerticalGroup(
             jPanelAlbumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 198, Short.MAX_VALUE)
+            .addGap(0, 222, Short.MAX_VALUE)
         );
 
         jScrollPaneAlbumes.setViewportView(jPanelAlbumes);
 
-        getContentPane().add(jScrollPaneAlbumes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 650, 690, 200));
+        getContentPane().add(jScrollPaneAlbumes, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 610, 690, 220));
 
         javax.swing.GroupLayout jPanelIntegrantesLayout = new javax.swing.GroupLayout(jPanelIntegrantes);
         jPanelIntegrantes.setLayout(jPanelIntegrantesLayout);
@@ -245,12 +245,12 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         );
         jPanelIntegrantesLayout.setVerticalGroup(
             jPanelIntegrantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 298, Short.MAX_VALUE)
+            .addGap(0, 312, Short.MAX_VALUE)
         );
 
         jScrollPaneIntegrantes.setViewportView(jPanelIntegrantes);
 
-        getContentPane().add(jScrollPaneIntegrantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 550, 300, 300));
+        getContentPane().add(jScrollPaneIntegrantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 500, 300, 330));
 
         javax.swing.GroupLayout jPanelNombreLayout = new javax.swing.GroupLayout(jPanelNombre);
         jPanelNombre.setLayout(jPanelNombreLayout);
@@ -260,10 +260,10 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         );
         jPanelNombreLayout.setVerticalGroup(
             jPanelNombreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 900, 110));
+        getContentPane().add(jPanelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 900, 130));
 
         jButtonCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonCerrar.png"))); // NOI18N
         jButtonCerrar.setBorderPainted(false);

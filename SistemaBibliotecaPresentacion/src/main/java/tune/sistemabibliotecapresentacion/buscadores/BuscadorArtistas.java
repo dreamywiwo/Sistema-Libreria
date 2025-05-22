@@ -20,6 +20,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
     public BuscadorArtistas() {
         initComponents();
         initListeners();
+        setOpaque(false);
     }
     
     private void initListeners() {
@@ -77,7 +78,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
                 buscadorArtistaActionPerformed(evt);
             }
         });
-        add(buscadorArtista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 50));
+        add(buscadorArtista, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscadorArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscadorArtistaActionPerformed

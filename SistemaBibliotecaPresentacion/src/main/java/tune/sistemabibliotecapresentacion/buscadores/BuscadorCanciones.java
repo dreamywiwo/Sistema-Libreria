@@ -19,6 +19,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
     public BuscadorCanciones() {
         initComponents();
         initListeners();
+        setOpaque(false);
     }
     
     private void initListeners() {
@@ -76,7 +77,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
                 buscadorCancionActionPerformed(evt);
             }
         });
-        add(buscadorCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 50));
+        add(buscadorCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscadorCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscadorCancionActionPerformed

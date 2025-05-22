@@ -21,6 +21,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
         initComponents();
         initComboBox();
         initListeners();
+        setOpaque(false);
     }
     
     public void initComboBox(){
@@ -95,10 +96,10 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
                 buscadorAlbumsActionPerformed(evt);
             }
         });
-        add(buscadorAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 410, 50));
+        add(buscadorAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 410, 40));
 
         filtroBusquedaAlbums.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(filtroBusquedaAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 150, 50));
+        add(filtroBusquedaAlbums, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 130, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void buscadorAlbumsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscadorAlbumsActionPerformed
