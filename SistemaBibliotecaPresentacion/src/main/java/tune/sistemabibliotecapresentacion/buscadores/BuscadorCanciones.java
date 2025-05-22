@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecapresentacion.buscadores;
 
+import javax.swing.event.DocumentListener;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
@@ -13,9 +14,43 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
     public class BuscadorCanciones extends javax.swing.JPanel {
         
     FontManager fontManager = new FontManager();
+    private BusquedaListener busquedaListener;
     
     public BuscadorCanciones() {
         initComponents();
+        initListeners();
+    }
+    
+    private void initListeners() {
+        buscadorCancion.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void insertUpdate(javax.swing.event.DocumentEvent e) {
+                notificarCambio();            
+            }
+
+            @Override
+            public void removeUpdate(javax.swing.event.DocumentEvent e) {
+                notificarCambio();
+            }
+
+            @Override
+            public void changedUpdate(javax.swing.event.DocumentEvent e) {
+                notificarCambio();
+            }
+            
+            private void notificarCambio() {
+                if (busquedaListener != null) {
+                    String texto = buscadorCancion.getText().trim();
+                    busquedaListener.onBusquedaActualizada(texto);
+                }
+            }
+
+        });
+    }
+
+    public void setBusquedaListener(BusquedaListener listener) {
+        this.busquedaListener = listener;
     }
 
     /**
@@ -27,28 +62,29 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        buscadorCancion = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField1.setBackground(new java.awt.Color(5, 54, 46));
-        jTextField1.setFont(fontManager.getAfacadRegular(16f));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Nombre");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        buscadorCancion.setBackground(new java.awt.Color(5, 54, 46));
+        buscadorCancion.setFont(fontManager.getAfacadRegular(16f));
+        buscadorCancion.setForeground(new java.awt.Color(255, 255, 255));
+        buscadorCancion.setText("Nombre");
+        buscadorCancion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 5, 1, 1));
+        buscadorCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                buscadorCancionActionPerformed(evt);
             }
         });
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 50));
+        add(buscadorCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void buscadorCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscadorCancionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_buscadorCancionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField buscadorCancion;
     // End of variables declaration//GEN-END:variables
 }

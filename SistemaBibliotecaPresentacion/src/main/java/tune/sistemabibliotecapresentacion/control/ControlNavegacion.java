@@ -9,10 +9,12 @@ import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.implementaciones.AlbumesBO;
 import tune.sistemabibliotecanegocio.implementaciones.ArtistasBO;
+import tune.sistemabibliotecanegocio.implementaciones.CancionesBO;
 import tune.sistemabibliotecanegocio.implementaciones.InsercionMasivaBO;
 import tune.sistemabibliotecanegocio.implementaciones.UsuariosBO;
 import tune.sistemabibliotecapersistencia.daos.AlbumesDAO;
 import tune.sistemabibliotecapersistencia.daos.ArtistasDAO;
+import tune.sistemabibliotecapersistencia.daos.CancionesDAO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
 import tune.sistemabibliotecapersistencia.daos.UsuariosDAO;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
@@ -32,9 +34,12 @@ public class ControlNavegacion {
     ArtistasDAO artistasDAO = new ArtistasDAO();
     ArtistasBO artistasBO = new ArtistasBO(artistasDAO);
     
+    CancionesDAO cancionesDAO = new CancionesDAO();
+    CancionesBO cancionesBO = new CancionesBO(cancionesDAO);
+    
     
     public void mostrarVentanaPrincipal() throws NegocioException {
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, this, usuariosBO);
+        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
         ventanaPrincipal.mostrar();
     }
 

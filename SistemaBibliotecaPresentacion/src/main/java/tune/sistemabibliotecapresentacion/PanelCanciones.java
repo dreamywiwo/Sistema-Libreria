@@ -4,18 +4,83 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
+import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
+import tune.sistemabibliotecapresentacion.buscadores.BuscadorCanciones;
+import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
+import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 /**
  *
  * @author Dana Chavez
  */
-public class PanelCanciones extends javax.swing.JPanel {
+public class PanelCanciones extends javax.swing.JPanel implements BusquedaListener {
     
     FontManager fontManager = new FontManager();
+    private ICancionesBO cancionesBO;
 
-    public PanelCanciones() {
+    public PanelCanciones(ICancionesBO cancionesBO) {
         initComponents();
+        this.cancionesBO = cancionesBO;
+        this.setOpaque(false);
+
+        jScrollPaneCanciones.setOpaque(false);
+        jScrollPaneCanciones.getViewport().setOpaque(false);
+        jScrollPaneCanciones.setBorder(null);
+        jPanelCanciones.setOpaque(false);
+
+        jPanelContenedor.setOpaque(false);
+        jPanelContenedor.setLayout(new java.awt.BorderLayout());
+        
+        BuscadorCanciones buscador = new BuscadorCanciones();
+        buscador.setBusquedaListener(this);
+        jPanelContenedor.add(buscador, java.awt.BorderLayout.CENTER);
+        
+        jPanelCanciones.setLayout(new BoxLayout(jPanelCanciones, BoxLayout.Y_AXIS));
+
+        cargarCanciones();
+    }
+    
+    private void cargarCanciones() {
+        try {
+            List<CancionConArtistaDTO> canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
+            System.out.println("Canciones cargadas: " + canciones.size());
+            mostrarCanciones(canciones);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarCanciones(List<CancionConArtistaDTO> canciones) {
+        jPanelCanciones.removeAll();
+        int index = 1;
+        for (CancionConArtistaDTO cancion : canciones) {
+            jPanelCanciones.add(new PanelCancionItem(cancion, index++));
+        }
+        jPanelCanciones.revalidate();
+        jPanelCanciones.repaint();
+    }
+
+    @Override
+    public void onBusquedaActualizada(String textoBusqueda) {
+        try {
+            List<CancionConArtistaDTO> canciones;
+            if (textoBusqueda == null || textoBusqueda.isEmpty()) {
+                canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
+            } else {
+                canciones = cancionesBO.obtenerCancionesPorNombreConArtista(textoBusqueda); 
+            }
+            mostrarCanciones(canciones);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -28,6 +93,9 @@ public class PanelCanciones extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabelTitulo = new javax.swing.JLabel();
+        jPanelContenedor = new javax.swing.JPanel();
+        jScrollPaneCanciones = new javax.swing.JScrollPane();
+        jPanelCanciones = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(0, 33, 27));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -36,10 +104,19 @@ public class PanelCanciones extends javax.swing.JPanel {
         jLabelTitulo.setForeground(new java.awt.Color(255, 255, 255));
         jLabelTitulo.setText("Canciones");
         add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 780, 130));
+        add(jPanelContenedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 200, 410, 50));
+
+        jPanelCanciones.setLayout(new javax.swing.BoxLayout(jPanelCanciones, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPaneCanciones.setViewportView(jPanelCanciones);
+
+        add(jScrollPaneCanciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 940, 470));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabelTitulo;
+    private javax.swing.JPanel jPanelCanciones;
+    private javax.swing.JPanel jPanelContenedor;
+    private javax.swing.JScrollPane jScrollPaneCanciones;
     // End of variables declaration//GEN-END:variables
 }

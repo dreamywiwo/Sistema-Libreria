@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
+import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
 import tune.sistemabibliotecanegocio.interfaces.IInsercionMasivaBO;
 import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
@@ -25,6 +26,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private IArtistasBO artistasBO;
     private IAlbumesBO albumesBO;
     private IUsuariosBO usuariosBO;
+    private ICancionesBO cancionesBO;
     private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
     ControlNavegacion control;
 
@@ -34,11 +36,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private PanelPrincipal panelPrincipal;
     private PanelPerfilUsuario panelPerfilUsuario;
 
-    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO, IArtistasBO artistasBO, IAlbumesBO albumesBO, ControlNavegacion control, IUsuariosBO usuariosBO) throws NegocioException {
+    public VentanaPrincipal(IInsercionMasivaBO insercionMasivaBO, IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO, ControlNavegacion control, IUsuariosBO usuariosBO) throws NegocioException {
         initComponents();
         this.insercionMasivaBO = insercionMasivaBO;
         this.artistasBO = artistasBO;
         this.albumesBO = albumesBO;
+        this.cancionesBO = cancionesBO;
         this.control = control;
         this.usuariosBO = usuariosBO;
         setLocationRelativeTo(null);
@@ -46,7 +49,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // Inicializar los paneles
         panelArtistas = new PanelArtistas(artistasBO);
         panelAlbumes = new PanelAlbumes(albumesBO);
-        panelCanciones = new PanelCanciones();
+        panelCanciones = new PanelCanciones(cancionesBO);
         panelPrincipal = new PanelPrincipal();
         panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO);
 
