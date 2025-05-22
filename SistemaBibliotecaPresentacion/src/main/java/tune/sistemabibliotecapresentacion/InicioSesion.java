@@ -68,7 +68,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jTextFieldCorreo1.setBackground(new java.awt.Color(7, 76, 64));
         jTextFieldCorreo1.setFont(fontManager.getAfacadRegular(20f));
         jTextFieldCorreo1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldCorreo1.setText("hola@gmail.com");
+        jTextFieldCorreo1.setText("   E-mail");
         jTextFieldCorreo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jTextFieldCorreo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +80,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPassword1.setBackground(new java.awt.Color(7, 76, 64));
         jPassword1.setFont(fontManager.getAfacadRegular(20f));
         jPassword1.setForeground(new java.awt.Color(255, 255, 255));
-        jPassword1.setText("1");
+        jPassword1.setText("Contrasena");
         jPassword1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         add(jPassword1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, 248, 49));
 
