@@ -154,6 +154,7 @@ public class VentanaAlbumDetalle extends javax.swing.JFrame {
         jScrollPaneCanciones = new javax.swing.JScrollPane();
         jPanelCanciones = new javax.swing.JPanel();
         jPanelInfo = new javax.swing.JPanel();
+        jButtonCerrar = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -202,15 +203,31 @@ public class VentanaAlbumDetalle extends javax.swing.JFrame {
 
         getContentPane().add(jPanelInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 240, 930, 40));
 
+        jButtonCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonCerrar.png"))); // NOI18N
+        jButtonCerrar.setBorderPainted(false);
+        jButtonCerrar.setContentAreaFilled(false);
+        jButtonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 30, 40, 40));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoSimple.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        cerrar();
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPanel jPanelCanciones;
     private javax.swing.JPanel jPanelInfo;

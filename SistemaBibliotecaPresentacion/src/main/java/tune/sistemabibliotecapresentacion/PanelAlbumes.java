@@ -154,11 +154,11 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         jPanelAlbums.setLayout(jPanelAlbumsLayout);
         jPanelAlbumsLayout.setHorizontalGroup(
             jPanelAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
+            .addGap(0, 948, Short.MAX_VALUE)
         );
         jPanelAlbumsLayout.setVerticalGroup(
             jPanelAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 468, Short.MAX_VALUE)
         );
 
         jScrollPaneAlbums.setViewportView(jPanelAlbums);
