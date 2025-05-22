@@ -29,16 +29,13 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
         MongoCollection<Album> coleccionAlbumes = db.getCollection(COLECCION_ALBUMES, Album.class);
         MongoCollection<Cancion> coleccionCanciones = db.getCollection(COLECCION_CANCIONES, Cancion.class);
 
-        // Obtener artistas solistas y bandas predefinidos
         List<ArtistaDTO> artistasSolistas = DatosPredefinidos.obtenerArtistasSolistas();
         List<ArtistaDTO> bandas = DatosPredefinidos.obtenerBandas();
 
-        // Listas separadas para evitar problemas de IDs duplicados
         List<Artista> solistasToInsert = new ArrayList<>();
-        List<Album> albumsToInsert = new ArrayList<>();
-        List<Cancion> cancionesToInsert = new ArrayList<>();
+        List<Artista> bandasToInsert = new ArrayList<>();
 
-        // Procesar solistas
+        // Filtrar solistas que no existen aún
         for (ArtistaDTO artistaDTO : artistasSolistas) {
             Artista artistaExistente = coleccionArtistas.find(eq("nombre", artistaDTO.getNombre())).first();
             if (artistaExistente == null) {
@@ -47,42 +44,7 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             }
         }
 
-        if (!solistasToInsert.isEmpty()) {
-            coleccionArtistas.insertMany(solistasToInsert);
-        }
-
-        // Crear álbumes y canciones para solistas
-        for (Artista artista : solistasToInsert) {
-            List<Album> albums = crearAlbumesDeArtista(artista, artista.getId());
-            albumsToInsert.addAll(albums);
-
-            for (Album album : albums) {
-                cancionesToInsert.addAll(crearCancionesDeAlbum(album, artista.getId()));
-            }
-        }
-
-        if (!albumsToInsert.isEmpty()) {
-            coleccionAlbumes.insertMany(albumsToInsert);
-        }
-
-        // Asignar albumId en canciones donde esté null (seguramente no necesario si se asignó bien)
-        for (Album album : albumsToInsert) {
-            for (Cancion cancion : cancionesToInsert) {
-                if (cancion.getAlbumId() == null) {
-                    cancion.setAlbumId(album.getId());
-                }
-            }
-        }
-
-        if (!cancionesToInsert.isEmpty()) {
-            coleccionCanciones.insertMany(cancionesToInsert);
-        }
-
-        // Ahora procesar las bandas por separado
-        List<Artista> bandasToInsert = new ArrayList<>();
-        albumsToInsert.clear();
-        cancionesToInsert.clear();
-
+        // Filtrar bandas que no existen aún
         for (ArtistaDTO bandaDTO : bandas) {
             Artista bandaExistente = coleccionArtistas.find(eq("nombre", bandaDTO.getNombre())).first();
             if (bandaExistente == null) {
@@ -91,29 +53,50 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             }
         }
 
+        // Insertar solistas
+        if (!solistasToInsert.isEmpty()) {
+            coleccionArtistas.insertMany(solistasToInsert);
+        }
+
+        List<Cancion> cancionesToInsert = new ArrayList<>();
+
+        // Insertar álbumes y canciones de solistas
+        for (Artista artista : solistasToInsert) {
+            List<Album> albums = crearAlbumesDeArtista(artista, artista.getId());
+
+            if (!albums.isEmpty()) {
+                coleccionAlbumes.insertMany(albums);
+            }
+
+            for (Album album : albums) {
+                List<Cancion> canciones = crearCancionesDeAlbum(album, artista.getId());
+                cancionesToInsert.addAll(canciones);
+            }
+        }
+
+        if (!cancionesToInsert.isEmpty()) {
+            coleccionCanciones.insertMany(cancionesToInsert);
+        }
+
+        // Limpiar lista de canciones para bandas
+        cancionesToInsert.clear();
+
+        // Insertar bandas
         if (!bandasToInsert.isEmpty()) {
             coleccionArtistas.insertMany(bandasToInsert);
         }
 
-        // Crear álbumes y canciones para bandas
+        // Insertar álbumes y canciones de bandas
         for (Artista banda : bandasToInsert) {
             List<Album> albums = crearAlbumesDeBanda(banda, banda.getId());
-            albumsToInsert.addAll(albums);
+
+            if (!albums.isEmpty()) {
+                coleccionAlbumes.insertMany(albums);
+            }
 
             for (Album album : albums) {
-                cancionesToInsert.addAll(crearCancionesDeAlbum(album, banda.getId()));
-            }
-        }
-
-        if (!albumsToInsert.isEmpty()) {
-            coleccionAlbumes.insertMany(albumsToInsert);
-        }
-
-        for (Album album : albumsToInsert) {
-            for (Cancion cancion : cancionesToInsert) {
-                if (cancion.getAlbumId() == null) {
-                    cancion.setAlbumId(album.getId());
-                }
+                List<Cancion> canciones = crearCancionesDeAlbum(album, banda.getId());
+                cancionesToInsert.addAll(canciones);
             }
         }
 
@@ -186,7 +169,7 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
             Cancion cancion = new Cancion();
             cancion.setNombre(cancionDTO.getNombre());
             cancion.setDuracion(cancionDTO.getDuracion());
-            cancion.setAlbumId(album.getId());
+            cancion.setAlbumId(album.getId());  // Aquí album ya tiene _id generado
             cancion.setArtistaId(artistaId);
             cancion.setGeneroMusical(cancionDTO.getGeneroMusical());
             canciones.add(cancion);
