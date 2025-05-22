@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
 public class PanelAlbumItem extends JPanel {
@@ -29,6 +30,7 @@ public class PanelAlbumItem extends JPanel {
     private final Color hoverColor = new Color(50, 50, 50);
     private final Color normalColor = new Color(30, 30, 30);
     private FontManager fontManager = new FontManager();
+    private ControlNavegacion controlNavegacion = new ControlNavegacion();
    
 
     public PanelAlbumItem(AlbumConArtistaDTO album) {
@@ -78,9 +80,9 @@ public class PanelAlbumItem extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // ventana con las canciones
                 System.out.println("Álbum seleccionado: " + album.getNombreAlbum() + " (ID: " + album.getIdAlbum() + ")");
-                // new VentanaCanciones(album.getIdAlbum()).setVisible(true);
+                String albumId = album.getIdAlbum().toHexString(); 
+                controlNavegacion.mostrarVentanaAlbumDetalle(albumId);
             }
 
             @Override

@@ -18,7 +18,6 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecapresentacion.formatos.PanelArtistaItem;
@@ -62,21 +61,17 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
     
     private void mostrarArtistas(List<Artista> artistas) {
         jPanelArtistas.removeAll();
-        jPanelArtistas.setLayout(new javax.swing.BoxLayout(jPanelArtistas, javax.swing.BoxLayout.Y_AXIS));
-        
-        // TODO: hacer que se muestre bonito luego
+        jPanelArtistas.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+
         for (Artista artista : artistas) {
-            javax.swing.JLabel labelArtista = new javax.swing.JLabel(artista.getNombre());
-            labelArtista.setFont(fontManager.getAfacadBold(24f));
-            labelArtista.setForeground(new java.awt.Color(255, 255, 255));
-            labelArtista.setBorder(javax.swing.BorderFactory.createEmptyBorder(5,5,5,5));
-            jPanelArtistas.add(labelArtista);
+            PanelArtistaItem panel = new PanelArtistaItem(artista);
+            jPanelArtistas.add(panel);
         }
-        
+
         jPanelArtistas.revalidate();
         jPanelArtistas.repaint();
     }
-    
+ 
     public void cargarArtistas() {
         try {
             List<Artista> artistas = artistasBO.obtenerTodosLosArtistas();
@@ -199,13 +194,24 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
     @Override
     public void onBusquedaActualizada(String textoBusqueda) {
         try {
-            List<Artista> artistasFiltrados;
-            if (textoBusqueda == null || textoBusqueda.isEmpty()) {
-                artistasFiltrados = artistasBO.obtenerTodosLosArtistas();
-            } else {
-                artistasFiltrados = artistasBO.obtenerPorNombre(textoBusqueda);
+            if (textoBusqueda == null || textoBusqueda.trim().isEmpty()) {
+                cargarArtistasPorGenero();
+                return;
             }
-            mostrarArtistas(artistasFiltrados);
+
+            List<Artista> artistasFiltrados = artistasBO.obtenerPorNombre(textoBusqueda);
+
+            jPanelArtistas.removeAll();
+            jPanelArtistas.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+
+            for (Artista artista : artistasFiltrados) {
+                PanelArtistaItem panel = new PanelArtistaItem(artista);
+                jPanelArtistas.add(panel);
+            }
+
+            jPanelArtistas.revalidate();
+            jPanelArtistas.repaint();
+
         } catch (Exception e) {
             e.printStackTrace();
         }

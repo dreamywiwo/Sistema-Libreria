@@ -4,10 +4,12 @@
  */
 package tune.sistemabibliotecanegocio.implementaciones;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
@@ -68,6 +70,51 @@ public class AlbumesBO implements IAlbumesBO {
             return this.albumesDAO.obtenerAlbumsConNombreArtista();
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albums y sus artistas");
+        }
+    }
+
+    @Override
+    public AlbumConArtistaDTO obtenerAlbumPorId(String albumId) throws NegocioException {
+        try {
+            return this.albumesDAO.obtenerAlbumPorId(albumId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo obtener el id del album");
+        }
+    }
+
+    @Override
+    public String obtenerGeneroPorAlbum(String albumId) throws NegocioException {
+        try {
+            return this.albumesDAO.obtenerGeneroPorAlbum(albumId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo obtener el genero del album");
+        }
+    }
+
+    @Override
+    public LocalDate obtenerFechaLanzamientoPorAlbum(String albumId) throws NegocioException {
+        try {
+            return this.albumesDAO.obtenerFechaLanzamientoPorAlbum(albumId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo obtener la fecha de lanzamiento del album");
+        }
+    }
+
+    @Override
+    public List<CancionConArtistaDTO> obtenerCancionesPorAlbum(String albumId) throws NegocioException {
+        try {
+            return this.albumesDAO.obtenerCancionesPorAlbum(albumId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener las canciones del album");
+        }
+    }
+
+    @Override
+    public List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto) throws NegocioException {
+        try {
+            return this.albumesDAO.buscarAlbumesPorTexto(texto);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener los albums");
         }
     }
 }

@@ -17,6 +17,8 @@ import tune.sistemabibliotecapersistencia.daos.ArtistasDAO;
 import tune.sistemabibliotecapersistencia.daos.CancionesDAO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
 import tune.sistemabibliotecapersistencia.daos.UsuariosDAO;
+import tune.sistemabibliotecapresentacion.VentanaAlbumDetalle;
+import tune.sistemabibliotecapresentacion.VentanaArtistaDetalle;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
 import tune.sistemabibliotecapresentacion.VentanaRegistro;
 
@@ -58,6 +60,16 @@ public class ControlNavegacion {
     public void registrarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
         usuariosBO.registrarUsuario(usuarioDTO);
         mostrarVentanaPrincipal();
+    }
+    
+    public void mostrarVentanaArtistaDetalle(String idArtista){
+        VentanaArtistaDetalle ventanaArtista = new VentanaArtistaDetalle(artistasBO, idArtista);
+        ventanaArtista.mostrar();
+    }
+    
+    public void mostrarVentanaAlbumDetalle(String idArtista){
+        VentanaAlbumDetalle ventanaAlbum = new VentanaAlbumDetalle(albumesBO, idArtista);
+        ventanaAlbum.mostrar();
     }
 
 }

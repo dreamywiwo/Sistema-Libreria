@@ -7,6 +7,9 @@ package tune.sistemabibliotecanegocio.implementaciones;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
@@ -49,6 +52,33 @@ public class ArtistasBO implements IArtistasBO {
             return this.artistasDAO.obtenerPorGenero(generoMusical);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los artistas por genero");
+        }
+    }
+
+    @Override
+    public ArtistaDTO obtenerArtistaPorId(String artistaId) throws NegocioException {
+        try {
+            return this.artistasDAO.obtenerArtistaPorId(artistaId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener el artista por id");
+        }
+    }
+
+    @Override
+    public List<AlbumConArtistaDTO> obtenerAlbumesPorArtista(String artistaId) throws NegocioException {
+        try {
+            return this.artistasDAO.obtenerAlbumesPorArtista(artistaId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener los albums del artista");
+        }
+    }
+
+    @Override
+    public List<CancionConArtistaDTO> obtenerCancionesPorArtista(String artistaId) throws NegocioException {
+        try {
+            return this.artistasDAO.obtenerCancionesPorArtista(artistaId);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudieron obtener las canciones del artista");
         }
     }
     

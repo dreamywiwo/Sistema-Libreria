@@ -4,8 +4,10 @@
  */
 package tune.sistemabibliotecapersistencia.interfaces;
 
+import java.time.LocalDate;
 import java.util.List;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 
@@ -24,5 +26,15 @@ public interface IAlbumesDAO {
     public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws PersistenciaException;
     
     public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws PersistenciaException;
+    
+    public abstract AlbumConArtistaDTO obtenerAlbumPorId(String albumId) throws PersistenciaException;
+    
+    public abstract String obtenerGeneroPorAlbum(String albumId) throws PersistenciaException;
+    
+    public abstract LocalDate obtenerFechaLanzamientoPorAlbum(String albumId) throws PersistenciaException;
+    
+    public abstract List<CancionConArtistaDTO> obtenerCancionesPorAlbum(String albumId) throws PersistenciaException;
+    
+    public abstract List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto) throws PersistenciaException;
     
 }

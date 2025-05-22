@@ -25,6 +25,7 @@ import tune.sistemabibliotecapresentacion.utils.FontManager;
     
     public void initComboBox(){
         filtroBusquedaAlbums.removeAllItems();
+        filtroBusquedaAlbums.addItem("Filtro");
         filtroBusquedaAlbums.addItem("Nombre");
         filtroBusquedaAlbums.addItem("Genero");
         filtroBusquedaAlbums.addItem("Fecha Lanzamiento");

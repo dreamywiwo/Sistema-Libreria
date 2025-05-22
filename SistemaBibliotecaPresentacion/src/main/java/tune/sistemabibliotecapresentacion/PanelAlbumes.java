@@ -4,7 +4,7 @@
  */
 package tune.sistemabibliotecapresentacion;
 
-import java.awt.GridLayout;
+import java.awt.FlowLayout;
 import java.util.List;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
@@ -12,6 +12,7 @@ import tune.sistemabibliotecapresentacion.buscadores.BuscadorAlbumes;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaAlbumListener;
 import tune.sistemabibliotecapresentacion.formatos.PanelAlbumItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
+import tune.sistemabibliotecapresentacion.utils.WrapLayout;
 
 /**
  *
@@ -49,7 +50,7 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
     private void mostrarAlbumes(List<AlbumConArtistaDTO> albumesDTO) {
         jPanelAlbums.removeAll();
 
-        jPanelAlbums.setLayout(new GridLayout(0, 4, 20, 20)); 
+        jPanelAlbums.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20)); 
 
         for (AlbumConArtistaDTO albumDTO : albumesDTO) {
             PanelAlbumItem panel = new PanelAlbumItem(albumDTO);
@@ -59,7 +60,6 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         jPanelAlbums.revalidate();
         jPanelAlbums.repaint();
     }
-
 
     public void cargarAlbumes() {
         try {
@@ -79,6 +79,9 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
                 albumesFiltrados = albumesBO.obtenerAlbumsConNombreArtista();
             } else {
                 switch (filtro) {
+                    case "Filtro":
+                        albumesFiltrados = albumesBO.buscarAlbumesPorTexto(texto);
+                        break;
                     case "Nombre":
                         albumesFiltrados = albumesBO.obtenerAlbumPorNombreConArtista(texto);
                         break;
