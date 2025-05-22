@@ -33,7 +33,7 @@ public class PanelCancionItem extends JPanel {
     private final ControlNavegacion control;
     private boolean esFavorito = false;
     private final JButton btnFavorito;
-    
+
     private PanelPerfilUsuario panelPerfilUsuario;
 
     public PanelCancionItem(CancionConArtistaDTO cancion, int indice, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
@@ -126,18 +126,8 @@ public class PanelCancionItem extends JPanel {
                     esFavorito = true;
                 }
                 actualizarColorFavorito();
-                
 
-            if (panelPerfilUsuario != null) {
-                SwingUtilities.invokeLater(() -> {
-                    try {
-                        panelPerfilUsuario.mostrarFavoritos();
-                    } catch (NegocioException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-            
+
             } catch (NegocioException ex) {
                 System.err.println("Error al modificar favoritos: " + ex.getMessage());
             }

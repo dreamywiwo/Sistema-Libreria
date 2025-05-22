@@ -1,6 +1,7 @@
 tune\sistemabibliotecapresentacion\PanelPerfilUsuario$3.class
 tune\sistemabibliotecapresentacion\formatos\PanelGeneroItem$1.class
 main\Main.class
+tune\sistemabibliotecapresentacion\VentanaArtistaDetalle$3.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$4.class
 tune\sistemabibliotecapresentacion\PanelIngresarNuevaContraseña.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$1.class
@@ -19,6 +20,7 @@ tune\sistemabibliotecapresentacion\PanelAñadirArtista$1.class
 tune\sistemabibliotecapresentacion\VentanaAlbumDetalle$1.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$6.class
 tune\sistemabibliotecapresentacion\VentanaArtistaDetalle.class
+tune\sistemabibliotecapresentacion\VentanaArtistaDetalle$2.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorArtistas$1.class
 tune\sistemabibliotecapresentacion\PanelEditarUsuario$3.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorCanciones.class
@@ -41,6 +43,7 @@ tune\sistemabibliotecapresentacion\formatos\PanelIntegranteItem.class
 tune\sistemabibliotecapresentacion\PanelIngresarNuevaContraseña$1.class
 tune\sistemabibliotecapresentacion\InicioSesion$3.class
 tune\sistemabibliotecapresentacion\buscadores\BusquedaListener.class
+tune\sistemabibliotecapresentacion\PanelAñadirAlbum.class
 tune\sistemabibliotecapresentacion\PanelArtistas.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$2.class
 tune\sistemabibliotecapresentacion\PanelEditarUsuario$1.class
@@ -59,6 +62,7 @@ tune\sistemabibliotecapresentacion\PanelCanciones.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$3.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorAlbumes$2.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorCanciones$2.class
+tune\sistemabibliotecapresentacion\PanelAñadirAlbum$1.class
 tune\sistemabibliotecapresentacion\formatos\PanelArtistaItem.class
 tune\sistemabibliotecapresentacion\PanelArtistas$2.class
 tune\sistemabibliotecapresentacion\PanelAñadirArtista.class

@@ -7,21 +7,30 @@ package tune.sistemabibliotecapresentacion;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dialog;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.net.URL;
 import java.util.List;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.ArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.IntegranteDTO;
+import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
 import tune.sistemabibliotecanegocio.interfaces.IUsuariosBO;
 import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
@@ -42,14 +51,16 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
     private ControlNavegacion control;
     FontManager fontManager = new FontManager();
     private PanelPerfilUsuario panelPerfilUsuario;
+    IAlbumesBO albumesBO;
     
-    public VentanaArtistaDetalle(IArtistasBO artistasBO, String artistaId, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario) {
+    public VentanaArtistaDetalle(IArtistasBO artistasBO, String artistaId, IUsuariosBO usuariosBO, ControlNavegacion control, PanelPerfilUsuario panelPerfilUsuario, IAlbumesBO albumesBO) {
         initComponents();
         this.artistasBO = artistasBO;
         this.artistaId = artistaId;
         this.usuariosBO = usuariosBO;
         this.control = control;
         this.panelPerfilUsuario = panelPerfilUsuario;
+        this.albumesBO = albumesBO;
         setLocationRelativeTo(null);
         
         jPanelInformacion.setOpaque(false);
@@ -174,6 +185,43 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         dispose();
     }
 
+    
+    public void mostrarPanelAñadirAlbumFlotante() {
+    try {
+        JPanel fondoOscuro = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(new Color(0, 0, 0, 150));
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        fondoOscuro.setOpaque(false);
+        fondoOscuro.setLayout(new GridBagLayout());
+
+        PanelAñadirAlbum panelAñadirAlbum = new PanelAñadirAlbum(albumesBO, control, artistaId);
+        panelAñadirAlbum.setOpaque(true);
+        panelAñadirAlbum.setPreferredSize(new Dimension(860, 500));
+
+        fondoOscuro.add(panelAñadirAlbum);
+
+        JDialog dialogo = new JDialog((Frame) null, Dialog.ModalityType.APPLICATION_MODAL);
+        dialogo.setUndecorated(true);
+        dialogo.setBackground(new Color(0, 0, 0, 0));
+        dialogo.setContentPane(fondoOscuro);
+        dialogo.pack();
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width - dialogo.getWidth()) / 2;
+        int y = (screenSize.height - dialogo.getHeight()) / 2;
+        dialogo.setLocation(x, y);
+
+        dialogo.setVisible(true);
+
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -307,7 +355,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCerrarActionPerformed
 
     private void jButtonAñadirAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAñadirAlbumActionPerformed
-        // TODO add your handling code here:
+        mostrarPanelAñadirAlbumFlotante();
     }//GEN-LAST:event_jButtonAñadirAlbumActionPerformed
 
 

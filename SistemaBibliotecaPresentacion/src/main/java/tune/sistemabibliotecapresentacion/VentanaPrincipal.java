@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
@@ -28,6 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private IAlbumesBO albumesBO;
     private IUsuariosBO usuariosBO;
     private ICancionesBO cancionesBO;
+    private CancionConArtistaDTO cancion;
     private static final Logger LOG = Logger.getLogger(VentanaPrincipal.class.getName());
     ControlNavegacion control;
 
@@ -46,15 +48,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.cancionesBO = cancionesBO;
         this.control = control;
         this.usuariosBO = usuariosBO;
+        this.cancion = cancion;
         this.generos = insercionMasivaBO.obtenerGenerosUnicos();
         setLocationRelativeTo(null);
 
         // Inicializar los paneles
+        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         panelArtistas = new PanelArtistas(artistasBO, usuariosBO, control, panelPerfilUsuario);
         panelAlbumes = new PanelAlbumes(albumesBO, usuariosBO, control, panelPerfilUsuario);
         panelCanciones = new PanelCanciones(cancionesBO, usuariosBO, control, panelPerfilUsuario);
-        panelPrincipal = new PanelPrincipal();
-        panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
+        panelPrincipal = new PanelPrincipal(artistasBO, albumesBO, cancionesBO, control, cancion, panelPerfilUsuario, usuariosBO);
+        
 
         control.setPanelArtistas(panelArtistas);
         control.setPanelAlbumes(panelAlbumes);
@@ -106,7 +110,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (panelPerfilUsuario != null) {
             panelPerfilUsuario = null;
             panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
-        }else{
+        } else {
             panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         }
 

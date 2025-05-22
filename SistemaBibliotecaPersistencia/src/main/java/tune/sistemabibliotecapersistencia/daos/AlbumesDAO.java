@@ -299,15 +299,15 @@ public class AlbumesDAO implements IAlbumesDAO {
                 .getCollection("Canciones");
 
         List<Bson> pipeline = Arrays.asList(
-            match(eq("albumId", new ObjectId(albumId))),
-            lookup("Artistas", "artistaId", "_id", "artista"),
-            unwind("$artista"),
-            project(fields(
-                include("nombre", "duracion"),
-                computed("nombreArtista", "$artista.nombre"),
-                computed("nombreAlbum", "$albumId"), 
-                computed("urlImagenAlbum", "") 
-            ))
+                match(eq("albumId", new ObjectId(albumId))),
+                lookup("Artistas", "artistaId", "_id", "artista"),
+                unwind("$artista"),
+                project(fields(
+                        include("nombre", "duracion"),
+                        computed("nombreArtista", "$artista.nombre"),
+                        computed("nombreAlbum", "$albumId"),
+                        computed("urlImagenAlbum", "")
+                ))
         );
 
         AggregateIterable<Document> docs = coleccionCanciones.aggregate(pipeline);
@@ -324,7 +324,7 @@ public class AlbumesDAO implements IAlbumesDAO {
         }
         return resultado;
     }
-    
+
     @Override
     public List<AlbumConArtistaDTO> obtenerAlbumsPorIds(List<ObjectId> albumIds) throws PersistenciaException {
         List<AlbumConArtistaDTO> resultado = new ArrayList<>();
@@ -337,28 +337,37 @@ public class AlbumesDAO implements IAlbumesDAO {
         MongoCollection<Document> coleccionDocs = db.getCollection("Albumes");
 
         List<Bson> pipeline = Arrays.asList(
-            match(in("_id", albumIds)),
-            lookup("Artistas", "artistaId", "_id", "artista"),
-            unwind("$artista"),
-            project(fields(
-                include("_id", "nombre", "imagenUrl"),
-                computed("nombreArtista", "$artista.nombre")
-            ))
+                match(in("_id", albumIds)),
+                lookup("Artistas", "artistaId", "_id", "artista"),
+                unwind("$artista"),
+                project(fields(
+                        include("_id", "nombre", "imagenUrl"),
+                        computed("nombreArtista", "$artista.nombre")
+                ))
         );
 
         AggregateIterable<Document> docs = coleccionDocs.aggregate(pipeline);
 
         for (Document doc : docs) {
             AlbumConArtistaDTO dto = new AlbumConArtistaDTO(
-                doc.getObjectId("_id"),
-                doc.getString("nombre"),
-                doc.getString("imagenUrl"),
-                doc.getString("nombreArtista")
+                    doc.getObjectId("_id"),
+                    doc.getString("nombre"),
+                    doc.getString("imagenUrl"),
+                    doc.getString("nombreArtista")
             );
             resultado.add(dto);
         }
 
         return resultado;
     }
- 
+
+    @Override
+    public void guardarAlbum(Album album) throws PersistenciaException {
+        try {
+            coleccionAlbumes.insertOne(album);
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al guardar el álbum", e);
+        }
+    }
+
 }

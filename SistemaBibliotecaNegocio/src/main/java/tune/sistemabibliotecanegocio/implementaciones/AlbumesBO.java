@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.AlbumDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
@@ -125,6 +126,42 @@ public class AlbumesBO implements IAlbumesBO {
             return this.albumesDAO.obtenerAlbumsPorIds(albumIds);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener los albumes por sus ids");
+        }
+    }
+
+    @Override
+    public void registrarAlbum(AlbumDTO albumDTO, String idArtista) throws NegocioException {
+        try {
+            validarAlbumDTO(albumDTO);
+
+            Album album = new Album();
+            album.setNombre(albumDTO.getNombre());
+            album.setGeneroMusical(albumDTO.getGeneroMusical());
+            album.setImagenPortada(albumDTO.getImagenPortada());
+            album.setArtistaId(new ObjectId(idArtista));  // <-- aquí usas el parámetro separado
+            album.setFechaLanzamiento(LocalDate.now());
+
+            albumesDAO.guardarAlbum(album);
+
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("No se pudo registrar el álbum");
+        } catch (NegocioException ex) {
+            throw new NegocioException("Datos inválidos para registrar el álbum: " + ex.getMessage());
+        }
+    }
+
+    private void validarAlbumDTO(AlbumDTO albumDTO) throws NegocioException {
+        if (albumDTO == null) {
+            throw new NegocioException("El álbum no puede ser nulo.");
+        }
+        if (albumDTO.getNombre() == null || albumDTO.getNombre().trim().isEmpty()) {
+            throw new NegocioException("El nombre del álbum es obligatorio.");
+        }
+        if (albumDTO.getGeneroMusical() == null || albumDTO.getGeneroMusical().trim().isEmpty()) {
+            throw new NegocioException("El género musical es obligatorio.");
+        }
+        if (albumDTO.getImagenPortada() == null || albumDTO.getImagenPortada().trim().isEmpty()) {
+            throw new NegocioException("La URL de la imagen del álbum es obligatoria.");
         }
     }
 }

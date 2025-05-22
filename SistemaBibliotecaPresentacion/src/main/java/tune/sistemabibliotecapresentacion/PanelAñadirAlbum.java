@@ -4,7 +4,13 @@
  */
 package tune.sistemabibliotecapresentacion;
 
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import tune.sistemabibliotecadominio.dtos.AlbumDTO;
+import tune.sistemabibliotecanegocio.exception.NegocioException;
+import tune.sistemabibliotecanegocio.implementaciones.AlbumesBO;
+import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 
 /**
  *
@@ -15,8 +21,15 @@ public class PanelAñadirAlbum extends javax.swing.JPanel {
     /**
      * Creates new form PanelAñadirAlbum
      */
-    public PanelAñadirAlbum() {
+    IAlbumesBO albumesBO;
+    ControlNavegacion control;
+    String artistaId;
+    
+    public PanelAñadirAlbum(IAlbumesBO albumesBO, ControlNavegacion control,String artistaId) {
         initComponents();
+        this.albumesBO = albumesBO;
+        this.control = control;
+        this.artistaId = artistaId;
     }
 
     /**
@@ -29,9 +42,9 @@ public class PanelAñadirAlbum extends javax.swing.JPanel {
     private void initComponents() {
 
         jButtonGuardar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jTextFieldNombre = new javax.swing.JTextField();
+        jTextFieldGenero = new javax.swing.JTextField();
+        jTextFieldURL = new javax.swing.JTextField();
         jLabelFondo = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -46,15 +59,9 @@ public class PanelAñadirAlbum extends javax.swing.JPanel {
             }
         });
         add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, -1, -1));
-
-        jTextField1.setText("jTextField1");
-        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 530, 40));
-
-        jTextField2.setText("jTextField1");
-        add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 530, 40));
-
-        jTextField3.setText("jTextField1");
-        add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 530, 40));
+        add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, 530, 40));
+        add(jTextFieldGenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 230, 530, 40));
+        add(jTextFieldURL, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 530, 40));
 
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoAñadirAlbum.png"))); // NOI18N
         add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 540));
@@ -64,21 +71,19 @@ public class PanelAñadirAlbum extends javax.swing.JPanel {
         String nombre = jTextFieldNombre.getText().trim();
         String genero = jTextFieldGenero.getText().trim();
         String url = jTextFieldURL.getText().trim();
-        String tipoSeleccionado = (String) jComboBoxTipo.getSelectedItem();
 
         if (nombre.isEmpty() || genero.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete nombre y genero.");
             return;
         }
 
-        AlbumDTO artistaNuevo = new AlbumDTO();
-        artistaNuevo.setNombre(nombre);
-        artistaNuevo.setTipo(tipoSeleccionado);
-        artistaNuevo.setGeneroMusical(genero);
-        artistaNuevo.setImagen(url);
+        AlbumDTO albumNuevo = new AlbumDTO();
+        albumNuevo.setNombre(nombre);
+        albumNuevo.setGeneroMusical(genero);
+        albumNuevo.setImagenPortada(url);
 
         try {
-            artistasBO.guardarArtista(artistaNuevo);
+            albumesBO.registrarAlbum(albumNuevo, artistaId);
             JOptionPane.showMessageDialog(this, "Artista guardado con éxito.");
             control.actualizarPaneles();
             SwingUtilities.getWindowAncestor(this).dispose();
@@ -91,8 +96,8 @@ public class PanelAñadirAlbum extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonGuardar;
     private javax.swing.JLabel jLabelFondo;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextFieldGenero;
+    private javax.swing.JTextField jTextFieldNombre;
+    private javax.swing.JTextField jTextFieldURL;
     // End of variables declaration//GEN-END:variables
 }

@@ -78,7 +78,7 @@ public class ControlNavegacion {
 
         VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
         PanelPerfilUsuario panelPerfilUsuario = new PanelPerfilUsuario(this, ventanaPrincipal, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
-        VentanaArtistaDetalle ventanaArtista = new VentanaArtistaDetalle(artistasBO, idArtista, usuariosBO, this, panelPerfilUsuario);
+        VentanaArtistaDetalle ventanaArtista = new VentanaArtistaDetalle(artistasBO, idArtista, usuariosBO, this, panelPerfilUsuario, albumesBO);
         ventanaArtista.mostrar();
     }
     
@@ -96,7 +96,7 @@ public class ControlNavegacion {
         return usuarioActual;
     }
     
-    public void actualizarPaneles(){
+    public void actualizarPaneles() throws NegocioException{
         panelArtistas.cargarArtistasPorGenero();
         panelAlbumes.cargarAlbumes();
         panelCanciones.cargarCanciones();
@@ -112,5 +112,5 @@ public class ControlNavegacion {
 
     public void setPanelCanciones(PanelCanciones panelCanciones) {
         this.panelCanciones = panelCanciones;
-    }
+    } 
 }

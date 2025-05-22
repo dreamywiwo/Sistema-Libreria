@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.List;
 import org.bson.types.ObjectId;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
+import tune.sistemabibliotecadominio.dtos.AlbumDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecadominio.entidades.Album;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
@@ -35,5 +36,7 @@ public interface IAlbumesBO {
     public abstract List<AlbumConArtistaDTO> obtenerAlbumsPorIds(List<ObjectId> albumIds) throws NegocioException;
     
     public abstract List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto, List<String> generosRestringidos) throws NegocioException;
+    
+    public abstract void registrarAlbum(AlbumDTO albumDTO, String idArtista) throws NegocioException;
     
 }

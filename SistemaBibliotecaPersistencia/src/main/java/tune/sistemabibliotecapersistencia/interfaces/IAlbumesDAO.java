@@ -40,4 +40,6 @@ public interface IAlbumesDAO {
     
     public abstract List<AlbumConArtistaDTO> obtenerAlbumsPorIds(List<ObjectId> albumIds) throws PersistenciaException;
     
+    public void guardarAlbum(Album album) throws PersistenciaException;
+    
 }
