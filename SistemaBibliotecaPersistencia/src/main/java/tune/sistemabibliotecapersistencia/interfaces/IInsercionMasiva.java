@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecapersistencia.interfaces;
 
+import java.util.List;
 import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 
 /**
@@ -13,4 +14,5 @@ import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 public interface IInsercionMasiva {
     
     public abstract void insertarArtistasMasivamente() throws PersistenciaException;
+    public List<String> obtenerTodosLosGenerosUnicos();
 }

@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecanegocio.interfaces;
 
+import java.util.List;
 import tune.sistemabibliotecanegocio.exception.NegocioException;
 
 /**
@@ -13,5 +14,6 @@ import tune.sistemabibliotecanegocio.exception.NegocioException;
 public interface IInsercionMasivaBO {
     
     public abstract void insertarArtistasMasivamente() throws NegocioException;
+    public List<String> obtenerGenerosUnicos() throws NegocioException;
     
 }
