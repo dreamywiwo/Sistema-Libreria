@@ -47,7 +47,7 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         cargarAlbumes();
     }
     
-    private void mostrarAlbumes(List<AlbumConArtistaDTO> albumesDTO) {
+    public void mostrarAlbumes(List<AlbumConArtistaDTO> albumesDTO) {
         jPanelAlbums.removeAll();
 
         jPanelAlbums.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20)); 
@@ -68,6 +68,17 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public List<AlbumConArtistaDTO> cargarAlbumesExterior() {
+        List<AlbumConArtistaDTO> albumesDTO = null;
+        try {
+            albumesDTO = albumesBO.obtenerAlbumsConNombreArtista();
+            mostrarAlbumes(albumesDTO);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return albumesDTO;
     }
     
     @Override
@@ -143,11 +154,11 @@ public class PanelAlbumes extends javax.swing.JPanel implements BusquedaAlbumLis
         jPanelAlbums.setLayout(jPanelAlbumsLayout);
         jPanelAlbumsLayout.setHorizontalGroup(
             jPanelAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 944, Short.MAX_VALUE)
+            .addGap(0, 948, Short.MAX_VALUE)
         );
         jPanelAlbumsLayout.setVerticalGroup(
             jPanelAlbumsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 468, Short.MAX_VALUE)
         );
 
         jScrollPaneAlbums.setViewportView(jPanelAlbums);

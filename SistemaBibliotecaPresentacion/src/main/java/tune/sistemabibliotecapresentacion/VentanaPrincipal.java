@@ -199,6 +199,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void jButtonAgregarArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarArtistasActionPerformed
         agregarArtistasMasivamente();
+        panelArtistas.mostrarArtistas(panelArtistas.cargarArtistasExterior());
+        panelAlbumes.mostrarAlbumes(panelAlbumes.cargarAlbumesExterior());
+        panelCanciones.mostrarCanciones(panelCanciones.cargarCancionesExterior());
+        panelArtistas.cargarArtistas();
+        panelAlbumes.cargarAlbumes();
+        panelCanciones.cargarCanciones();
     }//GEN-LAST:event_jButtonAgregarArtistasActionPerformed
 
     private void jButtonAlbumesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlbumesActionPerformed
@@ -213,9 +219,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         mostrarPanel("Canciones");
     }//GEN-LAST:event_jButtonCancionesActionPerformed
 
-    private void jButtonIconoActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+    private void jButtonIconoActionPerformed(java.awt.event.ActionEvent evt) {
         mostrarPanel("Perfil");
-    }     
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAgregarArtistas;

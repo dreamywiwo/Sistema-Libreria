@@ -31,6 +31,7 @@ tune\sistemabibliotecapresentacion\Registro$2.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$3.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorAlbumes$2.class
 tune\sistemabibliotecapresentacion\Identificacion$1.class
+tune\sistemabibliotecapresentacion\VentanaAlbumDetalle$1.class
 tune\sistemabibliotecapresentacion\buscadores\BuscadorCanciones$2.class
 tune\sistemabibliotecapresentacion\VentanaPrincipal$6.class
 tune\sistemabibliotecapresentacion\VentanaArtistaDetalle.class
@@ -53,3 +54,4 @@ tune\sistemabibliotecapresentacion\buscadores\BuscadorArtistas$2.class
 tune\sistemabibliotecapresentacion\Identificacion$2.class
 tune\sistemabibliotecapresentacion\PanelAlbumes.class
 tune\sistemabibliotecapresentacion\VentanaAlbumDetalle.class
+tune\sistemabibliotecapresentacion\VentanaArtistaDetalle$1.class

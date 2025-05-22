@@ -184,6 +184,7 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         jScrollPaneIntegrantes = new javax.swing.JScrollPane();
         jPanelIntegrantes = new javax.swing.JPanel();
         jPanelNombre = new javax.swing.JPanel();
+        jButtonCerrar = new javax.swing.JButton();
         jLabelFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -225,11 +226,11 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         jPanelAlbumes.setLayout(jPanelAlbumesLayout);
         jPanelAlbumesLayout.setHorizontalGroup(
             jPanelAlbumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 684, Short.MAX_VALUE)
+            .addGap(0, 688, Short.MAX_VALUE)
         );
         jPanelAlbumesLayout.setVerticalGroup(
             jPanelAlbumesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGap(0, 198, Short.MAX_VALUE)
         );
 
         jScrollPaneAlbumes.setViewportView(jPanelAlbumes);
@@ -240,11 +241,11 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
         jPanelIntegrantes.setLayout(jPanelIntegrantesLayout);
         jPanelIntegrantesLayout.setHorizontalGroup(
             jPanelIntegrantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 294, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
         jPanelIntegrantesLayout.setVerticalGroup(
             jPanelIntegrantesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 294, Short.MAX_VALUE)
+            .addGap(0, 298, Short.MAX_VALUE)
         );
 
         jScrollPaneIntegrantes.setViewportView(jPanelIntegrantes);
@@ -264,14 +265,30 @@ public class VentanaArtistaDetalle extends javax.swing.JFrame {
 
         getContentPane().add(jPanelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 900, 110));
 
+        jButtonCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BotonCerrar.png"))); // NOI18N
+        jButtonCerrar.setBorderPainted(false);
+        jButtonCerrar.setContentAreaFilled(false);
+        jButtonCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCerrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 30, 40, 40));
+
         jLabelFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoSimple.png"))); // NOI18N
         getContentPane().add(jLabelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButtonCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCerrarActionPerformed
+        cerrar();
+    }//GEN-LAST:event_jButtonCerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonCerrar;
     private javax.swing.JLabel jLabelFondo;
     private javax.swing.JPanel jPanelAlbumes;
     private javax.swing.JPanel jPanelCanciones;
