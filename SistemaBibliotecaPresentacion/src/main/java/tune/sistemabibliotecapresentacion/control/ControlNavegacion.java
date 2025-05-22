@@ -17,6 +17,9 @@ import tune.sistemabibliotecapersistencia.daos.ArtistasDAO;
 import tune.sistemabibliotecapersistencia.daos.CancionesDAO;
 import tune.sistemabibliotecapersistencia.daos.InsercionMasivaDAO;
 import tune.sistemabibliotecapersistencia.daos.UsuariosDAO;
+import tune.sistemabibliotecapresentacion.PanelAlbumes;
+import tune.sistemabibliotecapresentacion.PanelArtistas;
+import tune.sistemabibliotecapresentacion.PanelCanciones;
 import tune.sistemabibliotecapresentacion.VentanaAlbumDetalle;
 import tune.sistemabibliotecapresentacion.VentanaArtistaDetalle;
 import tune.sistemabibliotecapresentacion.VentanaPrincipal;
@@ -38,6 +41,10 @@ public class ControlNavegacion {
     
     CancionesDAO cancionesDAO = new CancionesDAO();
     CancionesBO cancionesBO = new CancionesBO(cancionesDAO);
+    
+    private PanelArtistas panelArtistas;
+    private PanelAlbumes panelAlbumes;
+    private PanelCanciones panelCanciones;
     
     
     public void mostrarVentanaPrincipal() throws NegocioException {
@@ -67,7 +74,7 @@ public class ControlNavegacion {
     }
     
     public void mostrarVentanaAlbumDetalle(String idArtista){
-        VentanaAlbumDetalle ventanaAlbum = new VentanaAlbumDetalle(albumesBO, idArtista);
+        VentanaAlbumDetalle ventanaAlbum = new VentanaAlbumDetalle(albumesBO, idArtista, this);
         ventanaAlbum.mostrar();
     }
 
@@ -75,5 +82,23 @@ public class ControlNavegacion {
     public Usuario obtenerUsuarioActual() throws NegocioException {
         Usuario usuarioActual = usuariosBO.obtenerUsuarioActual();
         return usuarioActual;
+    }
+    
+    public void actualizarPaneles(){
+        panelArtistas.cargarArtistasPorGenero();
+        panelAlbumes.cargarAlbumes();
+        panelCanciones.cargarCanciones();
+    }
+    
+    public void setPanelArtistas(PanelArtistas panelArtistas) {
+        this.panelArtistas = panelArtistas;
+    }
+
+    public void setPanelAlbumes(PanelAlbumes panelAlbumes) {
+        this.panelAlbumes = panelAlbumes;
+    }
+
+    public void setPanelCanciones(PanelCanciones panelCanciones) {
+        this.panelCanciones = panelCanciones;
     }
 }

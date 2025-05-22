@@ -29,29 +29,29 @@ public class ArtistasBO implements IArtistasBO {
     }
 
     @Override
-    public List<Artista> obtenerTodosLosArtistas() throws NegocioException {
+    public List<Artista> obtenerTodosLosArtistas(List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.artistasDAO.obtenerTodosLosArtistas();
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener los artistas");
+            return artistasDAO.obtenerTodosLosArtistas(generosRestringidos);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error en negocio al obtener todos los artistas", e);
         }
     }
 
     @Override
-    public List<Artista> obtenerPorNombre(String nombre) throws NegocioException {
+    public List<Artista> obtenerPorNombre(String nombre, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.artistasDAO.obtenerPorNombre(nombre);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener los artistas por nombre");
+            return artistasDAO.obtenerPorNombre(nombre, generosRestringidos);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error en negocio al obtener artistas por nombre", e);
         }
     }
 
     @Override
-    public List<Artista> obtenerPorGenero(String generoMusical) throws NegocioException {
+    public List<Artista> obtenerPorGenero(String generoMusical, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.artistasDAO.obtenerPorGenero(generoMusical);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("No se pudieron obtener los artistas por genero");
+            return artistasDAO.obtenerPorGenero(generoMusical, generosRestringidos);
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error en negocio al obtener artistas por género", e);
         }
     }
 

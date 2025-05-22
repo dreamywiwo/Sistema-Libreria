@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 import tune.sistemabibliotecadominio.dtos.AlbumConArtistaDTO;
 import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.IAlbumesBO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 
 /**
@@ -31,11 +32,13 @@ public class VentanaAlbumDetalle extends javax.swing.JFrame {
 
     private String albumId;
     private IAlbumesBO albumesBO;
+    private ControlNavegacion control;
     
-    public VentanaAlbumDetalle(IAlbumesBO albumesBO, String albumId) {
+    public VentanaAlbumDetalle(IAlbumesBO albumesBO, String albumId, ControlNavegacion control) {
         initComponents();
         this.albumesBO = albumesBO;
         this.albumId = albumId;
+        this.control = control;
         setLocationRelativeTo(null);
         
         jPanelCanciones.setOpaque(false);

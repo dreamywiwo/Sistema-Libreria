@@ -39,26 +39,53 @@ public class ArtistasDAO implements IArtistasDAO {
     }
 
     @Override
-    public List<Artista> obtenerTodosLosArtistas() throws PersistenciaException {
-        List<Artista> artistas = new ArrayList<>();
-        coleccionArtistas.find().into(artistas);
-        return artistas;
+    public List<Artista> obtenerTodosLosArtistas(List<String> generosRestringidos) throws PersistenciaException {
+        try {
+            Bson filtro = (generosRestringidos == null || generosRestringidos.isEmpty())
+                          ? new org.bson.Document()
+                          : Filters.nin("generoMusical", generosRestringidos);
+
+            List<Artista> artistas = new ArrayList<>();
+            coleccionArtistas.find(filtro).into(artistas);
+            return artistas;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener todos los artistas", e);
+        }
     }
 
     @Override
-    public List<Artista> obtenerPorNombre(String nombre) throws PersistenciaException {
-        List<Artista> artistas = new ArrayList<>();
-        coleccionArtistas.find(Filters.regex("nombre", ".*" + nombre + ".*", "i"))
-                        .into(artistas);
-        return artistas;
+    public List<Artista> obtenerPorNombre(String nombre, List<String> generosRestringidos) throws PersistenciaException {
+        try {
+            Bson filtroNombre = Filters.regex("nombre", ".*" + nombre + ".*", "i");
+            Bson filtroGeneros = (generosRestringidos == null || generosRestringidos.isEmpty())
+                                ? new org.bson.Document()
+                                : Filters.nin("generoMusical", generosRestringidos);
+            Bson filtroFinal = Filters.and(filtroNombre, filtroGeneros);
+
+            List<Artista> artistas = new ArrayList<>();
+            coleccionArtistas.find(filtroFinal).into(artistas);
+            return artistas;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener artistas por nombre", e);
+        }
     }
 
     @Override
-    public List<Artista> obtenerPorGenero(String generoMusical) throws PersistenciaException {
-        List<Artista> artistas = new ArrayList<>();
-        coleccionArtistas.find(Filters.regex("generoMusical", "^" + generoMusical + "$", "i"))
-                        .into(artistas);
-        return artistas;
+    public List<Artista> obtenerPorGenero(String generoMusical, List<String> generosRestringidos) throws PersistenciaException {
+        try {
+            Bson filtroGenero = Filters.eq("generoMusical", generoMusical);
+            Bson filtroGenerosRestringidos = (generosRestringidos == null || generosRestringidos.isEmpty())
+                                            ? new org.bson.Document()
+                                            : Filters.nin("generoMusical", generosRestringidos);
+
+            Bson filtroFinal = Filters.and(filtroGenero, filtroGenerosRestringidos);
+
+            List<Artista> artistas = new ArrayList<>();
+            coleccionArtistas.find(filtroFinal).into(artistas);
+            return artistas;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener artistas por género", e);
+        }
     }
     
     @Override

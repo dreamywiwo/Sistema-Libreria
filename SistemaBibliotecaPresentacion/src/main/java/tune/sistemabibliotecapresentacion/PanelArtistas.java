@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import tune.sistemabibliotecadominio.entidades.Artista;
 import tune.sistemabibliotecanegocio.interfaces.IArtistasBO;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelArtistaItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 import tune.sistemabibliotecapresentacion.utils.WrapLayout;
@@ -33,10 +34,12 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
     FontManager fontManager = new FontManager();
 
     private IArtistasBO artistasBO;
+    private ControlNavegacion control;
 
-    public PanelArtistas(IArtistasBO artistasBO) {
+    public PanelArtistas(IArtistasBO artistasBO, ControlNavegacion control) {
         initComponents();
         this.artistasBO = artistasBO;
+        this.control = control;
         this.setOpaque(false);
 
         jScrollPaneArtistas.setOpaque(false);
@@ -54,7 +57,6 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         jPanelContenedor.revalidate();
         jPanelContenedor.repaint();
 
-        //cargarArtistas();
         cargarArtistasPorGenero();
 
     }
@@ -74,7 +76,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
 
     public void cargarArtistas() {
         try {
-            List<Artista> artistas = artistasBO.obtenerTodosLosArtistas();
+            List<Artista> artistas = artistasBO.obtenerTodosLosArtistas(control.obtenerUsuarioActual().getGenerosRestringidos());
             mostrarArtistas(artistas);
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +86,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
     public List<Artista> cargarArtistasExterior() {
         List<Artista> artistas = null;
         try {
-            artistas = artistasBO.obtenerTodosLosArtistas();
+            artistas = artistasBO.obtenerTodosLosArtistas(control.obtenerUsuarioActual().getGenerosRestringidos());
             mostrarArtistas(artistas);
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,9 +95,9 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
         return artistas;
     }
 
-    private void cargarArtistasPorGenero() {
+    public void cargarArtistasPorGenero() {
         try {
-            List<Artista> todosArtistas = artistasBO.obtenerTodosLosArtistas();
+            List<Artista> todosArtistas = artistasBO.obtenerTodosLosArtistas(control.obtenerUsuarioActual().getGenerosRestringidos());
 
             Map<String, List<Artista>> artistasPorGenero = new LinkedHashMap<>();
             for (Artista artista : todosArtistas) {
@@ -211,7 +213,7 @@ public class PanelArtistas extends javax.swing.JPanel implements BusquedaListene
                 return;
             }
 
-            List<Artista> artistasFiltrados = artistasBO.obtenerPorNombre(textoBusqueda);
+            List<Artista> artistasFiltrados = artistasBO.obtenerPorNombre(textoBusqueda, control.obtenerUsuarioActual().getGenerosRestringidos());
 
             jPanelArtistas.removeAll();
             jPanelArtistas.setLayout(new WrapLayout(FlowLayout.CENTER, 20, 20));

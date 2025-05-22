@@ -13,15 +13,15 @@ import tune.sistemabibliotecanegocio.exception.NegocioException;
 
 public interface IAlbumesBO {
     
-    public abstract List<Album> obtenerTodosLosAlbums() throws NegocioException;
+    public abstract List<Album> obtenerTodosLosAlbums(List<String> generosRestringidos) throws NegocioException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorNombreConArtista(String nombre, List<String> generosRestringidos) throws NegocioException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorGeneroConArtista(String generoMusical, List<String> generosRestringidos) throws NegocioException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumPorFechaLanzamientoConArtista(String fechaLanzamiento, List<String> generosRestringidos) throws NegocioException;
     
-    public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista() throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> obtenerAlbumsConNombreArtista(List<String> generosRestringidos) throws NegocioException;
                
     public abstract AlbumConArtistaDTO obtenerAlbumPorId(String albumId) throws NegocioException;
     
@@ -31,6 +31,6 @@ public interface IAlbumesBO {
     
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorAlbum(String albumId) throws NegocioException;
     
-    public abstract List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto) throws NegocioException;
+    public abstract List<AlbumConArtistaDTO> buscarAlbumesPorTexto(String texto, List<String> generosRestringidos) throws NegocioException;
     
 }

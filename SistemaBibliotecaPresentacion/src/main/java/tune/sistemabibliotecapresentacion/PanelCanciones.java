@@ -14,6 +14,7 @@ import tune.sistemabibliotecadominio.dtos.CancionConArtistaDTO;
 import tune.sistemabibliotecanegocio.interfaces.ICancionesBO;
 import tune.sistemabibliotecapresentacion.buscadores.BuscadorCanciones;
 import tune.sistemabibliotecapresentacion.buscadores.BusquedaListener;
+import tune.sistemabibliotecapresentacion.control.ControlNavegacion;
 import tune.sistemabibliotecapresentacion.formatos.PanelCancionItem;
 import tune.sistemabibliotecapresentacion.utils.FontManager;
 
@@ -25,8 +26,9 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
     
     FontManager fontManager = new FontManager();
     private ICancionesBO cancionesBO;
+    private ControlNavegacion control;
 
-    public PanelCanciones(ICancionesBO cancionesBO) {
+    public PanelCanciones(ICancionesBO cancionesBO, ControlNavegacion control) {
         initComponents();
         this.cancionesBO = cancionesBO;
         this.setOpaque(false);
@@ -50,7 +52,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
     
     public void cargarCanciones() {
         try {
-            List<CancionConArtistaDTO> canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
+            List<CancionConArtistaDTO> canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
             System.out.println("Canciones cargadas: " + canciones.size());
             mostrarCanciones(canciones);
         } catch (Exception e) {
@@ -61,7 +63,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
     public List<CancionConArtistaDTO> cargarCancionesExterior() {
         List<CancionConArtistaDTO> canciones = null;
         try {
-            canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
+            canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
             System.out.println("Canciones cargadas: " + canciones.size());
             mostrarCanciones(canciones);
         } catch (Exception e) {
@@ -85,7 +87,7 @@ public class PanelCanciones extends javax.swing.JPanel implements BusquedaListen
         try {
             List<CancionConArtistaDTO> canciones;
             if (textoBusqueda == null || textoBusqueda.isEmpty()) {
-                canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista();
+                canciones = cancionesBO.obtenerTodasLasCancionesConNombreArtista(control.obtenerUsuarioActual().getGenerosRestringidos());
             } else {
                 canciones = cancionesBO.obtenerCancionesPorNombreConArtista(textoBusqueda); 
             }

@@ -14,13 +14,13 @@ import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
  * @author Dana Chavez
  */
 public interface ICancionesDAO {
-    
-    public abstract List<Cancion> obtenerTodasLasCanciones() throws PersistenciaException;
-    
-    public abstract List<Cancion> obtenerCancionesPorNombre(String nombre) throws PersistenciaException;
-    
-    public abstract List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista() throws PersistenciaException;
-    
+
+    public abstract List<Cancion> obtenerTodasLasCanciones(List<String> generosRestringidos) throws PersistenciaException;
+
+    public abstract List<Cancion> obtenerCancionesPorNombre(String nombre, List<String> generosRestringidos) throws PersistenciaException;
+
+    public abstract List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista(List<String> generosRestringidos) throws PersistenciaException;
+
     public abstract List<CancionConArtistaDTO> obtenerCancionesPorNombreConArtista(String nombre) throws PersistenciaException;
-    
+
 }

@@ -4,6 +4,7 @@
  */
 package tune.sistemabibliotecapersistencia.interfaces;
 
+import java.util.List;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecapersistencia.exception.PersistenciaException;
 
@@ -20,5 +21,7 @@ public interface IUsuariosDAO {
     Usuario buscarPorCorreo(String correo)throws PersistenciaException;
     
     public Usuario editarUsuario(Usuario usuario) throws PersistenciaException;
+    
+    public void actualizarGenerosRestringidosPorId(Object id, List<String> generosRestringidos) throws PersistenciaException;
 
 }

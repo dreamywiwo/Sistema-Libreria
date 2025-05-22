@@ -19,35 +19,35 @@ import tune.sistemabibliotecapersistencia.interfaces.ICancionesDAO;
  * @author Dana Chavez
  */
 public class CancionesBO implements ICancionesBO {
-    
+
     private final ICancionesDAO cancionesDAO;
 
     public CancionesBO(ICancionesDAO cancionesDAO) {
         this.cancionesDAO = cancionesDAO;
-    }   
+    }
 
     @Override
-    public List<Cancion> obtenerTodasLasCanciones() throws NegocioException {
+    public List<Cancion> obtenerTodasLasCanciones(List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.cancionesDAO.obtenerTodasLasCanciones();
+            return this.cancionesDAO.obtenerTodasLasCanciones(generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener las canciones");
         }
     }
 
     @Override
-    public List<Cancion> obtenerCancionesPorNombre(String nombre) throws NegocioException {
+    public List<Cancion> obtenerCancionesPorNombre(String nombre, List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.cancionesDAO.obtenerCancionesPorNombre(nombre);
+            return this.cancionesDAO.obtenerCancionesPorNombre(nombre, generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener las canciones por nombre");
         }
     }
 
     @Override
-    public List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista() throws NegocioException {
+    public List<CancionConArtistaDTO> obtenerTodasLasCancionesConNombreArtista(List<String> generosRestringidos) throws NegocioException {
         try {
-            return this.cancionesDAO.obtenerTodasLasCancionesConNombreArtista();
+            return this.cancionesDAO.obtenerTodasLasCancionesConNombreArtista(generosRestringidos);
         } catch (PersistenciaException ex) {
             throw new NegocioException("No se pudieron obtener las canciones con sus artistas");
         }
@@ -61,5 +61,5 @@ public class CancionesBO implements ICancionesBO {
             throw new NegocioException("No se pudieron obtener las canciones con sus artistas");
         }
     }
-    
+
 }
