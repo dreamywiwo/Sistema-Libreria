@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import tune.sistemabibliotecadominio.dtos.IntegranteDTO;
+import tune.sistemabibliotecadominio.entidades.Integrante;
 
 public class InsercionMasivaDAO implements IInsercionMasiva {
 
@@ -109,13 +111,27 @@ public class InsercionMasivaDAO implements IInsercionMasiva {
     }
 
     private Artista crearArtista(ArtistaDTO artistaDTO) {
-        Artista artista = new Artista();
-        artista.setNombre(artistaDTO.getNombre());
-        artista.setTipo(artistaDTO.getTipo());
-        artista.setGeneroMusical(artistaDTO.getGeneroMusical());
-        artista.setImagen(artistaDTO.getImagen());
-        return artista;
+    Artista artista = new Artista();
+    artista.setNombre(artistaDTO.getNombre());
+    artista.setTipo(artistaDTO.getTipo());
+    artista.setGeneroMusical(artistaDTO.getGeneroMusical());
+    artista.setImagen(artistaDTO.getImagen());
+
+    if (artistaDTO.getIntegrantes() != null) {
+        List<Integrante> integrantes = new ArrayList<>();
+        for (IntegranteDTO dto : artistaDTO.getIntegrantes()) {
+            Integrante integrante = new Integrante();
+            integrante.setNombreCompleto(dto.getNombreCompleto());
+            integrante.setRol(dto.getRol());
+            integrante.setFechaIngreso(dto.getFechaIngreso());
+            integrante.setEstadoActividad(dto.getEstadoActividad());
+            integrantes.add(integrante);
+        }
+        artista.setIntegrantes(integrantes);
     }
+
+    return artista;
+}
 
     private List<Album> crearAlbumesDeArtista(Artista artista, ObjectId artistaId) {
         List<Album> albums = new ArrayList<>();
