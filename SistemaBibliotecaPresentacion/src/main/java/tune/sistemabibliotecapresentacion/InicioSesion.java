@@ -107,6 +107,7 @@ public class InicioSesion extends javax.swing.JPanel {
         
         try {
             control.iniciarSesion(usuario);
+            ventanaPrincipal.cerrar();
         } catch (NegocioException ex) {
             Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
         }

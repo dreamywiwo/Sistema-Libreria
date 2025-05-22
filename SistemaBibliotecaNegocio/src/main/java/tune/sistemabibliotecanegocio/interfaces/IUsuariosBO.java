@@ -16,4 +16,8 @@ public interface IUsuariosBO {
     
     public Usuario iniciarSesion(NuevoUsuarioDTO dto) throws NegocioException;
     Usuario registrarUsuario(NuevoUsuarioDTO usuarioDTO)throws NegocioException;
+    public boolean verificarContraseñaActual(String contraseñaIngresada) throws NegocioException;
+    public Usuario editarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException;
+    public Usuario obtenerUsuarioActual();
+    public void cerrarSesion();
 }

@@ -6,6 +6,8 @@ package tune.sistemabibliotecanegocio.implementaciones;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import tune.sistemabibliotecadominio.entidades.Usuario;
 import tune.sistemabibliotecadominio.dtos.NuevoUsuarioDTO;
 import tune.sistemabibliotecadominio.utils.SeguridadUtil;
@@ -29,60 +31,120 @@ public class UsuariosBO implements IUsuariosBO {
 
     @Override
     public Usuario iniciarSesion(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
+    try {
+        if (usuarioDTO.getCorreo() == null || usuarioDTO.getContrasena() == null) {
+            throw new NegocioException("Correo y contraseña son obligatorios.");
+        }
+
+        String correo = usuarioDTO.getCorreo();
+        String regexCorreo = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        Pattern pattern = Pattern.compile(regexCorreo);
+        Matcher matcher = pattern.matcher(correo);
+        if (!matcher.matches()) {
+            throw new NegocioException("El formato del correo es inválido.");
+        }
+
+        Usuario usuario = usuariosDAO.buscarPorCorreo(correo);
+        if (usuario == null) {
+            throw new NegocioException("Usuario no encontrado.");
+        }
+
+        String contrasenaHasheada = SeguridadUtil.generarHash(usuarioDTO.getContrasena());
+        if (!usuario.getContrasena().equals(contrasenaHasheada)) {
+            throw new NegocioException("Credenciales incorrectas.");
+        }
+
+        this.usuarioActual = usuario;
+
+        return usuario;
+    } catch (PersistenciaException ex) {
+        throw new NegocioException("Error al iniciar sesión", ex);
+    }
+}
+
+    public Usuario registrarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
+    try {
+        if (usuarioDTO.getCorreo() == null || usuarioDTO.getContrasena() == null || usuarioDTO.getNombreusuario() == null) {
+            throw new NegocioException("Faltan datos obligatorios.");
+        }
+
+        String correo = usuarioDTO.getCorreo();
+        String regexCorreo = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        Pattern pattern = Pattern.compile(regexCorreo);
+        Matcher matcher = pattern.matcher(correo);
+        if (!matcher.matches()) {
+            throw new NegocioException("El formato del correo es inválido.");
+        }
+
+        Usuario existente = usuariosDAO.buscarPorCorreo(correo);
+        if (existente != null) {
+            throw new NegocioException("El correo ya está registrado.");
+        }
+
+        String contrasenaHasheada = SeguridadUtil.generarHash(usuarioDTO.getContrasena());
+
+        Usuario nuevo = new Usuario();
+        nuevo.setCorreo(correo);
+        nuevo.setContrasena(contrasenaHasheada);
+        nuevo.setNombreusuario(usuarioDTO.getNombreusuario());
+        nuevo.setImagenPerfil(usuarioDTO.getImagenPerfil());
+
+        return usuariosDAO.registrarUsuario(nuevo);
+
+    } catch (PersistenciaException ex) {
+        throw new NegocioException("Error al registrar usuario", ex);
+    }
+}
+
+    @Override
+    public boolean verificarContraseñaActual(String contraseñaIngresada) throws NegocioException {
+        if (usuarioActual == null) {
+            throw new NegocioException("No hay un usuario autenticado.");
+        }
+
+        String contrasenaHasheada = SeguridadUtil.generarHash(contraseñaIngresada);
+        return usuarioActual.getContrasena().equals(contrasenaHasheada);
+    }
+
+    @Override
+    public Usuario editarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
         try {
-            if (usuarioDTO.getCorreo() == null || usuarioDTO.getContrasena() == null) {
-                throw new NegocioException("Correo y contraseña son obligatorios.");
+            if (usuarioDTO.getNombreusuario() == null || usuarioDTO.getNombreusuario().trim().isEmpty()
+                    || usuarioDTO.getCorreo() == null || usuarioDTO.getCorreo().trim().isEmpty()) {
+                throw new NegocioException("El nombre de usuario y el correo no pueden estar vacíos.");
             }
 
-            Usuario usuario = usuariosDAO.buscarPorCorreo(usuarioDTO.getCorreo());
-            if (usuario == null) {
-                throw new NegocioException("Usuario no encontrado.");
+            if (usuarioActual == null) {
+                throw new NegocioException("No hay un usuario autenticado para editar.");
             }
 
-            String contrasenaHasheada = SeguridadUtil.generarHash(usuarioDTO.getContrasena());
-            if (!usuario.getContrasena().equals(contrasenaHasheada)) {
-                throw new NegocioException("Credenciales incorrectas.");
-            }
+            String nuevaContrasena = usuarioDTO.getContrasena();
+            String hash = (nuevaContrasena != null && !nuevaContrasena.isBlank())
+                    ? SeguridadUtil.generarHash(nuevaContrasena)
+                    : usuarioActual.getContrasena();
 
-            this.usuarioActual = usuario;
+            Usuario actualizado = new Usuario();
+            actualizado.setId(usuarioActual.getId());
+            actualizado.setNombreusuario(usuarioDTO.getNombreusuario());
+            actualizado.setCorreo(usuarioDTO.getCorreo());
+            actualizado.setImagenPerfil(usuarioDTO.getImagenPerfil());
+            actualizado.setContrasena(hash);
 
-            return usuario;
+            Usuario resultado = usuariosDAO.editarUsuario(actualizado);
+            this.usuarioActual = resultado;
+            return resultado;
+
         } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al iniciar sesión", ex);
+            throw new NegocioException("Error al editar usuario", ex);
         }
     }
 
     @Override
-    public Usuario registrarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
-        try {
-            if (usuarioDTO.getCorreo() == null || usuarioDTO.getContrasena() == null || usuarioDTO.getNombreusuario() == null) {
-                throw new NegocioException("Faltan datos obligatorios.");
-            }
-
-            Usuario existente = usuariosDAO.buscarPorCorreo(usuarioDTO.getCorreo());
-            if (existente != null) {
-                throw new NegocioException("El correo ya está registrado.");
-            }
-
-            String contrasenaHasheada = SeguridadUtil.generarHash(usuarioDTO.getContrasena());
-
-            Usuario nuevo = new Usuario();
-            nuevo.setCorreo(usuarioDTO.getCorreo());
-            nuevo.setContrasena(contrasenaHasheada);
-            nuevo.setNombreusuario(usuarioDTO.getNombreusuario());
-            nuevo.setImagenPerfil(usuarioDTO.getImagenPerfil());
-
-            return usuariosDAO.registrarUsuario(nuevo);
-
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al registrar usuario", ex);
-        }
-    }
-
     public Usuario obtenerUsuarioActual() {
         return usuarioActual;
     }
 
+    @Override
     public void cerrarSesion() {
         usuarioActual = null;
     }
