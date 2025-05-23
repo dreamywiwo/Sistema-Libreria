@@ -85,7 +85,6 @@ public class PanelAñadirAlbum extends javax.swing.JPanel {
         try {
             albumesBO.registrarAlbum(albumNuevo, artistaId);
             JOptionPane.showMessageDialog(this, "Artista guardado con éxito.");
-            control.actualizarPaneles();
             SwingUtilities.getWindowAncestor(this).dispose();
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());

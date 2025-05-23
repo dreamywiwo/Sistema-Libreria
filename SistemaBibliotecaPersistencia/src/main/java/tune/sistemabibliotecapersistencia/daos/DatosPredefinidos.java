@@ -14,36 +14,36 @@ public class DatosPredefinidos {
         List<ArtistaDTO> artistasSolistas = new ArrayList<>();
 
         artistasSolistas.add(new ArtistaDTO("Shakira", "Solista", "Pop", "https://imgs.search.brave.com/EMlmYV6S5eouI1bqzv12c6C1APC5jlRMPJbQZiQAFSs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly82NC5t/ZWRpYS50dW1ibHIu/Y29tLzQ0NTgzYjA3/ZGI1NmM3ZjRkMDgz/N2FmZGUzNGNiYjRl/LzY4ZTFkY2UwMWY2/N2FmNDItYzkvczEy/ODB4MTkyMC8zMjUw/MGM0NjFiZjU1OWFm/MzZiZjlkMDk4Zjhi/ZGY5N2UxMjc0OGU5/LmpwZw"));
-        artistasSolistas.add(new ArtistaDTO("James Arthur", "Solista", "Pop", "imagen_solista2.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Christian Nodal", "Solista", "Nortena", "imagen_solista3.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Yuridia", "Solista", "Pop", "imagen_solista4.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Gloria Trevi", "Solista", "Pop Latino", "imagen_solista5.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Belinda", "Solista", "Pop", "imagen_solista6.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Humbe", "Solista", "Pop Latino", "imagen_solista7.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Ariana Grande", "Solista", "Pop", "imagen_solista8.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Lit Killah", "Solista", "Trap", "imagen_solista9.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Paulo Londra", "Solista", "Trap", "imagen_solista10.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Maria Becerra", "Solista", "Pop", "imagen_solista11.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Trueno", "Solista", "Trap", "imagen_solista12.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Nicki Nicole", "Solista", "Hip Hop", "imagen_solista13.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Khea", "Solista", "Trap", "imagen_solista14.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Milo J", "Solista", "Rap", "imagen_solista15.jpg"));
+        artistasSolistas.add(new ArtistaDTO("James Arthur", "Solista", "Pop", "https://imgs.search.brave.com/xKn9zUIyUSfIDtyDQEqrROwiNc99rJ6_UxbSsjUrnWQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vX3A4ZTI4/T3c2c0tZYXY4alEw/WnpOQ3RhdjRCTUFV/a1k5eEZMVlNsaGlk/ay9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlq/Wkc0dC9jQzV6YldW/b2IzTjBMbTVsL2RD/OXphWFJsY3k4MVlq/TmkvWVdNMU9XVmlN/elkwTURFMi9PVFJo/WmpOaE1qUXhNVGN6/L05EUTNaaTkzY0Mx/amIyNTAvWlc1MEwz/VndiRzloWkhNdi9N/akF5TkM4d01TOUtZ/VzFsL2N5MUJjblJv/ZFhJdWFuQmwvWnc"));
+        artistasSolistas.add(new ArtistaDTO("Christian Nodal", "Solista", "Norteña", "https://imgs.search.brave.com/GjAORbjEI0eCfjqSpMooQ6EpSevp5pxc4t5ZxnzVdmA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vbmZJaEox/cTl4clNGWVRGd0I2/VFl2ZVBvcnZKRDhm/Qkt5RXNDamE0MUpq/Zy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/WVd4cy9jR0Z3WlhK/allYUXVZMjl0L0wz/Y3ZablZzYkM4M0x6/Y3YvWXk4eE5Ua3dN/alExTFRJMi9OVEI0/TVRjNE1DMWtaWE5y/L2RHOXdMV2hrTFdO/b2NtbHovZEdsaGJp/MXViMlJoYkMxaS9Z/V05yWjNKdmRXNWtM/V2x0L1lXZGxMbXB3/Wnc"));
+        artistasSolistas.add(new ArtistaDTO("Yuridia", "Solista", "Pop", "https://imgs.search.brave.com/4lT_CV5TpGzv5a4MeO7tm9bcZW846BUgufCGtb8wEAg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20veng4bUhH/RVUtd2dKVXpQblBW/dmpqMnlibHZVRVRX/cWc1Vm4wMEFfUmxP/QS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlq/Wkc0dC9jQzV6YldW/b2IzTjBMbTVsL2RD/OXphWFJsY3k4eE5X/SXcvTkdKa01tUTJN/V00wTlRSai9ZV05s/WXpBeE1qZzBOMlkx/L1ptRm1OQzkzY0Mx/amIyNTAvWlc1MEwz/VndiRzloWkhNdi9N/akF4TlM4d09DOUtO/RUV4L01qRXhMVkl0/TXpBd2VESTEvTUM1/cWNHYw"));
+        artistasSolistas.add(new ArtistaDTO("Gloria Trevi", "Solista", "Pop Latino", "https://imgs.search.brave.com/NPPsxDJDMrIB6J2PX_uQgsChH6OjEzZb5hmDM1tIirY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vajF3cHdn/aUlIYXlDekprVnNE/Mlhxck16YWwtY0Qt/RlpuM3ZkTVNzcFBh/dy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9kbkowZUcx/aFp5NWpiMjB2L2My/bDBaUzloYzNObGRI/TXYvWm1sc1pYTXZN/VFUyTlRBMy9MMmRz/YjNKcFlWOTBjbVYy/L2FUZ3VMV1psWVhS/MWNtVmsvTG1wd1p3"));
+        artistasSolistas.add(new ArtistaDTO("Belinda", "Solista", "Pop", "https://imgs.search.brave.com/o_rL3a3RPFMVejraNtrikNFYJ9uyyEpmlTnolwUULpw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vb2FoUmg4/bGc5YWR0NFZlb3J3/ZUpvTUdIRlFTYzFl/M00xRUpMSzNQbGJL/cy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9aV3gxYm1s/MlpYSnpZV3d1L1ky/OXRMbTE0TDNKbGMy/bDYvWlhJdmRqSXZW/RWxFVTFoTC9RemRU/UWtGWk5VRklVbGd6/L1ZUUkNVMUpHUVRR/dWFuQm4vUDJGMWRH/ZzlNbVkzWm1Way9N/RGN4TWpFNU9UY3pZ/amxoL1lqVTBObVF3/TVdZeFpqUXovTUdW/aFpERm1NbU0zTkRR/eC9NamxoTmpNNU5E/UTJOR0V4L016azRN/V1l4WkRFNE1TWnov/YldGeWREMTBjblZs/Sm5kcC9aSFJvUFRN/M01DWm9aV2xuL2FI/UTlNalkz"));
+        artistasSolistas.add(new ArtistaDTO("Humbe", "Solista", "Pop Latino", "https://imgs.search.brave.com/lY_ERvczXNjdSQri8KEWyQYlRnH4P4P01hjkSIVcfP0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vOGRkNEFE/WDlxUDhpb2NyX1ph/TmJDVS1TZlEySU5t/T1M3Zk9tLU43Yllu/OC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/a3YvTnpGUVJVbHdl/R0kwTVV3dS9hbkJu"));
+        artistasSolistas.add(new ArtistaDTO("Ariana Grande", "Solista", "Pop", "https://imgs.search.brave.com/Tc3iLQoc3f1Z1RupN2i1uQCW1MJ81BjczmidvuQcEjk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vUXFWYldf/Z1lvakFuaXlTV0VC/dEdidC1PMlpjVWkt/LTlrTUJRd0FRc2VV/by9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldGbi9aVzVsY3k1/bGJIQmhhWE11L1ky/OXRMM0psYzJsNlpY/SXYvZGpJdlQxaExO/ekkwTnpOUy9Sa2RE/TjA5VFdVUkxRMWxT/L1VFWkJVRmt1YW5C/blAyRjEvZEdnOU5q/TTFNMkk0TlRSaS9Z/VEl5WkdJeVlUQTRN/VEprL01qY3daV000/TUdNNE16bG0vWXpG/bU5tRXdNVEZtTnps/bC9OMkk0T0RsaE4y/VmxOell5L09UWTFN/VFJrTlNaM2FXUjAv/YUQwME1UUW1hR1Zw/WjJoMC9QVE14TVNa/emJXRnlkRDEwL2Nu/Vmw"));
+        artistasSolistas.add(new ArtistaDTO("Lit Killah", "Solista", "Trap", "https://imgs.search.brave.com/Mo0sf9EgHMC5ZjnIFzG0T7cglcKJT1sfhj4T1Tf3N5k/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vQ2pRbEFq/Y0RIYUlMb1d4UmNN/czltNlUydEJnXzQ2/U05XM0liYkhFU3pF/WS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9iR0Z1WVdO/cGIyNHVZMjl0L0xt/RnlMM0psYzJsNlpY/SXYvZGpJdmJHbDBM/V3RwYkd4aC9hQzF6/WlMxd2NtVnpaVzUw/L1lTMWxjM1JsTFhO/aFltRmsvYnkxbGJp/MWxiQzF0YjNacC9j/M1JoY2kxUlZrcEpO/a2RIL1YwazFTRWsx/U2xOV1NrdE0vTnpW/WFJsSkVRUzVxY0dj/Xy9ZWFYwYUQwNU1E/VmlNR0prL01HVXhN/R0V3WW1JMU5EWmov/T0RReU5UQTBPV016/WkRGaC9OR05pWXpn/eE5UZzRZMkZoL1pX/RmpPVE14WVdNd05E/SmwvWldVeE5ESTJZ/bVEzSm5kcC9aSFJv/UFRReU1DWm9aV2xu/L2FIUTlNamd3Sm5G/MVlXeHAvZEhrOU56/QW1jMjFoY25ROS9k/SEoxWlE"));
+        artistasSolistas.add(new ArtistaDTO("Paulo Londra", "Solista", "Trap", "https://imgs.search.brave.com/skUIjmuvN4ziDi5FcljjTvA5RGxzUPw2qyWoKA1lHvU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vWFVXVUJa/dVhMVXhtR1NOT0tF/aEhNUnNkUFB2alJN/ZzJPQ1RRRFZRUGxP/dy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9ZMjEwZGk1/amIyMHVZWEl2L2FX/MWhaMlZ1WlhOZmJt/OTAvYVdOcFlYTXZN/REUwTWpZMC9OREF3/TVRjME1UTXhNRGt3/L01TNTNaV0p3UDFC/aGRXeHYvWDB4dmJt/UnlZVjlsYzNSeS9a/VzVoWDNOMVgyNTFa/WFp2L1gwVlE"));
+        artistasSolistas.add(new ArtistaDTO("Maria Becerra", "Solista", "Pop", "https://imgs.search.brave.com/CGCOmKx9I2zJ5EUGE4Gybdh5hcDuJBF9jHttWxvR1oI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vWE5vc2Fp/QVpyRjNWLTRsLWNy/NUFJNUVvSnNDN1pZ/bTdkT3RaVE5vbEF3/dy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9ZMjEwZGk1/amIyMHVZWEl2L2FX/MWhaMlZ1WlhOZllY/SjAvYVhOMFlYTXZN/all3TkM1My9aV0p3/UDAxaGNpVkRNeVZC/L1JHRWxNakJDWldO/bGNuSmg"));
+        artistasSolistas.add(new ArtistaDTO("Trueno", "Solista", "Trap", "https://imgs.search.brave.com/4op24vfE-Gm4LYulyz3xXZa4zZaZHN-qmj1L9OQKVnI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vM19STHNV/YlVNTHFfeU1LbVpK/NDVSdzFuanZoUlVi/bE95YV81TXpYa2FZ/US9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlq/Wkc0dC9jQzV6YldW/b2IzTjBMbTVsL2RD/OXphWFJsY3k4MVlq/TmkvWVdNMU9XVmlN/elkwTURFMi9PVFJo/WmpOaE1qUXhNVGN6/L05EUTNaaTkzY0Mx/amIyNTAvWlc1MEwz/VndiRzloWkhNdi9N/akF5TkM4d01TOHhN/RFZqL05UVTRPUzB6/TmpBM0xUUmovWVRB/dFlqUXlZaTA1T1RO/bC9ZMlppWkdZeE9E/Z3VhbkJu"));
+        artistasSolistas.add(new ArtistaDTO("Nicki Nicole", "Solista", "Hip Hop", "https://imgs.search.brave.com/i65WhEwsckUykgSkrXTn2ELOnC91eP0q_9LceM15jys/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vY0dhRFg4/aklZdjlQTDlVU2VM/Znh3NlcxdXljWVJ2/LWIxaHd1OHI5bERw/NC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/WVd4cy9jR0Z3WlhK/allYUXVZMjl0L0wz/Y3ZablZzYkM4MEx6/VXYvT1M4eE5UazRO/VEl5TFRFNS9NakI0/TVRBNE1DMWtaWE5y/L2RHOXdMVEV3T0RC/d0xXNXAvWTJ0cExX/NXBZMjlzWlMxaS9Z/V05yWjNKdmRXNWtM/WEJvL2IzUnZMbXB3/Wnc"));
+        artistasSolistas.add(new ArtistaDTO("Khea", "Solista", "Trap", "https://imgs.search.brave.com/4sh65XdL3zCot8yKDK5lbLb3o70-rinNaAWGr4rXgJA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vUS1CbVlN/ODhZekZQakRkT1pp/ZGFtQUNNSndSQkxI/QVRScjd1UEJqVXFx/SS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldGbi9aWE11YzJz/dGMzUmhkR2xqL0xt/TnZiUzlwYldGblpY/TXYvYldWa2FXRXZh/VzFuTDJOdi9iRE12/TWpBeU1URXhNVEV0/L01UYzFORE14TFRR/M05qRTUvTVM1cWNH/Yw"));
+        artistasSolistas.add(new ArtistaDTO("Milo J", "Solista", "Rap", "https://imgs.search.brave.com/_7-iQ4h485EY-SQQYuYLTddUAsEqayM7Oy1BbBzqHE8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vT3RPN0d3/UFZsMHpRTFMxSDk4/ZU80b1pyeG1nRk5H/emZ6bzBMOWtVc3pm/ay9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTls/ZUhSbC9jbTVoYkMx/d2NtVjJhV1YzL0xu/SmxaR1F1YVhRdlpu/SmwvYzJndFpYQXRi/V2xzYnkxcS9MVFV4/TVMxMk1DMXRlREEx/L2JUSnFXbGwxVFZG/MVlUQkwvYm1Kdk9I/VktSR3hzTlVSMy9j/MDFpVFZOM01teFZO/R1JhL2QybzRMbXB3/Wno5aGRYUnYvUFhk/bFluQW1jejFpTUdJ/Mi9aV0UyTlRaallU/QmxOR1V6L1pHVTNN/MkZqWVRreFlXVmsv/TlRSaU5qbGxOVGMz/TlRabQ"));
         
-        artistasSolistas.add(new ArtistaDTO("Vicente Fernandez", "Solista", "Regional", "imagen_solista1.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Jose Jose", "Solista", "Bolero", "imagen_solista2.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Lucero", "Solista", "Pop", "imagen_solista3.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Sabrina Carpenter", "Pop", "Pop", "imagen_solista4.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Fufu", "Solista", "Rap", "imagen_solista5.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Beret", "Solista", "Rap", "imagen_solista6.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Adrian L Santo", "Solista", "Regional", "imagen_solista7.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Ivan Cornejo", "Solista", "Regional", "imagen_solista8.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Mitski", "Solista", "Indie", "imagen_solista9.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Lana del Rey", "Solista", "Indie", "imagen_solista10.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Alex Ponce", "Solista", "Pop", "imagen_solista11.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Junior H", "Solista", "Hip Hop", "imagen_solista12.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Arcangel", "Solista", "Reggaeton", "imagen_solista13.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Bizarrap", "Solista", "Trap", "imagen_solista14.jpg"));
-        artistasSolistas.add(new ArtistaDTO("Babi", "Solista", "Trap", "imagen_solista15.jpg"));
+        artistasSolistas.add(new ArtistaDTO("Vicente Fernandez", "Solista", "Regional", "https://imgs.search.brave.com/9JAYJWxoLo4ee-IdBy-9VxvflHc8NA-vqPa9Si6c3-g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vT2FNa0tV/eGZvekJCS2QyX1Vf/S3ZJXzI0ODNmX0No/NzhIX0R1ZUgtRXlr/MC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/QTEvTVRNNE5USXhM/MlZ6TDJadi9kRzh2/YldsaGJXa3RiV1Y0/L2FXTmhiaTF6YVc1/blpYSXQvZG1salpX/NTBaUzFtWlhKdS9Z/VzVrWlhvdGNHVnla/bTl5L2JYTXRZWFF0/WVcxbGNtbGovWVc1/aGFYSnNhVzVsY3kx/aC9jbVZ1WVMxdmJp/MXZZM1J2L1ltVnlM/VEV3TFRJd01UQXQv/YVc0dWFuQm5QM005/TmpFeS9lRFl4TWla/M1BUQW1hejB5L01D/WmpQWGM1WDNrMVUx/WnYvWjBVM1RFeEpW/MFp0Vkc1VC9aRFZt/ZWsxMWQzUkJUR0Ux/L1RWbEhlVWh0ZEda/Q1RUZzk"));
+        artistasSolistas.add(new ArtistaDTO("Jose Jose", "Solista", "Bolero", "https://imgs.search.brave.com/4Rgt0RcTlJkJrcHoem2xRVlKNQx4hwNE22TWXTpiRsc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vb0x3ekVE/ZkFiSGlEOWcwYW5w/N29MY0dfejZ6RUhU/RlJWUExjOEQyV2d2/QS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/WVd4cy9jR0Z3WlhK/aFkyTmxjM011L1ky/OXRMMloxYkd3dk1q/VTQvTURJeE1DNXFj/R2M"));
+        artistasSolistas.add(new ArtistaDTO("Lucero", "Solista", "Pop", "https://imgs.search.brave.com/i-8l8ZZlfleRrPY86McsafRI_EbZ0B4GDvuf4K_8w7Q/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vRkozdm5L/N0R4QW5MVkF2MkM5/TlU5V0xOekVOVlFJ/QUZLM3haNTF1Nmhj/RS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlz/ZFdObC9jbTh1WTI5/dExtMTRMMmx0L1p5/OWpaSE12YkhWalpY/SnYvTFRJd01UZ3Ri/V0Z6TFdWdS9ZVzF2/Y21Ga1lTNXFjR2M"));
+        artistasSolistas.add(new ArtistaDTO("Sabrina Carpenter", "Pop", "Pop", "https://imgs.search.brave.com/rtyojhjvnW6bwNsR9eciTbcbz7rLRmqQ9X8vZ89l95I/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vYVhQalNs/aE1nS0hOR2dCQVFV/RXlqaTExTk10bnBm/Tjg5RHQxVkV5emhJ/RS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkx/Ym1sMi9aWEp6WVd4/dGRYTnBZMjl1L2JH/bHVaUzVsY3k5alpH/NHYvYzJodmNDOW1h/V3hsY3k5VC9ZV0p5/YVc1aExVTmhjbkJs/L2JuUmxjaTFUYVc1/bmRXeGgvY2kxQlkz/UXRTUzFRYjNKMC9Z/V1JoTG1wd1p6OTJQ/VEUzL016ZzNORGc1/TnpjbWQybGsvZEdn/OU5UTXo"));
+        artistasSolistas.add(new ArtistaDTO("Fufu", "Solista", "Rap", "https://imgs.search.brave.com/vhgbuGQO7aSf-QT85DI9VQAl3IjToQqxXAOFyA6e4Og/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vY2VFSmN5/SkY3WGVVNFhnOUN4/RzdjUV9hZXlHUU9k/cmxpRnpEX0hXdmUx/ay9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlz/WVhScC9ibTl6ZFc1/cFpHOXpiMjVzL2FX/NWxMbU52YlM5M2ND/MWovYjI1MFpXNTBM/M1Z3Ykc5aC9aSE12/TWpBeU1pOHdOeTlH/L1ZVWlZMVU5QVFZC/TU1VTkIvUkU4dFEw/OVdSVkl1Y0c1bg"));
+        artistasSolistas.add(new ArtistaDTO("Beret", "Solista", "Rap", "https://imgs.search.brave.com/7sIlWCNEeOl8MNeuE97Our4sXQ2f1GBcpgb9OaF_7Ls/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vaVR2SEt1/ZHUxR1ZKNVlPTGpM/WlVaeGhuYzRrT3Z3/NlY5dmlDNno4Vkhu/US9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl5/WlhacC9jM1JoWm14/cGNHRnlMbU52L2JT/OTNjQzFqYjI1MFpX/NTAvTDNWd2JHOWha/SE12TWpBeS9OQzh3/T0M5Q1pYSmxkQzFD/L2RXVnViM010UVds/eVpYTXQvTWpBeU5D/MHhNVFUxZURjMy9N/QzVxY0dj"));
+        artistasSolistas.add(new ArtistaDTO("Adrian L Santos", "Solista", "Regional", "https://imgs.search.brave.com/5RZvEtGK403ww5fdPop6_DNtPVoKps7o9-THBLqt3dY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vSTFtWHBp/YW5nX0FNSGVIYXE4/bW9TV0hNNFNaMkFs/TW41MkpJY1JGX1Y1/OC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlp/YjI5ci9hVzVuWVdk/bGJuUnBibVp2L0xt/TnZiUzkzY0MxamIy/NTAvWlc1MEwzVndi/RzloWkhNdi9NakF5/TkM4d01TOWhZalkz/L05qRTJNVEF3TURC/bE5XVmkvTlRrMk9H/Um1PVEE0WlRVMi9P/REJpWlRjd1kyTXlO/REprL0xURXRNalV3/ZURNd01DNXEvY0dj"));
+        artistasSolistas.add(new ArtistaDTO("Ivan Cornejo", "Solista", "Regional", "https://imgs.search.brave.com/dwUgw6yj36trpPxj08q0I9XxxgqIdctqg9WR8uQu8lo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vMVBEd3B3/V2JuVXdWQnJ4amNp/SVNBZHFOLUFiVC1N/SFZDcC1wWEI4bmtJ/QS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9ZbWxzYkdK/dllYSmtMbU52L2JT/OTNjQzFqYjI1MFpX/NTAvTDNWd2JHOWha/SE12TWpBeS9NUzh4/TVM5cGRtRnVMV052/L2NtNWxhbTh0Y0hK/bGMzTXQvTWpBeU1T/MWlhV3hzWW05aC9j/bVF0TVRVd01DMHhO/ak0yL05qVTJOREk1/TG1wd1p6OTMvUFRr/ME1pWm9QVFl5TXla/ai9jbTl3UFRF"));
+        artistasSolistas.add(new ArtistaDTO("Mitski", "Solista", "Indie", "https://imgs.search.brave.com/M4R1EnksM0p_w_XRFmG5ofyzkQI3nQxxCDGxLo3SAzg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vZHk2OUJH/UmFEMm1pc3lBSTQt/LVNFQTBiWXllNWZI/OUtPTnk4TE0tZGlT/OC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldjdS9jR0Z6ZEdW/dFlXZGhlbWx1L1pT/NWpiMjB2ZDNBdFky/OXUvZEdWdWRDOTFj/R3h2WVdSei9Mekl3/TWpRdk1ESXZNalF4/L016STRNalF2T1Rn/NVF6VkYvUmpNdE9V/WkdNQzAwTmpFNC9M/VGcyTmtZdE56azFP/RVpEL1JrSkNOVGsx/TG1wd1pXYw"));
+        artistasSolistas.add(new ArtistaDTO("Lana del Rey", "Solista", "Indie", "https://imgs.search.brave.com/15j6bPFs20B8KZzIi5M3UXYjAf3HllHHtpckrCDZ_wM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vbkEzYnpj/cFo0NUxCcnRMblgz/OFdxcXJnODZDQ2Zp/SV9nTlE4eGFTQUdw/QS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9hRzl5YVhw/dmJuTnRkWE5wL1l5/NWpieTUxYXk5alpH/NHYvYzJodmNDOW1h/V3hsY3k4eC9Yek5q/WmpVNVkyVmlMV1Zo/L09EVXROR1EzTlMw/NE9URTAvTFRsaVl6/VmxOalF3TURZNC9N/UzVxY0djX2RqMHhO/amczL05qazNPVEkw/Sm5kcFpIUm8vUFRV/ek13"));
+        artistasSolistas.add(new ArtistaDTO("Alex Ponce", "Solista", "Pop", "https://imgs.search.brave.com/sBb9fpi15YnOyvGyhPqJPAbzxRry2fDmZ17SOIu1HCI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vX3ZNVVA3/VkZCQlRyTTdJWERJ/cFNNdkJYWlNtRWc3/bzVMYW5wOVNFOWJp/VS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlq/Wkc0dS9jSEp2WkM1/M1pXSnphWFJsL0xX/WnBiR1Z6TG1OdmJT/ODIvTkdVMk16SmxN/V0V3TjJJNS9Zak0x/TXpZME5Ua3dZalV2/L05qWTNZak15TkdR/eVpqUTIvWldaaVpq/RmxObUV6T1dZeC9Y/MEZzWlhnbE1qQlFi/MjVqL1pTd2xNakJo/Y25ScGMzUWwvTWpC/aWFXOHNKVEl3Y0hK/di9abWxzWlM1aGRt/bG0"));
+        artistasSolistas.add(new ArtistaDTO("Junior H", "Solista", "Hip Hop", "https://imgs.search.brave.com/_VEHtBXdQ_6n4WCjpig0aeMfDnhJcKisRoaBZ3DY88o/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vUmIteVRj/TWdVQW5HcWVQQ1NC/TElEYnFZMWdFSFBO/SlF4Xy0xRmlUVFU5/cy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl1/YkhSeS9ZWFpsYkM1/ek15NTFjeTFsL1lY/TjBMVEl1WVcxaGVt/OXUvWVhkekxtTnZi/UzkzY0Mxai9iMjUw/Wlc1MEwzVndiRzlo/L1pITXZNakF5TXk4/d05pOHcvTWpFeU16/UXlPUzlLVlU1Si9U/MUl0U0M1d2JtYw"));
+        artistasSolistas.add(new ArtistaDTO("Arcangel", "Solista", "Reggaeton", "https://imgs.search.brave.com/K2SSjfYVhDwfxHPj51OfaB-MOZEvQ08TfYqPn2UtJAc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20valRmcDgz/dFd1S2NMRDNWV2lF/YmRscU51TEwySTVV/MDRPS0NaTE9uQWVp/dy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9ZMjEwZGk1/amIyMHVZWEl2L2FX/MWhaMlZ1WlhOZllY/SjAvYVhOMFlYTXZN/ekUxTXk1My9aV0p3/UDBGeVl5VkRNeVZC/L01XNW5aV3c"));
+        artistasSolistas.add(new ArtistaDTO("Bizarrap", "Solista", "Trap", "https://imgs.search.brave.com/wFJ4a8oKjS8R1R1ijWHx8n6S0EFNElElY4LklLPbihI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vYWJiNUlU/SDBoT2NwdXFTaDBW/UThRMElsQWN2Qzdf/a3ktOTdqaGo2SXFU/dy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9aV3gxYm1s/MlpYSnpZV3d1L1ky/OXRMbTE0TDNKbGMy/bDYvWlhJdmRqSXZS/RGRWV1VoWi9UalZD/VGtKT1NFUTFXa3hG/L1FrVlJWMVJHVjBV/dWFuQm4vUDJGMWRH/ZzlObVpoWkRSai9O/RGRtT1ROalltSTBO/R1poL056TXhZek16/TldJNE5HUTIvWW1J/eU56Z3lPVGN6T1RF/MC9ZVFU1TnpFME4y/Wm1abU0yL1l6SXlN/alEyTlRrelppWnov/YldGeWREMTBjblZs/Sm5kcC9aSFJvUFRF/eE1EQW1hR1ZwL1oy/aDBQVFkyTmc"));
+        artistasSolistas.add(new ArtistaDTO("Babi", "Solista", "Trap", "https://imgs.search.brave.com/QbEJ9F2nYDK2H9d89J2R4gSysp1d1YSZtEKjuSFB2dk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vVDJjYk8t/UGZpQUw4MktmMDB4/TzFhOFJIaEl3Qjhz/Wk5TT2o0bW92eGFh/US9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/TG0xMS9jMmxqWVds/dFp5NWpiMjB2L2JH/VjBjbUZ6THpJMU1I/Z3kvTlRBdlltRmlh/UzVxY0dj"));
 
         return artistasSolistas;
     }
@@ -55,102 +55,102 @@ public class DatosPredefinidos {
         integrantesLatinMafia.add(new IntegranteDTO("Juan Pérez", "Vocalista", LocalDate.of(2010, 1, 10), "Activo"));
         integrantesLatinMafia.add(new IntegranteDTO("Carlos López", "Guitarrista", LocalDate.of(2010, 1, 10), "Activo"));
         integrantesLatinMafia.add(new IntegranteDTO("Miguel Sánchez", "Bajista", LocalDate.of(2010, 1, 10), "Activo"));
-        bandas.add(new ArtistaDTO("Latin Mafia", "Banda", "Pop", "imagen_banda1.jpg", integrantesLatinMafia));
+        bandas.add(new ArtistaDTO("Latin Mafia", "Banda", "Pop", "https://imgs.search.brave.com/stHRVTN0PsRvNMqV2_q-uqIoktkjsgPvy1u7lMqvnck/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vX0lfM2RW/Q05YdUItZnBjWmdI/cmJPMmZ3SWNOdlVx/bGhRMFd5anRRZlZK/OC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlq/WVMxMC9hVzFsY3k1/aWNtbG5hSFJ6L2NH/OTBZMlJ1TG1OdmJT/OWsvYVcxek5DOWta/V1poZFd4MC9MMlE1/WVdVME1ERXZNakUw/L056UTRNelkwTnk5/emRISnAvY0M5MGNu/VmxMMk55YjNBdi9O/RFkzTW5nME5qY3lL/ekFyL056UTFMM0ps/YzJsNlpTOHgvTURB/d2VERXdNREFoTDNG/MS9ZV3hwZEhrdk56/VXZQM1Z5L2JEMW9k/SFJ3Y3pvdkwyTmgv/YkdsbWIzSnVhV0V0/ZEdsdC9aWE10WW5K/cFoyaDBjM0J2L2RD/NXpNeTVoYldGNmIy/NWgvZDNNdVkyOXRM/ekZtTDJVNC9Memc1/WkdOak5tVTJOREF4/L01qazNPRE5tWVRB/eU5qSTUvT1dZNE1E/QXZiR0V0WkdVdC9i/Rzl6TFd4aGRHbHVM/VzFoL1ptbGhMV2ho/Ym1SdmRYUnovTFRN/dWFuQm4", integrantesLatinMafia));
         
         List<IntegranteDTO> integrantesZoe = new ArrayList<>();       
         integrantesZoe.add(new IntegranteDTO("Sergio Vega", "Bajista", LocalDate.of(1997, 1, 1), "Activo"));
         integrantesZoe.add(new IntegranteDTO("Cruz Martínez", "Guitarrista", LocalDate.of(1997, 1, 1), "Activo"));
         integrantesZoe.add(new IntegranteDTO("Ángel Mosqueda", "Batería", LocalDate.of(1997, 1, 1), "Activo"));
         integrantesZoe.add(new IntegranteDTO("León Larregui", "Vocalista", LocalDate.of(1997, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Zoe", "Banda", "Pop", "imagen_banda2.jpg", integrantesZoe));
+        bandas.add(new ArtistaDTO("Zoe", "Banda", "Pop", "https://imgs.search.brave.com/7az1poaSNzR_2ofTUz1TrcomJajyvDHxxxgz_U16JL4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vSFI5dDhE/dmVZQkE5dmNwUlhW/QWJZRnlvb1ppcFN2/Tzl0VndNdWhhVnVC/SS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9ibVZ2TWk1/amIyMHZkM0F0L1ky/OXVkR1Z1ZEM5MWNH/eHYvWVdSekx6SXdN/akV2TURVdi9XbTls/TFcxbGVHbGpieTF5/L2IyTnJMVzUxWlha/dkxXUnAvYzJOdkxX/VnVkSEpsZG1sei9k/R0V0Wm05MGJ5MHlM/bXB3L1p3", integrantesZoe));
         
         List<IntegranteDTO> integrantes3AM = new ArrayList<>();
         integrantes3AM.add(new IntegranteDTO("Emmanuel Loza", "Vocalista", LocalDate.of(2000, 1, 1), "Activo"));
         integrantes3AM.add(new IntegranteDTO("Luis Miguel Martínez", "Guitarrista", LocalDate.of(2000, 1, 1), "Activo"));
         integrantes3AM.add(new IntegranteDTO("Alfredo Herrera", "Batería", LocalDate.of(2000, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("3AM", "Banda", "Urbano", "imagen_banda3.jpg", integrantes3AM));
+        bandas.add(new ArtistaDTO("3AM", "Banda", "Urbano", "https://imgs.search.brave.com/i1LXG2wGWrFWUOQ6bgBW1omZ1UhoQARrSGZTX9aztK0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20valBXR2NE/dkRoVEF2SE5aaWJ0/LW9PVGZQUnRmVDRk/YndXV2dvMkRQWGh4/WS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlz/WVhOMC9abTB1Wm5K/bFpYUnNjeTVtL1lY/TjBiSGt1Ym1WMEwy/a3YvZFM5aGRtRjBZ/WEl4TnpCei9MMlE1/TWpBM05EZGxNMkky/L056QmtOMlEzT1RJ/eU1qSXcvWmpVMlpH/UTNOemd6", integrantes3AM));
         
         List<IntegranteDTO> integrantesFuerzaRegida = new ArrayList<>();
         integrantesFuerzaRegida.add(new IntegranteDTO("Javier Fernández", "Vocalista", LocalDate.of(2010, 1, 1), "Activo"));
         integrantesFuerzaRegida.add(new IntegranteDTO("Eduardo López", "Acordeonista", LocalDate.of(2010, 1, 1), "Activo"));
         integrantesFuerzaRegida.add(new IntegranteDTO("Mario García", "Bajista", LocalDate.of(2010, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Fuerza Regida", "Banda", "Regional", "imagen_banda4.jpg", integrantesFuerzaRegida));
+        bandas.add(new ArtistaDTO("Fuerza Regida", "Banda", "Regional", "https://imgs.search.brave.com/rhWVbWK5SPmnIf5O9Zm4hs3ZwJWvKEP5aAYJslh-QeI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vWUwzRU92/d2JETTVqUHlMNHlv/SlN4bEplTzNzVC1j/NklBVzh4eXZDbTNQ/Zy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9jMjk1WjNK/MWNHVnlieTVqL2Iy/MHViWGd2ZDNBdFky/OXUvZEdWdWRDOTFj/R3h2WVdSei9Mekl3/TWpNdk1ETXZablZs/L2NucGhMWEpsWjJs/a1lTMXAvYm5SbFoz/SmhiblJsY3k1cS9j/R2M", integrantesFuerzaRegida));
         
         List<IntegranteDTO> integrantesReik = new ArrayList<>();
         integrantesReik.add(new IntegranteDTO("Jesús Navarro", "Vocalista", LocalDate.of(2003, 1, 1), "Activo"));
         integrantesReik.add(new IntegranteDTO("Julio Ramírez", "Guitarrista", LocalDate.of(2003, 1, 1), "Activo"));
         integrantesReik.add(new IntegranteDTO("Gilberto Marín", "Tecladista", LocalDate.of(2003, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Reik", "Banda", "Pop Latino", "imagen_banda5.jpg", integrantesReik));
+        bandas.add(new ArtistaDTO("Reik", "Banda", "Pop Latino", "https://imgs.search.brave.com/vk9vEV-KWsRkDfmGAfLZagIL_n8L0HG6PDKyotRV2_s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vRGFvLW5w/SWlkTVZkR0NEd1ky/ZThzUGFoZ3JuWnhh/NThzcGVwY0RxQXpj/MC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9ZMjEwZGk1/amIyMHVZWEl2L2FX/MWhaMlZ1WlhOZmJt/OTAvYVdOcFlYTXZN/RE15TXpJeC9NakF3/TVRjME1EUXhPREkz/L055NTNaV0p3UDA1/MVpYWnYvWDNSbGJX/RmZaR1ZmVW1WcC9h/dw", integrantesReik));
         
         List<IntegranteDTO> integrantesMorat = new ArrayList<>();
         integrantesMorat.add(new IntegranteDTO("Juan Pablo Isaza", "Vocalista/Guitarra", LocalDate.of(2015, 1, 1), "Activo"));
         integrantesMorat.add(new IntegranteDTO("Simón Vargas", "Bajo", LocalDate.of(2015, 1, 1), "Activo"));
         integrantesMorat.add(new IntegranteDTO("Martín Vargas", "Batería", LocalDate.of(2015, 1, 1), "Activo"));
         integrantesMorat.add(new IntegranteDTO("Alejandro Posada", "Guitarra", LocalDate.of(2015, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Morat", "Banda", "Pop", "imagen_banda6.jpg", integrantesMorat));
+        bandas.add(new ArtistaDTO("Morat", "Banda", "Pop", "https://imgs.search.brave.com/ugMO36j0qQQwl8iIOu70ngWWDAfBD61GrMCemyS3tJ8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vckN3d1NU/UFBodHQycF9EV3lV/bmFKcl9rU2s4STQw/SklyTllIZ3Y2bHpB/NC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldGbi9aWE11ZEc5/dFlYUnBZMnRsL2RD/NWpiMjB2WVhKMGFY/TjAvWVM4eU1ESXRi/Vzl5WVhRdS9hbkJs/Wnc", integrantesMorat));
         
         List<IntegranteDTO> integrantesBlackpink = new ArrayList<>();
         integrantesBlackpink.add(new IntegranteDTO("Jisoo", "Vocalista", LocalDate.of(2016, 8, 8), "Activo"));
         integrantesBlackpink.add(new IntegranteDTO("Jennie", "Rapper/Vocalista", LocalDate.of(2016, 8, 8), "Activo"));
         integrantesBlackpink.add(new IntegranteDTO("Rosé", "Vocalista", LocalDate.of(2016, 8, 8), "Activo"));
         integrantesBlackpink.add(new IntegranteDTO("Lisa", "Bailarina/Rapper", LocalDate.of(2016, 8, 8), "Activo"));
-        bandas.add(new ArtistaDTO("Blackpink", "Banda", "K-Pop", "imagen_banda7.jpg", integrantesBlackpink));
+        bandas.add(new ArtistaDTO("Blackpink", "Banda", "K-Pop", "https://imgs.search.brave.com/xEMjBrzfTB6kr8HYYEgEeEytlmBGrsQOFkKTHIdmNj4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vZlBmQ0lr/TUJ2akhuWmVMandP/dHMyWmJYRURZaWZ0/RFFJRnJPY1A4aktL/SS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkw/YzJodi9jQzV5TVRC/ekxtcHdMMkp2L2Iy/c3ZZMkZpYVc1bGRD/OHcvTnprNUx6UTVP/RGd3TXpFei9OVEEz/T1RrdWFuQm5QMlpw/L2RHbHVQVEkzTlRv/eU56VQ", integrantesBlackpink));
         
         List<IntegranteDTO> integrantesKevinKaarl = new ArrayList<>();
         integrantesKevinKaarl.add(new IntegranteDTO("Kevin Kaarl", "Vocalista/Guitarra", LocalDate.of(2018, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Kevin Kaarl", "Banda", "Indie", "imagen_banda8.jpg", integrantesKevinKaarl));
+        bandas.add(new ArtistaDTO("Kevin Kaarl", "Banda", "Indie", "https://imgs.search.brave.com/B0XaeXYxDx2SXXkrz6AfO6yMbE3PU7yo8gsBpM6-j6A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vOHlrelln/TzVmNFNoaHQ2dF9s/R3JFaEZQRXVyRUJT/ZGR6Vm5WNHV2S2k1/WS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/Ym1ScC9aWEp2WTJ0/ekxuTm1iek11L1pH/bG5hWFJoYkc5alpX/RnUvYzNCaFkyVnpM/bU52YlM5My9jQzFq/YjI1MFpXNTBMM1Z3/L2JHOWhaSE12TWpB/eU1DOHgvTWk5TFpY/WnBiaTFMWVdGeS9i/Rjl4WlhsMGNXRjBM/bXB3L1pXYw", integrantesKevinKaarl));
         
         List<IntegranteDTO> integrantesManeskin = new ArrayList<>();
         integrantesManeskin.add(new IntegranteDTO("Damiano David", "Vocalista", LocalDate.of(2016, 1, 1), "Activo"));
         integrantesManeskin.add(new IntegranteDTO("Victoria De Angelis", "Bajista", LocalDate.of(2016, 1, 1), "Activo"));
         integrantesManeskin.add(new IntegranteDTO("Thomas Raggi", "Guitarrista", LocalDate.of(2016, 1, 1), "Activo"));
         integrantesManeskin.add(new IntegranteDTO("Ethan Torchio", "Batería", LocalDate.of(2016, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Maneskin", "Banda", "Pop", "imagen_banda9.jpg", integrantesManeskin));
+        bandas.add(new ArtistaDTO("Maneskin", "Banda", "Pop", "https://imgs.search.brave.com/LYxnVeHnsT9jOeESvPxJD2aPSBdgq0_gf7QQpfBA0SA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vMmV1czJv/X0NxdlRnc002c2dE/bDBiNGVEcDZoV095/R3djVzd5OU5Ob0R1/MC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/a3YvTmpGQ2NqaFVa/bVJoY1V3dS9hbkJu", integrantesManeskin));
         
         List<IntegranteDTO> integrantesTOP = new ArrayList<>();
         integrantesTOP.add(new IntegranteDTO("Tyler Joseph", "Vocalista/Teclado", LocalDate.of(2009, 1, 1), "Activo"));
         integrantesTOP.add(new IntegranteDTO("Josh Dun", "Batería", LocalDate.of(2011, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Twenty One Pilots", "Banda", "Hip Hop", "imagen_banda10.jpg", integrantesTOP));
+        bandas.add(new ArtistaDTO("Twenty One Pilots", "Banda", "Hip Hop", "https://imgs.search.brave.com/M964y-zSM_rEiLhXDY_5lz92cn2SUa-_1lrUedtxgRk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vRXpQUVE5/YXZweDBkQVptVV9h/Z21GTGdzc2NIYzdP/SWdSb0NQMzJvSWFI/NC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/Y3YvTURFdlRYVnph/V05RY205bi9jbUZ0/YldsdVp5OHdOVEV3/L01qUmZWVk5GVGw5/QmNuUnAvYzNSVGRH/RjBhVzl1YzE5VS9k/MlZ1ZEhsUGJtVlFh/V3h2L2RITmZVRWRm/VUVGZlJVZGYvTWpR/d01IZ3lOREF3TG1w/dy9adw", integrantesTOP));
         
         List<IntegranteDTO> integrantesArcticMonkeys = new ArrayList<>();
         integrantesArcticMonkeys.add(new IntegranteDTO("Alex Turner", "Vocalista/Guitarrista", LocalDate.of(2002, 1, 1), "Activo"));
         integrantesArcticMonkeys.add(new IntegranteDTO("Jamie Cook", "Guitarrista", LocalDate.of(2002, 1, 1), "Activo"));
         integrantesArcticMonkeys.add(new IntegranteDTO("Nick O'Malley", "Bajista", LocalDate.of(2006, 1, 1), "Activo"));
         integrantesArcticMonkeys.add(new IntegranteDTO("Matt Helders", "Batería", LocalDate.of(2002, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Arctic Monkeys", "Banda", "Indie", "imagen_banda11.jpg", integrantesArcticMonkeys));
+        bandas.add(new ArtistaDTO("Arctic Monkeys", "Banda", "Indie", "https://imgs.search.brave.com/IwU3CSrJ4BqowXTQJ3HgTfSlQ3I8Qeq32vdtJxo-pTM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vcHpIYmNs/cU9oalVXX0RpQ2gz/UmdZc3N3dHZTVFpX/S3p1d1RONUFZbUNZ/Yy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlt/ZVdSdS9MbWx0WjJs/NExtNWxkQzl0L0wy/ZGxiaTloY25RdGNI/SnAvYm5RdGMzUmtM/WEJ2Y25SeS9ZV2ww/TFdaeVlXMWxaQzFp/L2JHRmpheTg1WWpn/NFlUVmwvTXkxak56/STJMVFF5WmprdC9Z/akkwTmkwd056WmhZ/Mll5L1lURXdNR0l1/YW5CblAyRjEvZEc4/OVptOXliV0YwTEdO/di9iWEJ5WlhOekpu/RTlOVEFtL2R6MHlP/REE", integrantesArcticMonkeys));
         
         List<IntegranteDTO> integrantesKiss = new ArrayList<>();
         integrantesKiss.add(new IntegranteDTO("Paul Stanley", "Vocalista/Guitarrista", LocalDate.of(1973, 1, 1), "Activo"));
         integrantesKiss.add(new IntegranteDTO("Gene Simmons", "Bajista/Vocalista", LocalDate.of(1973, 1, 1), "Activo"));
         integrantesKiss.add(new IntegranteDTO("Eric Singer", "Batería", LocalDate.of(1991, 1, 1), "Activo"));
         integrantesKiss.add(new IntegranteDTO("Tommy Thayer", "Guitarrista", LocalDate.of(2002, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("KISS", "Banda", "Rock", "imagen_banda12.jpg", integrantesKiss));
+        bandas.add(new ArtistaDTO("KISS", "Banda", "Rock", "https://imgs.search.brave.com/L11-1g4xm-hGC8IKi_4QlSlIAyd8BOkV2SxZz2kfp2s/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vLVFETzds/SVI3Y0pyZGRYVnFD/YjNlVmRRVzRnaEMz/cko3Zlphcy1VN0xq/cy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldGbi9aWE10Ym1F/dWMzTnNMV2x0L1lX/ZGxjeTFoYldGNmIy/NHUvWTI5dEwybHRZ/V2RsY3k5Si9Mell4/VldadVVGSnpWRzlN/L0xtcHdadw", integrantesKiss));
         
         List<IntegranteDTO> integrantesKeane = new ArrayList<>();
         integrantesKeane.add(new IntegranteDTO("Tom Chaplin", "Vocalista", LocalDate.of(1995, 1, 1), "Activo"));
         integrantesKeane.add(new IntegranteDTO("Tim Rice-Oxley", "Tecladista", LocalDate.of(1995, 1, 1), "Activo"));
         integrantesKeane.add(new IntegranteDTO("Richard Hughes", "Batería", LocalDate.of(1995, 1, 1), "Activo"));
         integrantesKeane.add(new IntegranteDTO("Jesse Quin", "Bajista", LocalDate.of(2007, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Keane", "Banda", "Rock", "imagen_banda13.jpg", integrantesKeane));
+        bandas.add(new ArtistaDTO("Keane", "Banda", "Rock", "https://imgs.search.brave.com/WMUIeG0xP--lljWrEiHDt77QDBymBgdDwWB3R7Ds4kY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vU0RqOXNp/LVdQbTRlVTRVaEoy/Nnp2RVU1ZDJqQmpU/R1pncWFCaXN0aGVq/cy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlp/Ykc5bi9MblJwWTJ0/bGRHMWhjM1JsL2Np/NWtaUzkzY0MxamIy/NTAvWlc1MEwzVndi/RzloWkhNdi9NakF5/TXk4d09TOXJaV0Z1/L1pTMXJiMlZzYmkx/cmIyNTYvWlhKMExU/SXdNalF0ZEdsai9h/MlYwY3kxMmIzSjJa/WEpyL1lYVm1MV1Js/WW5WMExXRnMvWW5W/dExXZGxZblZ5ZEhO/MC9ZV2N1YW5Cbg", integrantesKeane));
         
         List<IntegranteDTO> integrantesQueen = new ArrayList<>();
         integrantesQueen.add(new IntegranteDTO("Freddie Mercury", "Vocalista", LocalDate.of(1970, 1, 1), "Fallecido"));
         integrantesQueen.add(new IntegranteDTO("Brian May", "Guitarrista", LocalDate.of(1970, 1, 1), "Activo"));
         integrantesQueen.add(new IntegranteDTO("Roger Taylor", "Batería", LocalDate.of(1970, 1, 1), "Activo"));
         integrantesQueen.add(new IntegranteDTO("John Deacon", "Bajista", LocalDate.of(1970, 1, 1), "Retirado"));
-        bandas.add(new ArtistaDTO("Queen", "Banda", "Rock", "imagen_banda14.jpg", integrantesQueen));
+        bandas.add(new ArtistaDTO("Queen", "Banda", "Rock", "https://imgs.search.brave.com/99Jsie-ZZUuu6Qaku1svkgsSXz7fI9c91FjLfEj6F0M/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vU0duQ0ph/angxWE5uSFJNb2p3/Y0VEeWJtUklxdTUy/ZWV2ZDd1a2JVdTFS/RS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/a3YvTlRGTmVtRjVO/M1U1U0V3dS9hbkJu", integrantesQueen));
         
         List<IntegranteDTO> integrantesSinBandera = new ArrayList<>();
         integrantesSinBandera.add(new IntegranteDTO("Leonel García", "Vocalista", LocalDate.of(2000, 1, 1), "Activo"));
         integrantesSinBandera.add(new IntegranteDTO("Noel Schajris", "Vocalista", LocalDate.of(2000, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Sin bandera", "Banda", "Bolero", "imagen_banda15.jpg", integrantesSinBandera));
+        bandas.add(new ArtistaDTO("Sin bandera", "Banda", "Bolero", "https://imgs.search.brave.com/O0dJWerjwNBGaH2N6bykPv3OpRsS89RZaaAarCrWG7w/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vMjY5Y1JP/OGs1YUlFQkt3N0pn/ckwtTk9SeUtWS3FM/M0VCdDRKc1I2OTdr/dy9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldGbi9aWE11YzJz/dGMzUmhkR2xqL0xt/TnZiUzlwYldGblpY/TXYvYldWa2FXRXZh/VzFuTDJOdi9iRE12/TWpBeE56QXlNak10/L01EQXpNVEl6TFRn/ME1USTUvTnk1cWNH/Yw", integrantesSinBandera));
         
         List<IntegranteDTO> integrantesBTR = new ArrayList<>();
         integrantesBTR.add(new IntegranteDTO("Kendall Schmidt", "Vocalista", LocalDate.of(2009, 1, 1), "Inactivo"));
         integrantesBTR.add(new IntegranteDTO("James Maslow", "Vocalista", LocalDate.of(2009, 1, 1), "Inactivo"));
         integrantesBTR.add(new IntegranteDTO("Carlos Pena Jr.", "Vocalista", LocalDate.of(2009, 1, 1), "Inactivo"));
         integrantesBTR.add(new IntegranteDTO("Logan Henderson", "Vocalista", LocalDate.of(2009, 1, 1), "Inactivo"));
-        bandas.add(new ArtistaDTO("Big Time Rush", "Banda", "Pop", "imagen_banda1.jpg", integrantesBTR));
+        bandas.add(new ArtistaDTO("Big Time Rush", "Banda", "Pop", "https://imgs.search.brave.com/HdcLLRup2oQyFI_oNF4it67_GxJo6GRpfHurHNhKiI8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vdzktYi11/OWZ3RE4tRGZuWGVw/T2U2QWRBdkt0NVU3/THpVU0RFcWdWSFdm/SS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/TG5CcC9ibWx0Wnk1/amIyMHZiM0pwL1oy/bHVZV3h6THpSaUx6/STEvTDJFd0x6UmlN/alZoTUdVMC9ZVGt6/TW1ObU5qSXdNVEJt/L01XUXpOVFV5TVRJ/MU5qUmgvTG1wd1p3", integrantesBTR));
         
         List<IntegranteDTO> integrantesOD = new ArrayList<>();
         integrantesOD.add(new IntegranteDTO("Harry Styles", "Vocalista", LocalDate.of(2010, 1, 1), "Inactivo"));
@@ -158,7 +158,7 @@ public class DatosPredefinidos {
         integrantesOD.add(new IntegranteDTO("Louis Tomlinson", "Vocalista", LocalDate.of(2010, 1, 1), "Inactivo"));
         integrantesOD.add(new IntegranteDTO("Niall Horan", "Vocalista", LocalDate.of(2010, 1, 1), "Inactivo"));
         integrantesOD.add(new IntegranteDTO("Zayn Malik", "Vocalista", LocalDate.of(2010, 1, 1), "Inactivo"));
-        bandas.add(new ArtistaDTO("One Direction", "Banda", "Pop", "imagen_banda2.jpg", integrantesOD));
+        bandas.add(new ArtistaDTO("One Direction", "Banda", "Pop", "https://imgs.search.brave.com/OzhQx4JcybV8yYpaEG_wzAF8OmAyY1YXSHDL7FrHA3A/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vN0VRdE1Q/bHhaMFNXQ0pSdHFi/WEJvTy1uMlladXBq/ell0cEllT1p6LTdO/VS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/WVd4cy9jR0Z3WlhK/ekxtTnZiUzlwL2JX/Rm5aWE12YUdRdmIy/NWwvTFdScGNtVmpk/R2x2Ymkxei9aWEJw/WVMxd2IzSjBjbUZw/L2RDMXJabXBuY0hn/d016bHUvTm5ZM2JX/ODNMbXB3Wnc", integrantesOD));
         
         List<IntegranteDTO> integrantesCD9 = new ArrayList<>();
         integrantesCD9.add(new IntegranteDTO("Yankel Stevan", "Vocalista", LocalDate.of(2010, 1, 1), "Activo"));
@@ -166,36 +166,36 @@ public class DatosPredefinidos {
         integrantesCD9.add(new IntegranteDTO("Jos Canela", "Vocalista", LocalDate.of(2010, 1, 1), "Activo"));
         integrantesCD9.add(new IntegranteDTO("Christopher Vélez", "Vocalista", LocalDate.of(2010, 1, 1), "Activo"));
         integrantesCD9.add(new IntegranteDTO("Dylan Ruiz", "Vocalista", LocalDate.of(2010, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("CD9", "Banda", "Pop", "imagen_banda3.jpg", integrantesCD9));
+        bandas.add(new ArtistaDTO("CD9", "Banda", "Pop", "https://imgs.search.brave.com/1lUKNNOM6LtIKl05pypgf8p-gbCl5_mtucNchdS576Y/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vRnp1aWZ0/UW81VTU3VnR0TktW/N2tpLTlKS09fcmM1/WGhEd0lFWlkyaGFF/QS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9aWGhqWld4/emFXOXlMbU52L2JT/NXRlQzh5TkRCNE1U/YzEvTDJacGJIUmxj/bk02Wm05eS9iV0Yw/S0hkbFluQXBPbkYx/L1lXeHBkSGtvTnpV/cEwyMWwvWkdsaEwz/QnBZM1IxY21Wei9M/ekl3TWpRdk1ETXZN/ekV2L016QTVOVGMx/T1M1cWNHYw", integrantesCD9));
         
         List<IntegranteDTO> integrantesPlanB = new ArrayList<>();
         integrantesPlanB.add(new IntegranteDTO("Chencho Corleone", "Vocalista", LocalDate.of(2002, 1, 1), "Activo"));
         integrantesPlanB.add(new IntegranteDTO("Maldy", "Vocalista", LocalDate.of(2002, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Plan B", "Banda", "Reggaeton", "imagen_banda4.jpg", integrantesPlanB));
+        bandas.add(new ArtistaDTO("Plan B", "Banda", "Reggaeton", "https://imgs.search.brave.com/Xd-4iPnt8W7wHBQXBceDisYuq0r7-fTihV_-zr98E9g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vRDJ2VnJF/QUk0cE5pZ2EyeHpH/ck51TjhPRkplZGx3/WDdQd1JnSHI0Snp0/VS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlo/YkdOby9aWFJ5YjI0/dVkyOXRMMk5rL2Jp/OXdiR0Z1TFdJdFpI/VnYvTFRZd1ltRTFO/alZrTFRrMC9ZMll0/TkRjMk5pMWlaR1Ux/L0xUaGlOakV3TnpO/ak1UZGkvTFhKbGMy/bDZaUzAzTlRBdS9h/bkJsWnc", integrantesPlanB));
         
         List<IntegranteDTO> integrantesEnjambre = new ArrayList<>();
         integrantesEnjambre.add(new IntegranteDTO("Ricardo López", "Vocalista/Guitarrista", LocalDate.of(2000, 1, 1), "Activo"));
         integrantesEnjambre.add(new IntegranteDTO("Abie Toiber", "Batería", LocalDate.of(2000, 1, 1), "Activo"));
         integrantesEnjambre.add(new IntegranteDTO("Juan Pablo Rodríguez", "Teclados", LocalDate.of(2000, 1, 1), "Activo"));
         integrantesEnjambre.add(new IntegranteDTO("Manuel Vázquez", "Bajo", LocalDate.of(2000, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Enjambre", "Banda", "Rock", "imagen_banda5.jpg", integrantesEnjambre));
+        bandas.add(new ArtistaDTO("Enjambre", "Banda", "Rock", "https://imgs.search.brave.com/apHIVbt4sM3fmXCjLIZexEhWhvQJ66J99lRZn8u1LPs/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vNXhISDFy/d3VRdkpudjdsSmRs/Z29IdkcxcGFtUmVT/a2NNOHBiQlB5SVR3/VS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkx/Y0d4di9ZV1F1ZDJs/cmFXMWxaR2xoL0xt/OXlaeTkzYVd0cGNH/VmsvYVdFdlkyOXRi/Vzl1Y3k5aC9MMkU1/TDBWdWFtRnRZbkps/L1gzTmxjMmtsUXpN/bFFqTnUvWDJadmRH/OW5jaVZETXlWQi9N/V1pwWTJFdWFuQm4", integrantesEnjambre));
         
         List<IntegranteDTO> integrantesBandaMS = new ArrayList<>();
         integrantesBandaMS.add(new IntegranteDTO("Alfredo Olivas", "Vocalista", LocalDate.of(2003, 1, 1), "Activo"));
         integrantesBandaMS.add(new IntegranteDTO("Erick García", "Bajista", LocalDate.of(2003, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Banda MS", "Banda", "Regional", "imagen_banda6.jpg", integrantesBandaMS));
+        bandas.add(new ArtistaDTO("Banda MS", "Banda", "Regional", "https://imgs.search.brave.com/a5xPcNht4f5_e6e4ywJc1cnSmhqiQzWVhVW0v5OgRdc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20venBtX0x6/OFV2YXdnVENwV1Vw/czZ6aVBqeW5SU3lL/aFVza0E5Wm1PbE5C/WS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl3/YUc5MC9iM011WW1G/dVpITnBiblJ2L2Qy/NHVZMjl0TDNSb2RX/MWkvTHpJd05EUXpP/RFF3TG1wdy9aV2M", integrantesBandaMS));
         
         List<IntegranteDTO> integrantesMYA = new ArrayList<>();
         integrantesMYA.add(new IntegranteDTO("Maxi Espíndola", "Vocalista", LocalDate.of(2016, 1, 1), "Activo"));
         integrantesMYA.add(new IntegranteDTO("Agustín Bernasconi", "Vocalista", LocalDate.of(2016, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("MYA", "Banda", "Urbano", "imagen_banda7.jpg", integrantesMYA));
+        bandas.add(new ArtistaDTO("MYA", "Banda", "Urbano", "https://imgs.search.brave.com/YVUK3sBd0HVyZGfRcM3sAW1VuJVqcpp3kboEO1SHAww/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vOHFYcU85/dXZHTWhFQ3RaeW1C/ajdSNlE3MTY1VmMy/Q05Ub2poQUxUTVFo/RS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkz/ZDNjdS9aV3hqYVhW/a1lXUmhibTkzL1pX/SXVZMjl0TDNkd0xX/TnYvYm5SbGJuUXZk/WEJzYjJGay9jeTh5/TURJekx6QTRMMDE1/L1lTNXFjR2M", integrantesMYA));
         
         List<IntegranteDTO> integrantesDeftones = new ArrayList<>();
         integrantesDeftones.add(new IntegranteDTO("Chino Moreno", "Vocalista", LocalDate.of(1988, 1, 1), "Activo"));
         integrantesDeftones.add(new IntegranteDTO("Stephen Carpenter", "Guitarrista", LocalDate.of(1988, 1, 1), "Activo"));
         integrantesDeftones.add(new IntegranteDTO("Abe Cunningham", "Batería", LocalDate.of(1988, 1, 1), "Activo"));
         integrantesDeftones.add(new IntegranteDTO("Sergio Vega", "Bajista", LocalDate.of(2009, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("Deftones", "Banda", "Rock", "imagen_banda8.jpg", integrantesDeftones));
+        bandas.add(new ArtistaDTO("Deftones", "Banda", "Rock", "https://imgs.search.brave.com/X-CpueiSaun0-xhO2gsvB4VWTYUBHrFLFfxmMsYIitw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vdGpfdnRX/bEt6WU5UdXE5Wjd6/QmJnd21NbU91MzVO/TXFtVkxvZjhoOWhW/SS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/MHYvVFZZMVFsbHFV/WGhOUjBwdC9XVEpa/ZEZsWFNtcE5VekF3/L1RrUlplRXhVWnpO/WlZHZDAvV1ZkS2FF/NUVSbTFQUkVFMS9X/VEpHYTFoclJYbFlh/MFp4L1kwZGpRQzVx/Y0dj", integrantesDeftones));
         
         List<IntegranteDTO> integrantesTN = new ArrayList<>();
         integrantesTN.add(new IntegranteDTO("Jesse Rutherford", "Vocalista", LocalDate.of(2011, 1, 1), "Activo"));
@@ -203,10 +203,10 @@ public class DatosPredefinidos {
         integrantesTN.add(new IntegranteDTO("Zach Abels", "Guitarrista", LocalDate.of(2011, 1, 1), "Activo"));
         integrantesTN.add(new IntegranteDTO("Mikey Margott", "Bajista", LocalDate.of(2011, 1, 1), "Activo"));
         integrantesTN.add(new IntegranteDTO("Brandon Fried", "Batería", LocalDate.of(2011, 1, 1), "Activo"));
-        bandas.add(new ArtistaDTO("The neighbourhood", "Banda", "Pop", "imagen_banda9.jpg", integrantesTN));
+        bandas.add(new ArtistaDTO("The neighbourhood", "Banda", "Pop", "https://imgs.search.brave.com/HM6kmJcQkUlplq6fkTlwUrMoGC5h8RY8QvctvGGs_mI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vYzFkN2py/X0xYbnBoSHp1WHlJ/TnZTYjJqcUpGNTRS/QkJmVzNBOGtoMF83/by9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTlw/YldGbi9aWE10Ym1F/dWMzTnNMV2x0L1lX/ZGxjeTFoYldGNmIy/NHUvWTI5dEwybHRZ/V2RsY3k5Si9Memd4/UmpJM1l6VkVTVmhN/L0xtcHdadw", integrantesTN));
         
         List<IntegranteDTO> integrantesGrupoFrontera = new ArrayList<>();
-        bandas.add(new ArtistaDTO("Grupo Frontera", "Banda", "Regional", "imagen_banda10.jpg", integrantesGrupoFrontera));
+        bandas.add(new ArtistaDTO("Grupo Frontera", "Banda", "Regional", "https://imgs.search.brave.com/fNRhvFi-tXaHBh9kYZixM662I3AnGU8_2Jpr-5YLQoc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vSE5zRWhE/ODA4UGtVa09fNW5h/VG5heE0xSHh0R3ZY/c0dFOWZGTjBveTlC/MC9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTkw/YUdWbS9ZV1JsY2kx/eVpYTXVZMnh2L2RX/UnBibUZ5ZVM1amIy/MHYvY0hKcGRtRjBa/VjlwYldGbi9aWE12/ZDE4M05qQXNZMTlz/L2FXMXBkQ3htWDJG/MWRHOHMvY1Y5aGRY/UnZPbVZqYnk5Ti9R/VmxCWDBaVlNGSTBN/Rjl2L2RIUnBaVEV2/WjNKMWNHOHQvWm5K/dmJuUmxjbUV0Wlc1/MC9jbVYyYVhOMFlT/MWxjM0JoL2JtOXNM/bXB3Wnc", integrantesGrupoFrontera));
         
         List<IntegranteDTO> integrantesGrupoFirme = new ArrayList<>();
         integrantesGrupoFirme.add(new IntegranteDTO("Eduin Caz", "Vocalista", LocalDate.of(2014, 1, 1), "Activo"));
@@ -357,7 +357,7 @@ public class DatosPredefinidos {
                 "Primera Estrella",
                 LocalDate.of(2021, 5, 20),
                 "Pop Latino",
-                "portada_primera_estrella.jpg",
+                "https://imgs.search.brave.com/KqEHko7WnF8zHFrDHfpaLIGXUS9Q7ihwgzNedXvfhGg/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vdVBaYXAt/SDNCTzBLX0VNYmVi/eVRXVnZ2U2VIb3Vy/R1oxVTk3TGFnWlZq/TS9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/a3YvTmpGdVoxbHpa/RW80Y2t3dS9hbkJu",
                 obtenerCancionesDeAlbum("Primera Estrella")
             ));
         }
@@ -367,14 +367,14 @@ public class DatosPredefinidos {
                 "Yours Truly",
                 LocalDate.of(2013, 8, 30),
                 "Pop",
-                "portada_yours_truly.jpg",
+                "https://imgs.search.brave.com/Bf4xm_NVrhd1Xt-BKJ_YTQ7Kbnj8nK_Z8uB8nfvZfMo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vYkZoekZz/QVlXT3NVQUxpZUpt/OEJmWUd2RERPRWRz/VDhZdVVteHhkRS1N/by9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/MHYvVFZZMVFrMXFR/VFJPYWtVMS9UVVJa/TWs5V05VSk5iRFZD/L1lXNUNibGhyUm5S/YVZHZDMvVFZSRk1V/NVVTWHBQUkVWQS9M/bXB3Wnc",
                 obtenerCancionesDeAlbum("Yours Truly")
             ));
             albumes.add(new AlbumDTO(
                 "Sweetener",
                 LocalDate.of(2018, 8, 17),
                 "Pop",
-                "portada_sweetener.jpg",
+                "https://imgs.search.brave.com/-2Zqf5E7C2sWjqfgE0Kl8MWHeJRr4yAt9ulgdSXKA-g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vaHhXSHls/c1pic0pVeFBjalYx/TUdfRVR5eGh5Y2lJ/d1NHWkNOak51TS1t/by9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/TG0xbC9aR2xoTFdG/dFlYcHZiaTVqL2Iy/MHZhVzFoWjJWekww/a3YvTlRGNGRFSnpl/akJIUTB3dS9hbkJu",
                 obtenerCancionesDeAlbum("Sweetener")
             ));
         }

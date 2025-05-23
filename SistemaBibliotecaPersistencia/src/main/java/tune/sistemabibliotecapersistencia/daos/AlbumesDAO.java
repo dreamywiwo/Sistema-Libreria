@@ -341,7 +341,7 @@ public class AlbumesDAO implements IAlbumesDAO {
                 lookup("Artistas", "artistaId", "_id", "artista"),
                 unwind("$artista"),
                 project(fields(
-                        include("_id", "nombre", "imagenUrl"),
+                        include("_id", "nombre", "imagenPortada"),
                         computed("nombreArtista", "$artista.nombre")
                 ))
         );
