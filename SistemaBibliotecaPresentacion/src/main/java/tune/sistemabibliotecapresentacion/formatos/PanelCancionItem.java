@@ -126,7 +126,7 @@ public class PanelCancionItem extends JPanel {
                     esFavorito = true;
                 }
                 actualizarColorFavorito();
-
+                panelPerfilUsuario.mostrarFavoritos();
 
             } catch (NegocioException ex) {
                 System.err.println("Error al modificar favoritos: " + ex.getMessage());

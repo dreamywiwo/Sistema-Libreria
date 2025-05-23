@@ -63,6 +63,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         control.setPanelArtistas(panelArtistas);
         control.setPanelAlbumes(panelAlbumes);
         control.setPanelCanciones(panelCanciones);
+        control.setPanelPerfilUsuario(panelPerfilUsuario);
 
         // Establecer CardLayout para jPanelPaneles
         jPanelPaneles.setLayout(new CardLayout());
@@ -110,6 +111,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (panelPerfilUsuario != null) {
             panelPerfilUsuario = null;
             panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
+            control.setPanelPerfilUsuario(panelPerfilUsuario);
         } else {
             panelPerfilUsuario = new PanelPerfilUsuario(control, this, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         }

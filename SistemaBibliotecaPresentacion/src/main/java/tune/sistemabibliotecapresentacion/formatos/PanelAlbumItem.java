@@ -120,17 +120,7 @@ public class PanelAlbumItem extends JPanel {
                     esFavorito = true;
                 }
                 actualizarColorFavorito();
-
-            if (panelPerfilUsuario != null) {
-                SwingUtilities.invokeLater(() -> {
-                    try {
-                        panelPerfilUsuario.mostrarFavoritos();
-                    } catch (NegocioException e) {
-                        e.printStackTrace();
-                    }
-                });
-            }
-            
+                panelPerfilUsuario.mostrarFavoritos();
             } catch (NegocioException ex) {
                 System.err.println("Error al modificar favoritos: " + ex.getMessage());
             }

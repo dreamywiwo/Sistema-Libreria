@@ -1,4 +1,3 @@
-
 package tune.sistemabibliotecapresentacion;
 
 import java.awt.Color;
@@ -46,8 +45,8 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
     ICancionesBO cancionesBO;
     List<String> generos;
 
-    public PanelPerfilUsuario(ControlNavegacion control, VentanaPrincipal ventanaPrincipal, IUsuariosBO usuariosBO, List<String> generos, 
-                                IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO) throws NegocioException {
+    public PanelPerfilUsuario(ControlNavegacion control, VentanaPrincipal ventanaPrincipal, IUsuariosBO usuariosBO, List<String> generos,
+            IArtistasBO artistasBO, IAlbumesBO albumesBO, ICancionesBO cancionesBO) throws NegocioException {
         initComponents();
         this.control = control;
         this.ventanaPrincipal = ventanaPrincipal;
@@ -60,13 +59,12 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
         jLabelNombreUsuario.setFont(fontManager.getAfacadBold(96));
         jButtonEditarPerfil.setFont(fontManager.getAfacadMedium(20));
         jLabelPerfilTexto.setFont(fontManager.getAfacadMedium(20));
-        
+
         jPanelFavoritos.setOpaque(false);
         jScrollPaneFavoritos.setOpaque(false);
         jScrollPaneFavoritos.getViewport().setOpaque(false);
         jScrollPaneFavoritos.setBorder(null);
-        
-               
+
         establecerDatos();
         mostrarFavoritos();
     }
@@ -170,8 +168,10 @@ public class PanelPerfilUsuario extends javax.swing.JPanel {
     public void mostrarFavoritos() throws NegocioException {
 
         Usuario usuario = control.obtenerUsuarioActual();
-        if (usuario == null) return;
-        
+        if (usuario == null) {
+            return;
+        }
+
         List<CancionConArtistaDTO> cancionesFavoritas = cancionesBO.obtenerCancionesPorIds(usuario.getCanciones());
         List<Artista> artistasFavoritos = artistasBO.obtenerArtistasPorIds(usuario.getArtistas());
         List<AlbumConArtistaDTO> albumesFavoritos = albumesBO.obtenerAlbumsPorIds(usuario.getAlbumes());

@@ -33,25 +33,24 @@ public class ControlNavegacion {
 
     UsuariosDAO usuariosDAO = new UsuariosDAO();
     UsuariosBO usuariosBO = new UsuariosBO(usuariosDAO);
-    
+
     InsercionMasivaDAO insercionMasivaDAO = new InsercionMasivaDAO();
     InsercionMasivaBO insercionMasivaBO = new InsercionMasivaBO(insercionMasivaDAO);
-    
+
     AlbumesDAO albumesDAO = new AlbumesDAO();
     AlbumesBO albumesBO = new AlbumesBO(albumesDAO);
-    
+
     ArtistasDAO artistasDAO = new ArtistasDAO();
     ArtistasBO artistasBO = new ArtistasBO(artistasDAO);
-    
+
     CancionesDAO cancionesDAO = new CancionesDAO();
     CancionesBO cancionesBO = new CancionesBO(cancionesDAO);
-    
+
     private PanelArtistas panelArtistas;
     private PanelAlbumes panelAlbumes;
     private PanelCanciones panelCanciones;
-    
-    
-    
+    private PanelPerfilUsuario panelPerfilUsuario;
+
     public void mostrarVentanaPrincipal() throws NegocioException {
         VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
         ventanaPrincipal.mostrar();
@@ -72,36 +71,31 @@ public class ControlNavegacion {
     public void registrarUsuario(NuevoUsuarioDTO usuarioDTO) throws NegocioException {
         usuariosBO.registrarUsuario(usuarioDTO);
     }
-    
-    public void mostrarVentanaArtistaDetalle(String idArtista) throws NegocioException{
+
+    public void mostrarVentanaArtistaDetalle(String idArtista) throws NegocioException {
         List<String> generos = insercionMasivaBO.obtenerGenerosUnicos();
 
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
-        PanelPerfilUsuario panelPerfilUsuario = new PanelPerfilUsuario(this, ventanaPrincipal, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         VentanaArtistaDetalle ventanaArtista = new VentanaArtistaDetalle(artistasBO, idArtista, usuariosBO, this, panelPerfilUsuario, albumesBO);
         ventanaArtista.mostrar();
     }
-    
-    public void mostrarVentanaAlbumDetalle(String idArtista) throws NegocioException{
+
+    public void mostrarVentanaAlbumDetalle(String idArtista) throws NegocioException {
         List<String> generos = insercionMasivaBO.obtenerGenerosUnicos();
-        VentanaPrincipal ventanaPrincipal = new VentanaPrincipal(insercionMasivaBO, artistasBO, albumesBO, cancionesBO, this, usuariosBO);
-        PanelPerfilUsuario panelPerfilUsuario = new PanelPerfilUsuario(this, ventanaPrincipal, usuariosBO, generos, artistasBO, albumesBO, cancionesBO);
         VentanaAlbumDetalle ventanaAlbum = new VentanaAlbumDetalle(albumesBO, idArtista, usuariosBO, this, panelPerfilUsuario);
         ventanaAlbum.mostrar();
     }
 
-   
     public Usuario obtenerUsuarioActual() throws NegocioException {
         Usuario usuarioActual = usuariosBO.obtenerUsuarioActual();
         return usuarioActual;
     }
-    
-    public void actualizarPaneles() throws NegocioException{
+
+    public void actualizarPaneles() throws NegocioException {
         panelArtistas.cargarArtistasPorGenero();
         panelAlbumes.cargarAlbumes();
         panelCanciones.cargarCanciones();
     }
-    
+
     public void setPanelArtistas(PanelArtistas panelArtistas) {
         this.panelArtistas = panelArtistas;
     }
@@ -112,5 +106,11 @@ public class ControlNavegacion {
 
     public void setPanelCanciones(PanelCanciones panelCanciones) {
         this.panelCanciones = panelCanciones;
-    } 
+    }
+
+    public void setPanelPerfilUsuario(PanelPerfilUsuario panelPerfilUsuario) {
+        this.panelPerfilUsuario = panelPerfilUsuario;
+    }
+    
+    
 }
